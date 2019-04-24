@@ -61,3 +61,6 @@ Route::get('examples/pdf/downloadPDF', 'ExamplesController@downloadPDF');
 Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/
+Route::get('user',function(){
+    return view('pages.createUser');
+});
