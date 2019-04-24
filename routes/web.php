@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('examples.index', ['currentExample' => 'List of examples']);
-});
+// Route::get('/', function () {
+//     return view('examples.index', ['currentExample' => 'List of examples']);
+// });
 
 Auth::routes();
 
@@ -61,3 +61,11 @@ Route::get('examples/pdf/downloadPDF', 'ExamplesController@downloadPDF');
 Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/
+
+
+Route::get('/', function () {
+    return view('pages.users');
+});
+
+
+
