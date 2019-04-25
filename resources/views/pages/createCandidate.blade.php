@@ -271,9 +271,9 @@
   </div>
   
   
-  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br><br>
+  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
   <button class="btn btn-info float-right">Save Information</button>
-  
+  <br><br>
 
   </div>
   </div>
