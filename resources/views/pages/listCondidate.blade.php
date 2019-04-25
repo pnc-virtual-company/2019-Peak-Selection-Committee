@@ -7,11 +7,16 @@
 <div class="content">
     <div class="row">
 
+        <div class="col-md-7">
+            <h1 class="text-center">List of Candidates</h1>
+
+
         <div class="col-md-7" >
 
         <div class="col-md-8">
 
             <h1 class="text-center ">List of Candidates</h1>
+
             <br>
             <div class="float-right">
                 <button class="btn btn-primary btn-sm ml-2">All Candidates</button>
@@ -175,8 +180,13 @@
             </table>
              <button class="btn btn-primary btn-sm mb-4">Add candidate</button>
         </div>
+
+        <div class="col-md-5">
+            <h3 class="text-center mt-4">Among all candidates</h3>
+
         <div class="col-md-5 mt-4">
             <h3 class="text-center">Among all candidates</h3>
+
            <div id="Sarah_chart" style="border:none; background:none;"></div>
            
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -347,6 +357,10 @@
                             var options = {title:'Province',
                             width:300,
                             height:200};
+
+                    
+
+
                             // Instantiate and draw the chart for Anthony's pizza.
                             var chart = new google.visualization.PieChart(document.getElementById('Anthony'));
                             chart.draw(data, options);
