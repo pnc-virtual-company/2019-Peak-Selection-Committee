@@ -1,8 +1,6 @@
 css/*
 !css/app.css
-!css/cs-skin-elastic.css
-!css/materialdesignicons.min.css
-!css/style.css
+!css/icon.css
 fonts/materialdesignicons-webfont.eot
 fonts/materialdesignicons-webfont.svg
 fonts/materialdesignicons-webfont.ttf
@@ -10,7 +8,5 @@ fonts/materialdesignicons-webfont.woff
 fonts/materialdesignicons-webfont.woff2
 js/*
 !js/app.js
-!js/chartjs-init.js
-!js/main.js
 jstree/
 tinymce/

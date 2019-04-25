@@ -3,8 +3,6 @@
 
 @section('content')
 
-    <div class="content">
-        This is page user 
-    </div>
+    <h3>Administrator</h3>
 
 @endsection
