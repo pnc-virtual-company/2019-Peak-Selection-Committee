@@ -14,9 +14,9 @@
 </head>
 <body>
     
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-transparent sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light sticky-top">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{url('/listCan')}}">
       <img src="images/logo.png" style="width: 145px;" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
             Candidate
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">List Candidates</a>
+            <a class="dropdown-item" href="{{url('/listCan')}}">List Candidates</a>
             <a class="dropdown-item" href="#">Create Candidate</a>            
           </div>
         </li>
