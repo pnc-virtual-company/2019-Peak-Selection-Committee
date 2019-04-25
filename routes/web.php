@@ -72,6 +72,9 @@ Route::get('/', function () {
 
 
 
+
+
+
 Route::get('/listCan', function () {
     return view('pages.listCondidate');
 });
@@ -80,4 +83,4 @@ Route::get('/infoCan', function () {
 });
 Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
-});
+}); 
