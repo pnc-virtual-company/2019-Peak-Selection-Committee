@@ -61,7 +61,7 @@ Route::get('examples/pdf/downloadPDF', 'ExamplesController@downloadPDF');
 Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/
-Route::get('user',function(){
+Route::get('/createuser',function(){
     return view('pages.createUser');
 });
 
@@ -69,9 +69,6 @@ Route::get('user',function(){
 Route::get('/', function () {
     return view('pages.users');
 });
-
-
-
 
 Route::get('/listCan', function () {
     return view('pages.listCondidate');
