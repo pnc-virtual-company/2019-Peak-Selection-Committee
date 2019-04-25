@@ -36,7 +36,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{url('/listCan')}}">List Candidates</a>
-            <a class="dropdown-item" href="#">Create Candidate</a>            
+            <a class="dropdown-item" href="{{url('/createuser')}}">Create Candidate</a>            
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -44,8 +44,8 @@
             User
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">List Users</a>
-            <a class="dropdown-item" href="#">Create User</a>            
+            <a class="dropdown-item" href="{{url('/userlist')}}">List Users</a>
+            <a class="dropdown-item" href="{{url('/createCandidate')}}">Create User</a>            
           </div>
         </li>
         <li class="nav-item">
