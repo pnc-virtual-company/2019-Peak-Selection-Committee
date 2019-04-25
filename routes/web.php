@@ -68,7 +68,7 @@ Route::get('/createuser',function(){
 
 
 Route::get('/', function () {
-    return view('pages.users');
+    return view('pages.listCondidate');
 });
 
 Route::get('/listCan', function () {

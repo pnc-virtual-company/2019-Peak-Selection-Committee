@@ -10,13 +10,6 @@
         <div class="col-md-7">
             <h1 class="text-center">List of Candidates</h1>
 
-
-        <div class="col-md-7" >
-
-        <div class="col-md-8">
-
-            <h1 class="text-center ">List of Candidates</h1>
-
             <br>
             <div class="float-right">
                 <button class="btn btn-primary btn-sm ml-2">All Candidates</button>
@@ -180,9 +173,6 @@
             </table>
              <button class="btn btn-primary btn-sm mb-4">Add candidate</button>
         </div>
-
-        <div class="col-md-5">
-            <h3 class="text-center mt-4">Among all candidates</h3>
 
         <div class="col-md-5 mt-4">
             <h3 class="text-center">Among all candidates</h3>
