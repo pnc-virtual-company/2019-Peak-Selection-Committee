@@ -78,4 +78,15 @@ Route::get('/infoCan', function () {
 });
 Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
+
 });
+Route::get('/candidate', function () {
+    return view('pages.createCandidate');
+});
+
+Route::get('userlist', function () {
+    return view('pages.listUser');
+});
+
+
+
