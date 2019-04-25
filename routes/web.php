@@ -73,8 +73,6 @@ Route::get('/', function () {
 
 
 
-
-
 Route::get('/listCan', function () {
     return view('pages.listCondidate');
 });
@@ -89,5 +87,5 @@ Route::get('/candidate', function () {
     return view('pages.createCandidate');
 });
 
-}); 
+
 
