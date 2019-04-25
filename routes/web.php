@@ -87,5 +87,9 @@ Route::get('/candidate', function () {
     return view('pages.createCandidate');
 });
 
+Route::get('userlist', function () {
+    return view('pages.listUser');
+});
+
 
 
