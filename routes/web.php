@@ -72,3 +72,12 @@ Route::get('/', function () {
 
 
 
+Route::get('/listCan', function () {
+    return view('pages.listCondidate');
+});
+Route::get('/infoCan', function () {
+    return view('pages.Infocadidate');
+});
+Route::get('/detailInfo', function () {
+    return view('pages.detailProfile');
+});
