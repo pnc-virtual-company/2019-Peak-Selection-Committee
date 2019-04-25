@@ -5,7 +5,7 @@
     
 
 <style>
-        @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css');
+        @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
         @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
     .panel-heading {
      cursor: pointer;
@@ -62,7 +62,7 @@
   <div class="panel-group mt-4 " id="accordion">
       <div class="panel panel-primary ">
           <div class="panel-heading " data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
-             <h3 class="panel-title accordion-toggle ">
+             <h3 class="panel-title accordion-toggle btn btn-primary text-left  btn-block" >
                  Student Information
              </h3>
          </div>
@@ -111,11 +111,11 @@
   </div>
   <div class="col-sm-2">
       <label for="">Age</label>
-      <input type="number" class="input-group-sm form-control " style="width:70px">
+      <input type="number" class="input-group-sm form-control " style="width:65px">
   </div>
   <div class="col-sm-4">
       <label for="">Years of selection</label>
-       <input type="number" class="input-group-sm  form-control"  style="width:70px">
+       <input type="number" class="input-group-sm  form-control"  style="width:65px">
   </div>
   
   </div>
@@ -222,7 +222,7 @@
 
   </div>
   <br>
-  <button class="btn btn-primary float-right" >Save Information</button>
+  <button class="btn btn-info float-right" >Save Information</button><br><br>
 
   
   
@@ -239,7 +239,7 @@
   
     <div class="panel panel-primary">
         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
-           <h4 class="panel-title accordion-toggle">
+           <h4 class="panel-title accordion-toggle  btn btn-primary text-left  btn-block">
               Collapsible Group Item #2
           </h4>
           
@@ -251,8 +251,8 @@
   
   {{-- Part3 --}}
     <div class="panel panel-primary">
-        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
-           <h4 class="panel-title accordion-toggle">
+        <div class="panel-heading " data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
+           <h4 class="panel-title accordion-toggle btn btn-primary text-left  btn-block">
               Collapsible Group Item #3
           </h4>
           
@@ -271,9 +271,9 @@
   </div>
   
   
-  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br><br>
-  <button class="btn btn-primary float-right">Save Information</button>
-  
+  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
+  <button class="btn btn-info float-right">Save Information</button>
+  <br><br>
 
   </div>
   </div>
