@@ -7,44 +7,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Selecttion Committee</title>
     <link rel="icon" href="images/title.png">
-    
-    <link rel="stylesheet" href="{{asset('asset/css/bootstrap.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('asset/css/plugins/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset/css/plugins/simple-line-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('asset/css/plugins/animate.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('asset/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/icon.css')}}">
 
 </head>
 <body>
     
-    <body id="mimin" class="dashboard">
-        <!-- start: Header -->
-          <nav class="navbar navbar-default header navbar-fixed-top">
-            <div class="col-md-12 nav-wrapper">
-              <div class="navbar-header" style="width:100%;">
-                <div class="opener-left-menu is-open">
-                  <span class="top"></span>
-                  <span class="middle"></span>
-                  <span class="bottom"></span>
-                </div>
-                <a href="index.html" class="navbar-brand"> 
-                  <b>MIMIN</b>
-                </a>
-                <ul class="nav navbar-nav navbar-right user-nav">
-                  <li><a href="#"><span class="fa fa-sign-out"></span></a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        <!-- end: Header -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-transparent sticky-top">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="images/logo.png" style="width: 145px;" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   
-        <div class="container-fluid mimin-wrapper">
-    
-          {{--  include leftside bar  --}}
-          @include('layout.leftSideBar')
-  
-            <!-- start: Content -->
-            <div id="content">
-                <div class="panel-body">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto" style="font-size: 20px;">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Candidate
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">List Candidates</a>
+            <a class="dropdown-item" href="#">Create Candidate</a>            
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            User
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">List Users</a>
+            <a class="dropdown-item" href="#">Create User</a>            
+          </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="material-icons">logout</i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
