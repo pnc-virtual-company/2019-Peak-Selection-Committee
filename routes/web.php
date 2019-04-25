@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('examples.index', ['currentExample' => 'List of examples']);
-});
+// Route::get('/', function () {
+//     return view('examples.index', ['currentExample' => 'List of examples']);
+// });
 
 Auth::routes();
 
@@ -64,3 +64,11 @@ Route::get('examples', 'ExamplesController@index')->name('examples');
 Route::get('user',function(){
     return view('pages.createUser');
 });
+
+
+Route::get('/', function () {
+    return view('pages.users');
+});
+
+
+
