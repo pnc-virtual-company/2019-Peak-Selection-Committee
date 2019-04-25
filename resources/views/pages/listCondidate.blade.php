@@ -1,11 +1,12 @@
 @extends('template')
 @section('content')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
 <div class="content">
     <div class="row">
-        <div class="col-md-8" >
+        <div class="col-md-8">
             <h1 class="text-center ">List of Candidates</h1>
             <br>
             <div class="float-right">
@@ -173,6 +174,7 @@
         <div class="col-4">
             <h3 class="text-center">Among all candidates</h3>
            <div id="Sarah_chart" style="border:none; background:none;"></div>
+           
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
             
@@ -360,4 +362,5 @@
         $('#listCandidates').DataTable();
     } );
 </script>
+
 @endsection
