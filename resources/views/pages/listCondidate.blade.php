@@ -6,7 +6,11 @@
 
 <div class="content">
     <div class="row">
+
+        <div class="col-md-7" >
+
         <div class="col-md-8">
+
             <h1 class="text-center ">List of Candidates</h1>
             <br>
             <div class="float-right">
@@ -169,9 +173,9 @@
                     </tr>
                 </tfoot>
             </table>
-             <button class="btn btn-primary btn-sm">Add candidate</button>
+             <button class="btn btn-primary btn-sm mb-4">Add candidate</button>
         </div>
-        <div class="col-4">
+        <div class="col-md-5 mt-4">
             <h3 class="text-center">Among all candidates</h3>
            <div id="Sarah_chart" style="border:none; background:none;"></div>
            
@@ -207,7 +211,8 @@
                     // Set options for Sarah's pie chart.
                     var options = {title:'Grade distribution',
                                    width:400,
-                                   height:300};
+                                   height:300,
+                                   left:30};
             
                     // Instantiate and draw the chart for Sarah's pizza.
                     var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart'));
@@ -250,8 +255,8 @@
                     
                             // Set options for Sarah's pie chart.
                             var options = {title:'Gender',
-                                           width:200,
-                                           height:100};
+                                           width:300,
+                                           height:200};
                     
                             // Instantiate and draw the chart for Sarah's pizza.
                             var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
@@ -273,8 +278,8 @@
                     
                             // Set options for Anthony's pie chart.
                             var options = {title:'NGO Provenance',
-                                           width:200,
-                                           height:100};
+                            width:300,
+                            height:200};
                     
                             // Instantiate and draw the chart for Anthony's pizza.
                             var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
@@ -315,8 +320,8 @@
                     
                             // Set options for Sarah's pie chart.
                             var options = {title:'Age',
-                                           width:200,
-                                           height:100};
+                            width:300,
+                            height:200};
                     
                             // Instantiate and draw the chart for Sarah's pizza.
                             var chart = new google.visualization.PieChart(document.getElementById('Sarah'));
@@ -340,9 +345,8 @@
                     
                             // Set options for Anthony's pie chart.
                             var options = {title:'Province',
-                                           width:200,
-                                           height:100};
-                    
+                            width:300,
+                            height:200};
                             // Instantiate and draw the chart for Anthony's pizza.
                             var chart = new google.visualization.PieChart(document.getElementById('Anthony'));
                             chart.draw(data, options);
@@ -350,9 +354,9 @@
                         </script>
                 </div>
         </div>
-                
+        </div> 
 		</div>
-    </div>
+   
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
