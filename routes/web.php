@@ -81,7 +81,7 @@ Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
 
 });
-Route::get('/candidate', function () {
+Route::get('/createCandidate', function () {
     return view('pages.createCandidate');
 });
 
