@@ -62,6 +62,7 @@ Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/
 
+
 Route::get('/createuser',function(){
     return view('pages.createUser');
 });

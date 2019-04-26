@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 @extends('template')
 
 @section('content')
@@ -8,7 +7,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
           <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
+            <div class="card-body p-0 bg-light">
              
               <div class="row">
                 <div class="col-lg">
@@ -55,9 +54,6 @@
                               <input class="form-check-input" type="radio" name="role" id="normal_user" value="normal user">
                               <label class="form-check-label" for="student">Normal User</label>
                           </div>
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="province" placeholder="Enter your province" required>
                       </div>
                       <br>
                       <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>

@@ -28,7 +28,7 @@
   
   <div class="row">
     <div class="col-sm-4 mt-4">
-    <img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+    <img src="{{url('storage/1.jpg')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
     <input type="file" value="">
     </div>
     <div class="col-sm-4 mt-4">
@@ -329,14 +329,13 @@
       </div>
     </div>
   </div>
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
 
 <script>
   $(document).ready(function() {
     $('#example').DataTable();
 } );
+
 </script>
+
+</script>
+

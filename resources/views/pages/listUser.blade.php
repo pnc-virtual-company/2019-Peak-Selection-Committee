@@ -2,13 +2,14 @@
 
 
 @extends('template')
+
 @section('content')
 <div class="content">
     <h2 class="text-center">List Of User</h2>
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
+    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Action</th>
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>Gender</th>
@@ -33,17 +34,17 @@
                        
                     </tr>
                     <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
+                        <td>
+                          <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
+                          <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
+                          <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
+                        </td>
+                        <td>Hany</td>
+                        <td>SRENG</td>
+                        <td>F</td>
+                        <td>hanysreng@gmail.com</td>
+                        <td>12345</td>
+                        <td>Admin</td>
                           
                        </tr>
                        <tr>
