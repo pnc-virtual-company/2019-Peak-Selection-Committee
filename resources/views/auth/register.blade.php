@@ -3,6 +3,8 @@
 
 @section('content')
 
+
+
     <div class="container">
       <div class="row">
         <div class="col-sm-2"></div>
@@ -20,8 +22,12 @@
                       <h3>Register a User</h3>
                       <hr>
                     </div>
+
                     <form class="user" action="{{route('login')}}" method="POST" enctype="multipart/form-data">
                       @csrf
+
+                    <form class="user" action="" method="POST" enctype="multipart/form-data">
+
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
@@ -54,7 +60,13 @@
                         <input type="text" class="form-control" name="province" placeholder="Enter your province" required>
                       </div>
                       <br>
+
                      <a href="{{route('login')}}" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>Register New User</a>
+
+                      <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
+                        Register New user
+                    </button>
+
                   </form>
                   </div>
               </div>
