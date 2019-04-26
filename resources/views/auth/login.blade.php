@@ -48,9 +48,12 @@
                         </div>
 
                         <div class="form-group mb-0">
-                            <button type="submit" class="btn btn-primary btn-block">
+                            {{-- <button type="submit" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
-                            </button>
+                            </button> --}}
+                            <a href="{{url('/')}}" class="btn btn-primary btn-block">
+                                {{ __('Login') }}
+                            </a>
                             <hr>
                             <a class="nav-link text-center" href="{{ route('register') }}">
                                 {{ __('Register New User') }}

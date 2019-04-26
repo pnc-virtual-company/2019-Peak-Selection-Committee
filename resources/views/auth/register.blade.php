@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 @extends('layouts.app')
 
 @section('content')
@@ -12,8 +12,11 @@
               <div class="row">
                 <div class="col-lg">
                   <div class="p-5">
+                    <a href="{{ route('login') }}" title="Go to Login" class="text-primary">
+                      <i class="material-icons">arrow_back</i>
+                    </a>
                     <div class="text-center">
-                      <h3>Register</h3>
+                      <h3>Register a User</h3>
                       <hr>
                     </div>
                     <form class="user" action="" method="POST" enctype="multipart/form-data">
@@ -50,7 +53,7 @@
                       </div>
                       <br>
                       <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
-                            Register New user
+                        Register New user
                     </button>
                   </form>
                   </div>
