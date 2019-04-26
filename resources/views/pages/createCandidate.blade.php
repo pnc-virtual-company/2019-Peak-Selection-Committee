@@ -5,9 +5,8 @@
     
 
 <style>
-        @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
-        @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
-    .panel-heading {
+  @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
+  .panel-heading {
      cursor: pointer;
   }
   /* CSS Method for adding Font Awesome Chevron Icons */
@@ -92,7 +91,7 @@
           </select>
         </div>
         <div class="col-md-1"> 
-            <a href="" class="text-info"><i class="material-icons">edit</i> </a>
+            <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
            
            </div>
      
@@ -270,7 +269,6 @@
     </div>
   </div>
   
-  
   <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
   <button class="btn btn-info float-right">Save Information</button>
   <br><br>
@@ -279,3 +277,66 @@
   </div>
 
   @endsection
+
+
+
+
+
+
+    {{-- modal --}}
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Edit othe list of NGO</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Position</th>
+               
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
+                  <td>Battambang</td>                 
+                </tr>
+                <tr>
+                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
+                  <td>Prey Veng</td>                 
+                </tr>
+                <tr>
+                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
+                    <td>Svay Reang</td>                 
+                </tr>
+               
+            </tbody> 
+          </table>   
+          <button class="btn btn-primary">Add NGO</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>

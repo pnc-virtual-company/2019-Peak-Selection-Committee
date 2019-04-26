@@ -61,13 +61,14 @@ Route::get('examples/pdf/downloadPDF', 'ExamplesController@downloadPDF');
 Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/
+
 Route::get('/createuser',function(){
     return view('pages.createUser');
 });
 
 
 Route::get('/', function () {
-    return view('pages.users');
+    return view('pages.listCondidate');
 });
 
 Route::get('/listCan', function () {
@@ -80,7 +81,7 @@ Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
 
 });
-Route::get('/candidate', function () {
+Route::get('/createCandidate', function () {
     return view('pages.createCandidate');
 });
 

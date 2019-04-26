@@ -10,7 +10,7 @@
                 <div class="col-sm-4 mt-4">
                     <img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
                     <span>Student Name</span>
-                    <div class="row" style="margin-left:113px;"> 
+                    <div class="row" style="margin-left:100px;"> 
                         <div class="col-md-6">
                            <p>Gender:</p>
                            <p>Age:</p>
@@ -20,9 +20,8 @@
                             <p>Year:</p>
                         </div>
                     </div>
-                   
                 </div>
-                <div class="col-sm-4 mt-4" style="margin-left:330px;">
+                <div class="col-sm-4 mt-4" style="margin-left:360px;">
                   <label for="">Global Grade</label>
                   <select name="" id="">
                     <option value="">Choose Grade</option>
@@ -70,5 +69,5 @@
         <br>
        </div>
        <br>
-    </div>
+</div>
 @endsection

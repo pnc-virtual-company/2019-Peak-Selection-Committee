@@ -5,10 +5,10 @@
 @section('content')
 <div class="content">
     <h2 class="text-center">List Of User</h2>
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
+    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Action</th>
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>Gender</th>
