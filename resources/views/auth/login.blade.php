@@ -12,8 +12,6 @@
                     <hr>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
-
                         {{-- <div class="form-group{{ $errors-&gt;has('name') ? ' has-error' : '' }}"> --}}
                         <div class="form-group">                            
                             <input id="name" type="text" placeholder="Username" class="form-control" 
@@ -55,7 +53,7 @@
                             </button>
                             <hr>
                             <a class="nav-link text-center" href="{{ route('register') }}">
-                                {{ __('Register User') }}
+                                {{ __('Register New User') }}
                             </a>
                         </div>
                     </form>
