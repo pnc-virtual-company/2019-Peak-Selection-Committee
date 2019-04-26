@@ -5,9 +5,8 @@
     
 
 <style>
-        @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
-        @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
-    .panel-heading {
+  @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
+  .panel-heading {
      cursor: pointer;
   }
   /* CSS Method for adding Font Awesome Chevron Icons */

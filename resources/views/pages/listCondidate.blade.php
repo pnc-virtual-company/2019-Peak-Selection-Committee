@@ -12,7 +12,7 @@
 
             <br>
             <div class="float-right">
-                <button class="btn btn-primary btn-sm ml-2">All Candidates</button>
+                <a href="{{url('/infoCan')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
                 <button class="btn btn-success btn-sm">Selected Candidates</button>
             </div>
             <br><br>
@@ -171,7 +171,8 @@
                     </tr>
                 </tfoot>
             </table>
-             <button class="btn btn-primary btn-sm mb-4">Add candidate</button>
+            
+             <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
         </div>
 
         <div class="col-md-5 mt-4">
