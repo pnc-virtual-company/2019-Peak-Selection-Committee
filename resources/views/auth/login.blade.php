@@ -48,9 +48,11 @@
                         </div>
 
                         <div class="form-group mb-0">
+                            
                             {{-- <button type="submit" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
                             </button> --}}
+
                             <a href="{{url('/')}}" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
                             </a>
