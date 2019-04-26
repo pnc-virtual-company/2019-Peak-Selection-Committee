@@ -10,6 +10,18 @@
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/icon.css')}}">
+    
+     {{-- hany --}}
+
+
+              <!--Import Google Icon Font-->
+ <link  rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.1/css/colReorder.bootstrap4.min.css">
+ 
+ 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -20,6 +32,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
         crossorigin="anonymous">
+
 
 </head>
 <body>
