@@ -10,12 +10,17 @@
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/icon.css')}}">
+    
+     {{-- hany --}}
 
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-                 <!--Import Google Icon Font-->
-         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+              <!--Import Google Icon Font-->
+ <link  rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.1/css/colReorder.bootstrap4.min.css">
+ 
+ 
 </head>
 <body>
     
