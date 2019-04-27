@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Login')
+
 @section('content')
 <div class="container mt-5">
 
@@ -53,7 +55,7 @@
                                 {{ __('Login') }}
                             </button> --}}
 
-                            <a href="{{url('/')}}" class="btn btn-primary btn-block">
+                            <a href="{{url('/listCan')}}" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
                             </a>
                             <hr>

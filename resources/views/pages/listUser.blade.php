@@ -1,7 +1,7 @@
 
-
-
 @extends('template')
+
+@section('pageTitle', 'List User')
 
 @section('content')
 <div class="content">

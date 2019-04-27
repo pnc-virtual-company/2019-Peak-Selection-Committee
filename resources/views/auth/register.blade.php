@@ -1,9 +1,9 @@
 
 @extends('layouts.app')
 
+@section('pageTitle', 'Register')
+
 @section('content')
-
-
 
     <div class="container">
       <div class="row">
@@ -63,9 +63,9 @@
 
                      <a href="{{route('login')}}" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>Register New User</a>
 
-                      <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
+                      {{-- <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
                         Register New user
-                    </button>
+                    </button> --}}
 
                   </form>
                   </div>
