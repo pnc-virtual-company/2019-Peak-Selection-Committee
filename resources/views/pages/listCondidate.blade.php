@@ -6,13 +6,11 @@
 
 <div class="content">
     <div class="row">
-
         <div class="col-md-7">
             <h1 class="text-center">List of Candidates</h1>
-
             <br>
             <div class="float-right">
-                <button class="btn btn-primary btn-sm ml-2">All Candidates</button>
+                <a href="{{url('infoCan')}}"><button class="btn btn-primary btn-sm ml-2">All Candidates</button></a>
                 <button class="btn btn-success btn-sm">Selected Candidates</button>
             </div>
             <br><br>
@@ -171,12 +169,10 @@
                     </tr>
                 </tfoot>
             </table>
-             <button class="btn btn-primary btn-sm mb-4">Add candidate</button>
+            <a href="{{url('createCandidate')}}"> <button class="btn btn-primary btn-sm">Add candidate</button></a>
         </div>
-
-        <div class="col-md-5 mt-4">
-            <h3 class="text-center">Among all candidates</h3>
-
+        <div class="col-md-5">
+            <h3 class="text-center mt-4">Among all candidates</h3>
            <div id="Sarah_chart" style="border:none; background:none;"></div>
            
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -211,8 +207,7 @@
                     // Set options for Sarah's pie chart.
                     var options = {title:'Grade distribution',
                                    width:400,
-                                   height:300,
-                                   left:30};
+                                   height:300};
             
                     // Instantiate and draw the chart for Sarah's pizza.
                     var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart'));
@@ -347,10 +342,7 @@
                             var options = {title:'Province',
                             width:300,
                             height:200};
-
                     
-
-
                             // Instantiate and draw the chart for Anthony's pizza.
                             var chart = new google.visualization.PieChart(document.getElementById('Anthony'));
                             chart.draw(data, options);
@@ -358,9 +350,9 @@
                         </script>
                 </div>
         </div>
-        </div> 
+                
 		</div>
-   
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

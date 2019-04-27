@@ -174,7 +174,7 @@
             </table>
             <br/>
 
-            <button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button>
+            <a href="{{url('createuser')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
             <button class="btn btn-primary"><i class="material-icons left">import_export</i> Export  List</button>
            
         </div>
