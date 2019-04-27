@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    {{-- <link rel="icon" href="{{ asset('favicon.ico') }}"> --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,9 +19,20 @@
 
     <!-- Fonts and Icons -->
     <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('css/icon.css') }}" />
+
+    <link rel="icon" href="images/title.png">
+
+    {{-- font awesome --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+        crossorigin="anonymous">
+
 </head>
-<body>
-    <div id="app">
+<body class="bg-secondary">
+
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -31,36 +42,36 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent"> --}}
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    {{-- <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('examples') }}">{{ __('Examples') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('users')}}"><i class="mdi mdi-lock"></i> {{ __('Users') }}</a>
                         </li>
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    {{-- <ul class="navbar-nav ml-auto"> --}}
                         <!-- Authentication Links -->
-                        @guest
+                        {{-- @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
+                            </li> --}}
                             <!-- <li class="nav-item">
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register')) --}}
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                @endif
+                                {{-- @endif --}}
                             </li> -->
-                        @else
-                            <li class="nav-item dropdown">
+                        {{-- @else --}}
+                            {{-- <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                                </a> --}}
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{url('users/profile')}}">
                                          {{ __('Profile') }}
                                      </a>
@@ -75,16 +86,18 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                    </ul>
+                        @endguest --}}
+                    {{-- </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
+        
+        {{-- </div> --}}
+        
         <main>
             @yield('content')
         </main>
-    </div>
     @stack('scripts')
 </body>
 </html>

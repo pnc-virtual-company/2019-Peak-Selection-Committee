@@ -10,6 +10,7 @@
             <h1 class="text-center">List of Candidates</h1>
             <br>
             <div class="float-right">
+
                 <a href="{{url('infoCan')}}"><button class="btn btn-primary btn-sm ml-2">All Candidates</button></a>
                 <button class="btn btn-success btn-sm">Selected Candidates</button>
             </div>
@@ -169,6 +170,7 @@
                     </tr>
                 </tfoot>
             </table>
+
             <a href="{{url('createCandidate')}}"> <button class="btn btn-primary btn-sm">Add candidate</button></a>
         </div>
         <div class="col-md-5">
