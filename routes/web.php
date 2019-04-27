@@ -62,6 +62,7 @@ Route::get('examples', 'ExamplesController@index')->name('examples');
 /*
 =============================================================================*/
 
+
 Route::get('/createuser',function(){
     return view('pages.createUser');
 });
@@ -84,7 +85,7 @@ Route::get('/createCandidate', function () {
     return view('pages.createCandidate');
 });
 
-Route::get('userlist', function () {
+Route::get('/userlist', function () {
     return view('pages.listUser');
 });
 

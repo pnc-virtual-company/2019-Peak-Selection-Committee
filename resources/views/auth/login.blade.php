@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Login')
+
 @section('content')
 <div class="container mt-5">
 
@@ -48,10 +50,12 @@
                         </div>
 
                         <div class="form-group mb-0">
+                            
                             {{-- <button type="submit" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
                             </button> --}}
-                            <a href="{{url('/')}}" class="btn btn-primary btn-block">
+
+                            <a href="{{url('/listCan')}}" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
                             </a>
                             <hr>

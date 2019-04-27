@@ -1,5 +1,7 @@
 @extends('template')
 
+@section('pageTitle', 'Create User')
+
 @section('content')
 
     <div class="container">

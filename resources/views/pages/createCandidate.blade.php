@@ -1,6 +1,8 @@
 
 @extends('template')
 
+@section('pageTitle', 'Create Candidate')
+
 @section('content')
     
 
@@ -28,7 +30,7 @@
   
   <div class="row">
     <div class="col-sm-4 mt-4">
-    <img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+    <img src="{{url('storage/1.jpg')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
     <input type="file" value="">
     </div>
     <div class="col-sm-4 mt-4">
@@ -222,12 +224,6 @@
   </div>
   <br>
   <button class="btn btn-info float-right" >Save Information</button><br><br>
-
-  
-  
-  
-  
-  
   
   </div>
   </div>
@@ -408,10 +404,6 @@
       </div>
     </div>
   </div>
-  
-
-  
-
 
 <script>
   $(document).ready(function() {
@@ -420,5 +412,4 @@
 
 </script>
 
-</script>
 
