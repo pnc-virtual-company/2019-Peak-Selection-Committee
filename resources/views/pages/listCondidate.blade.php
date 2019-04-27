@@ -1,3 +1,5 @@
+
+
 @extends('template')
 
 @section('pageTitle', 'List Candidate')
