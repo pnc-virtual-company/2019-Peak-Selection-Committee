@@ -1,4 +1,7 @@
 @extends('template')
+
+@section('pageTitle', 'Information Candidate')
+
 @section('content')
 <div class="content">
 <h1 class="text-center">Information of candidate</h1>
