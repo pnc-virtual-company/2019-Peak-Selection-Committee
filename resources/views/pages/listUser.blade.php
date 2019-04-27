@@ -1,7 +1,8 @@
 
-
-
 @extends('template')
+
+@section('pageTitle', 'List User')
+
 @section('content')
 <div class="content">
     <h2 class="text-center">List Of User</h2>
@@ -33,17 +34,17 @@
                        
                     </tr>
                     <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
+                        <td>
+                          <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
+                          <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
+                          <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
+                        </td>
+                        <td>Hany</td>
+                        <td>SRENG</td>
+                        <td>F</td>
+                        <td>hanysreng@gmail.com</td>
+                        <td>12345</td>
+                        <td>Admin</td>
                           
                        </tr>
                        <tr>
