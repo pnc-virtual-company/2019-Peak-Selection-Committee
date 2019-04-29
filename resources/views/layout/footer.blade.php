@@ -23,11 +23,11 @@
         var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
-                labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+                labels: ["A+", "A", "A-", "B+", "B","B-","Failed"],
                 datasets: [{
-                data: [300, 50, 100, 40, 120],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                data: [30, 50, 100, 40, 120,49,230],
+                backgroundColor: ["#00c853", "#c6ff00", "#eeff41", "#fdd835", "#f9a825","#e65100", "#d50000"],
+                hoverBackgroundColor:  ["#00c853", "#c6ff00", "#eeff41", "#fdd835", "#f9a825","#e65100", "#d50000"]
                 }]
             },
             options: {
@@ -41,11 +41,11 @@
         var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
-                labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+                labels: ["F", "M"],
                 datasets: [{
-                data: [300, 50, 100, 40, 120],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                data: [300, 50],
+                backgroundColor: ["#64dd17", "#01579b"],
+                hoverBackgroundColor: ["#64dd17", "#01579b"]
                 }]
             },
             options: {
@@ -59,11 +59,11 @@
         var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
-                labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+                labels: ["Yes", "No"],
                 datasets: [{
-                data: [300, 50, 100, 40, 120],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                data: [40, 120],
+                backgroundColor: ["#00e676", "#d50000"],
+                hoverBackgroundColor: ["#00e676", "#d50000"]
                 }]
             },
             options: {
@@ -77,11 +77,11 @@
         var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
-                labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+                labels: ["Age"],
                 datasets: [{
-                data: [300, 50, 100, 40, 120],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                data: [100, 50],
+                backgroundColor:  ["#FDB45C", "#949FB1"],
+                hoverBackgroundColor: ["#FFC870", "#A8B3C5"]
                 }]
             },
             options: {
@@ -95,11 +95,11 @@
         var myPieChart = new Chart(ctxP, {
             type: 'pie',
             data: {
-                labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+                labels: ["Phnom Penh", "Prey Veng", "Ratanakiri", "Battambong"],
                 datasets: [{
-                data: [300, 50, 100, 40, 120],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                data: [200, 90, 100, 90],
+                backgroundColor: ["#009688", "#6d4c41", "#b0bec5", "#ffab91"],
+                hoverBackgroundColor: ["#009688", "#6d4c41", "#b0bec5", "#ffab91"]
                 }]
             },
             options: {
