@@ -8,12 +8,13 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-md-7">
+
+        <div class="col-sm-12 col-md-12 col-lg-7">
             <h1 class="text-center">List of Candidates</h1>
+
             <br>
             <div class="float-right">
-
-                <a href="{{url('infoCan')}}"><button class="btn btn-primary btn-sm ml-2">All Candidates</button></a>
+                <a href="{{url('/infoCan')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
                 <button class="btn btn-success btn-sm">Selected Candidates</button>
             </div>
             <br><br>
@@ -99,19 +100,32 @@
                     </tr>
                 </tfoot>
             </table>
-
-            <a href="{{url('createCandidate')}}"> <button class="btn btn-primary btn-sm">Add candidate</button></a>
+            
+             <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
         </div>
-        <div class="col-md-5">
-           
-                <div class="row">
-                      
-                       
-                </div>
-        </div>
+        {{-- end table of candidate --}}
+        
+        {{-- ====== pie chart ====== --}}
+            <div class="col-sm-12 col-md-12 col-lg-5 mt-4">
                 
-		</div>
-    </div>
+                <h3 class="text-center">Among all candidates</h3>
+                <div class="row">
+                    <canvas id="candidates"></canvas>
+                </div>
+
+                <h3 class="text-center">Among selected candidates only</h3>
+                <div class="row">
+                    <canvas class="col-sm-12 col-md-12 col-lg-6" id="gender"></canvas>
+                    <canvas class="col-sm-12 col-md-12 col-lg-6" id="ngo"></canvas>
+                
+                    <canvas class="col-sm-12 col-md-12 col-lg-6" id="age"></canvas>
+                    <canvas class="col-sm-12 col-md-12 col-lg-6" id="province"></canvas> 
+                </div>
+            
+            </div>
+        </div> 
+	</div>
+   
 </div>
 
 @endsection
