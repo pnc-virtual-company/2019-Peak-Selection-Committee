@@ -29,15 +29,17 @@
                         <td>{{$item->lastname}}</td>
                         <td>{{$item->email}}</td>
                         <td>{{$item->password}}</td>
-                        <td>{{$item->role_id}}</td>
+                        @if($item->roles_id = 1)
+                            <td>Admin</td>
+                        @else
+                            <td>Normal</td>
+                        @endif
                        
                     </tr>
-                      @endforeach
+                @endforeach
                     
             </table>
             <br/>
-
-
             <a href="{{url('createuser')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
 
             <button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button>
