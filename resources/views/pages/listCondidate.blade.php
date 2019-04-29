@@ -1,9 +1,5 @@
-
-
 @extends('template')
-
 @section('pageTitle', 'List Candidate')
-
 @section('content')
 
 <div class="content">
