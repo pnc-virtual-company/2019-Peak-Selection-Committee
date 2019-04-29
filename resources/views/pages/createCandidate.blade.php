@@ -223,7 +223,7 @@
 
   </div>
   <br>
-  <button class="btn btn-info float-right" >Save Information</button><br><br>
+  <button class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" >Save Information</button><br><br>
   
   </div>
   </div>
