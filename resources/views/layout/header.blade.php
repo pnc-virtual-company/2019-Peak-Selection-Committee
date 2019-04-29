@@ -54,7 +54,7 @@
             User
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url('/userlist')}}">List Users</a>
+            <a class="dropdown-item" href="{{url('users')}}">List Users</a>
             <a class="dropdown-item" href="{{url('/createuser')}}">Create User</a>            
           </div>
         </li>
