@@ -12,161 +12,28 @@
                         <th>Action</th>
                         <th>FirstName</th>
                         <th>LastName</th>
-                        <th>Gender</th>
                         <th>Email</th>
                         <th>Password</th>
                         <th>Role</th>             
                     </tr>
                 </thead>
                 <tbody>
+                 @foreach ($users as $item)
                     <tr>
                          <td>
                           <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
                           <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
                           <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
                         </td>
-                        <td>Hany</td>
-                        <td>SRENG</td>
-                        <td>F</td>
-                        <td>hanysreng@gmail.com</td>
-                        <td>12345</td>
-                        <td>Admin</td>
+                        <td>{{$item->firstname}}</td>
+                        <td>{{$item->lastname}}</td>
+                        <td>{{$item->email}}</td>
+                        <td>{{$item->password}}</td>
+                        <td>{{$item->role_id}}</td>
                        
                     </tr>
-                    <tr>
-                        <td>
-                          <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                          <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                          <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                        </td>
-                        <td>Hany</td>
-                        <td>SRENG</td>
-                        <td>F</td>
-                        <td>hanysreng@gmail.com</td>
-                        <td>12345</td>
-                        <td>Admin</td>
-                          
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                       </tr>
-                       <tr>
-                           <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                          
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                          
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                          
-                       </tr>
-                       <tr>
-                            <td>
-                             <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
-                             <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
-                             <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
-                           </td>
-                           <td>Hany</td>
-                           <td>SRENG</td>
-                           <td>F</td>
-                           <td>hanysreng@gmail.com</td>
-                           <td>12345</td>
-                           <td>Admin</td>
-                       </tr>
+                      @endforeach
+                    
             </table>
             <br/>
 

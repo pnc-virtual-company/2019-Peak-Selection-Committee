@@ -20,11 +20,11 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        //Only authenticated users may access to the pages of this controller
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     //Only authenticated users may access to the pages of this controller
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Display a the profile page. Accessible to any authenticated user.
@@ -46,9 +46,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
-        $users = User::with('roles')->get();
-        return view('users.index', ['users' => $users]);
+       // $request->user()->authorizeRoles(['Administrator']);
+       // $users = User::with('roles')->get();
+        //return view('users.listUser', ['users' => $users]);
+        $users = User::orderBy('id')->get();
+        return view('pages.listUser', compact('users',$users));
     }
 
     /**

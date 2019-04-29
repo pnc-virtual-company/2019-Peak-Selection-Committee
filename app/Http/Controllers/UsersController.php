@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class User extends Controller
@@ -13,7 +13,8 @@ class User extends Controller
      */
     public function index()
     {
-        //
+        $users = User::orderBy('id')->get();
+        return view('pages.listUser', compact('users',$users));
     }
 
     /**
