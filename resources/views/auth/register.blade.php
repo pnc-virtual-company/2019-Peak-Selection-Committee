@@ -14,12 +14,9 @@
 </a>
 <h2 class="text-center">{{ _('Register a User') }}</h2>
 </div>
-
-
-
-                        <div class="form-group mb-4">
-                            {{-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ _('Password') }}</label> --}}
-                                <input id="password" type="password" placeholder="Password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+    <div class="form-group mb-4">
+        {{-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ _('Password') }}</label> --}}
+            <input id="password" type="password" placeholder="Password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
 @if ($errors->has('email'))
 <span class="invalid-feedback" role="alert">
@@ -27,8 +24,6 @@
 </span>
 @endif
 </div>
-
-
                         <div class="form-group mb-4">
                             <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>
                                 {{ _('Register') }}
