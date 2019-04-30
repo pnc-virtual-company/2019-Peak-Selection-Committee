@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCommentToQuestionTable extends Migration
+class AddCommenToAnswerCandidateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddCommentToQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('answer_candidate', function (Blueprint $table) {
+            $table->text('comment')->nullable();
+
         });
     }
 
@@ -24,7 +26,7 @@ class AddCommentToQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::table('question', function (Blueprint $table) {
+        Schema::table('answer_candidate', function (Blueprint $table) {
             //
         });
     }
