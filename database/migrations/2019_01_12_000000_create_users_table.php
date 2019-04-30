@@ -27,9 +27,6 @@ class CreateUsersTable extends Migration
             ->references('id')
             ->on('roles')
             ->onDelete('cascade');
-
-            
-        
         });
 
         //Insert the default admin user
