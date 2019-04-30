@@ -20,11 +20,11 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    // public function __construct()
+    // {
         //Only authenticated users may access to the pages of this controller
-        $this->middleware('auth');
-    }
+        // $this->middleware('auth');
+    // }
 
     /**
      * Display a the profile page. Accessible to any authenticated user.
@@ -46,9 +46,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Admin']);
         $users = User::with('roles')->get();
-        return view('users.index', ['users' => $users]);
+        // return view('users.index', ['users' => $users]);
+        return view('pages.listUser', ['users' => $users]);
     }
 
     /**
@@ -59,7 +60,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         $roles = Role::all();
         return view('users.create', ['roles' => $roles]);
     }
@@ -73,7 +74,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
@@ -130,11 +131,12 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         $user = User::find($id);
-        $user->roleIds = $user->roles->pluck('id')->toArray();
+        // $user->roleIds = $user->roles->pluck('id')->toArray();
         $roles = Role::all();
         return view('users.edit', ['user' => $user, 'roles' => $roles]);
+        // return view('users.edit', ['roles' => $roles]);
     }
 
     /**
@@ -146,10 +148,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         // validate
         $rules = array(
-            'name'  => 'required',
+            'firstname'  => 'required',
+            'lastname'  => 'required',
             'email' => 'required|email',
             'roles' => 'required'
         );
@@ -162,10 +165,12 @@ class UserController extends Controller
         } else {
             // update user and synchronize the roles
             $user = User::find($id);
-            $user->name = Input::get('name');
+            $user->firstname = Input::get('firstname');
+            $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
+            $user->role_id = Input::get('roles');
             $user->save();
-            $user->roles()->sync(Input::get('roles'));
+            // $user->roles()->sync(Input::get('roles'));
             
             // redirect
             Session::flash('message.level', 'success');
@@ -182,9 +187,10 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
-        $user = User::find($id);
+        // $request->user()->authorizeRoles(['Administrator']);
+        $user = User::findOrFail($id);
         $user->delete();
+        return redirect()->route('users.index');
     }
 
     /**

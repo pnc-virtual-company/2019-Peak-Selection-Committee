@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('template')
 
 @section('content')
 
@@ -14,13 +14,18 @@
 
                     <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         <!-- Simulate PUT or PATCH verb, 
-                             See: https://laravel.com/docs/5.7/controllers#resource-controllers //-->
+                             See: https://laravel.com/docs/5.7/controllers#resource-controllers  //-->
                         @method('PUT')
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="name">@lang('Name')</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                            <label for="fname">@lang('First Name')</label>
+                            <input type="text" class="form-control" id="fname" name="firstname" value="{{ $user->firstname }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lname">@lang('Last Name')</label>
+                            <input type="text" class="form-control" id="name" name="lastname" value="{{ $user->lastname }}">
                         </div>
 
                         <div class="form-group">
@@ -29,15 +34,29 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="roles[]">Roles</label>
-                            <select class="form-control" id="roles" name="roles[]" multiple size="5">
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" @if(in_array($role->id, $user->roleIds)) selected @endif>{!! $role->name !!}</option>
+                            <label for="roles[]">User Role: </label>
+                            {{-- <select class="form-control" id="roles" name="roles[]" multiple size="5"> --}}
+                                {{-- @foreach ($roles as $role) --}}
+                                    {{-- <option value="{{ $role->id }}" @if(in_array($role->id, $user->roleIds)) selected @endif>{!! $role->name !!}</option> --}}
+                                {{-- @endforeach --}}
+                            @foreach ($roles as $role) 
+                                @if ($role->id == $user->role_id)
+                                    <label class="radio-inline">
+                                        <input type="radio" value="{{ $role->id }}" name="roles" checked> {{$role->name}}
+                                    </label>                                        
+                                @else
+                                    <label class="radio-inline">
+                                        <input type="radio" value="{{ $role->id }}" name="roles"> {{$role->name}}
+                                    </label>                                        
+                                @endif
                             @endforeach
-                            </select>
+                            {{-- </select> --}}
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Save" />
+
+                        <a href="{{url('/users')}}" class="btn btn-danger">Back</a>
+
                     </form>
                 </div>
             </div>

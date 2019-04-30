@@ -1,4 +1,7 @@
 @extends('template')
+
+@section('pageTitle', 'Detail Profile')
+
 @section('content')
 <div class="content">
     <h1 class="text-center">Detail Infomation of Candidate</h1>
@@ -10,7 +13,7 @@
                 <div class="col-sm-4 mt-4">
                     <img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
                 </div>
-                <div class="col-sm-4 mt-4" style="margin-left:330px;">
+                <div class="col-sm-4 mt-4" style="margin-left:360px;">
                   <label for="">Global Grade</label>
                 <select name="" id="">
                     <option value="">Choose Grade</option>
@@ -47,7 +50,6 @@
             <div class="mt-4">
               <a href="{{url('/listCan')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
             </div>
-          
         </div>
         </div>
         <br>

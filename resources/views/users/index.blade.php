@@ -1,4 +1,6 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+
+@extends('template')
 
 @section('content')
 <div class="container">
@@ -33,7 +35,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    {{-- @foreach ($users as $user)
                                     <tr data-id="{{ $user->id }}">
                                         <td>
                                             <i class="mdi mdi-delete clickable delete-icon" data-id="{{ $user->id }}" title="@lang('delete the user')"></i>
@@ -49,6 +51,25 @@
                                         </td>
                                         <td>
                                             <span>{{ $user->roles->pluck('name')->implode(', ') }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach --}}
+                                    @foreach ($user as $item)
+                                    <tr data-id="{{ $item->id }}">
+                                        <td>
+                                            <i class="material-icons text-danger" data-id="{{ $item->id }}" title="@lang('delete the user')">delete</i>
+                                            <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
+                                            <a href="{{url('users')}}/{{ $item->id }}" title="@lang('view')"><i class="material-icons">visibility</i></a>
+                                            {{-- <span>{{ $item->id }}</span> --}}
+                                        </td>
+                                        <td>
+                                            <span>{!! $item->lastname !!} {!! $item->firstname !!}</span>
+                                        </td>
+                                        <td>
+                                            <span>{!! $item->email !!}</span>
+                                        </td>
+                                        <td>
+                                            {{-- <span>{{ $item->roles->pluck('name')->implode(', ') }}</span> --}}
                                         </td>
                                     </tr>
                                 @endforeach
