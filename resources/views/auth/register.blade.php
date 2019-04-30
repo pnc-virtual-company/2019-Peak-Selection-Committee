@@ -62,23 +62,14 @@
                       <br>
 
                      <a href="{{route('login')}}" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>Register New User</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f33636773a2ad3a99ff7377140d141366745eb49
+
 
 
                       {{-- <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
                         Register New user
                     </button> --}}
 
-<<<<<<< HEAD
->>>>>>> bff536623c196113a471745b3d4b99a7fdac1f1f
-=======
-=======
->>>>>>> f3da9d18bcbd7f3d035d45f293057b85bebffd56
->>>>>>> f33636773a2ad3a99ff7377140d141366745eb49
+
                   </form>
                   </div>
               </div>
