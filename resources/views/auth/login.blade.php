@@ -15,7 +15,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         {{-- <div class="form-group{{ $errors-&gt;has('name') ? ' has-error' : '' }}"> --}}
-                        <div class="form-group">                            
+                        {{-- <div class="form-group">                            
                             <input id="name" type="text" placeholder="Username" class="form-control" 
                                 name="name" value="{{ old('name') }}" required>
                         
@@ -24,11 +24,11 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>                            
                             @endif                            
-                        </div>
+                        </div> --}}
 
 
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                             @if ($errors->has('email'))
@@ -36,7 +36,7 @@
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-                        </div> --}}
+                        </div>
 
                         
                         <div class="form-group">
@@ -51,13 +51,10 @@
 
                         <div class="form-group mb-0">
                             
-                            {{-- <button type="submit" class="btn btn-primary btn-block">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
-                            </button> --}}
-
-                            <a href="{{url('/listCan')}}" class="btn btn-primary btn-block">
-                                {{ __('Login') }}
-                            </a>
+                            </button>
+                            
                             <hr>
                             <a class="nav-link text-center" href="{{ route('register') }}">
                                 {{ __('Register New User') }}

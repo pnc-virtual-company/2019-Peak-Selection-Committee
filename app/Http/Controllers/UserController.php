@@ -20,11 +20,11 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    // public function __construct()
+    // {
         //Only authenticated users may access to the pages of this controller
-        $this->middleware('auth');
-    }
+        // $this->middleware('auth');
+    // }
 
     /**
      * Display a the profile page. Accessible to any authenticated user.
@@ -46,9 +46,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
-        $users = User::with('roles')->get();
-        return view('users.index', ['users' => $users]);
+        // $request->user()->authorizeRoles(['Administrator']);
+        $user = User::with('roles')->get();
+        // return view('users.index', ['users' => $users]);
+        return view('users.index', compact('user'));
     }
 
     /**
@@ -59,7 +60,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         $roles = Role::all();
         return view('users.create', ['roles' => $roles]);
     }
