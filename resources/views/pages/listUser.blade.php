@@ -13,31 +13,29 @@
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Role</th>             
                     </tr>
                 </thead>
                 <tbody>
                  @foreach ($users as $item)
                     <tr>
-                         <td>
-                          <a href="" class="text-primary"><i class="large material-icons">edit</i></a>
+                        <td>
+                          <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
                           <a href="" class="text-danger"><i class="large material-icons">delete</i></a>
                           <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
                         </td>
                         <td>{{$item->firstname}}</td>
                         <td>{{$item->lastname}}</td>
                         <td>{{$item->email}}</td>
-                        <td>{{$item->password}}</td>
-                        @if($item->roles_id = 1)
+                        @if($item->role_id == 1)
                             <td>Admin</td>
                         @else
                             <td>Normal</td>
-                        @endif
-                       
+                        @endif  
+                       {{-- <span>{{ $item->roles->pluck('name')->implode(', ') }}</span> --}}        
                     </tr>
                 @endforeach
-                    
+               </tbody>     
             </table>
             <br/>
             <a href="{{url('createuser')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
