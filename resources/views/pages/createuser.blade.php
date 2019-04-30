@@ -41,13 +41,6 @@
                       </div>
                       
                       <div class="form-group">
-                          <label for="gender">Gender:</label>
-                          <select name="gender" id="gender" class="form-control">
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
                           <label for="gender">User Role:</label>
                           <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="role" id="admin" value="ERO">
