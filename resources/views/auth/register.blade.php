@@ -4,83 +4,54 @@
 @section('pageTitle', 'Register')
 
 @section('content')
+<div class="container mt-4">
+<div class="row justify-content-center">
+<div class="col-md-8">
+<div class="card">
+<div class="card-header">
+<a href="{{ route('login') }}" title="Go to Login" class="text-primarys">
+<i class="material-icons">arrow_back</i>
+</a>
+<h2 class="text-center">{{ _('Register a User') }}</h2>
+</div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-          <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-             
-              <div class="row">
-                <div class="col-lg">
-                  <div class="p-5">
-                    <a href="{{ route('login') }}" title="Go to Login" class="text-primary">
-                      <i class="material-icons">arrow_back</i>
-                    </a>
-                    <div class="text-center">
-                      <h3>Register a User</h3>
-                      <hr>
-                    </div>
+<div class="card-body">
+<form method="POST" action="{{ route('register') }}">
+@csrf
+<div class="container">
+<div class="form-group row mb-4">
+<div class="col-md-6">
+{{-- <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ _('Firstname') }}</label> --}}
+<input id="firstname" placeholder="Firstname" type="text" class="form-control {{ $errors->has('firstname') ? ' is-invalid' : '' }}" name="firstname" value="{{ old('firstname') }}" required autofocus>
 
-                    <form class="user" action="{{route('login')}}" method="POST" enctype="multipart/form-data">
-                      @csrf
+@if ($errors->has('firstname'))
+<span class="invalid-feedback" role="alert">
+<strong>{{ $errors->first('firstname') }}</strong>
+</span>
+@endif
+</div>
+<div class="col-md-6">
+{{-- <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ _('Lastname') }}</label> --}}
+<input id="lastname" type="text" placeholder="Lastname" class="form-control {{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" required>
+@if ($errors->has('lastname'))
+<span class="invalid-feedback" role="alert">
+<strong>{{ $errors->first('lastname') }}</strong>
+</span>
+@endif 
+</div>
+</div>
+<div class="form-group mb-4">
+{{-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ _('E-Mail Address') }}</label> --}}
 
-                    <form class="user" action="" method="POST" enctype="multipart/form-data">
+<input id="email" type="email" placeholder="Email Address" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
-                      <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
-                        </div>
-                        <div class="col-sm-6">
-                          <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Email Address" required>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                              <input type="password" class="form-control" name="password" placeholder="Password" required>
-                          </div>
-                          <div class="col-sm-6">
-                              <input type="password" class="form-control" name="verify" placeholder="Confirm Password">
-                          </div>
-                      </div>
-                    
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="province" placeholder="Enter your province" required>
-                      </div>
-                      <br>
-
-<<<<<<< HEAD
-                     <a href="{{route('login')}}" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>Register New User</a>
+@if ($errors->has('email'))
+<span class="invalid-feedback" role="alert">
+<strong>{{ $errors->first('email') }}</strong>
+</span>
+@endif
+</div>
 
 
-=======
-                     <a href="{{route('login')}}" class="btn btn-primary btn-block">
-                        <i class="fas fa-user-plus"></i>Register New User
-                      </a>
->>>>>>> d06f706c1c694c307e1459c947707a5ba4f55e37
 
-                      {{-- <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
-                        Register New user
-                    </button> --}}
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d06f706c1c694c307e1459c947707a5ba4f55e37
-                  </form>
-                  </div>
-              </div>
-              </div>
-          </div>
-          </div>
-        </div>
-        <div class="col-sm-2"></div>
-      </div>
-      
-    </div>
-
-@endsection
+<div class="form-group mb-4">
