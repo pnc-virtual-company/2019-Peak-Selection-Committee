@@ -2,11 +2,11 @@
 @section('pageTitle', 'Login')
 
 @section('content')
-<div class="container mt-5">
 
-    <div class="row justify-content-center align-self-center">
+<div class="container">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-4">
-            <div class="card shadow-sm align-self-center">
+            <div class="card">
 
                 <div class="card-body">
                     <img src="images/logo.png" class="p-3" style="width: 300px;" alt="logo">
@@ -53,4 +53,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -69,11 +69,6 @@
                                             <span>{!! $item->email !!}</span>
                                         </td>
                                         <td>
-                                            @foreach ($item->roles() as $role)
-                                                
-                                            
-
-                                            @endforeach
                                             {{-- <span>{{ $item->roles->pluck('name')->implode(', ') }}</span> --}}
                                         </td>
                                     </tr>
