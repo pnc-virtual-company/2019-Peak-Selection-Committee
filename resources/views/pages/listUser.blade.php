@@ -1,8 +1,6 @@
 
 @extends('template')
-
 @section('pageTitle', 'List User')
-
 @section('content')
 <div class="content">
     <h2 class="text-center">List Of User</h2>
