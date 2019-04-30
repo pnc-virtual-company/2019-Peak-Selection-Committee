@@ -187,9 +187,10 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
-        $user = User::find($id);
+        // $request->user()->authorizeRoles(['Administrator']);
+        $user = User::findOrFail($id);
         $user->delete();
+        return redirect()->route('users.index');
     }
 
     /**

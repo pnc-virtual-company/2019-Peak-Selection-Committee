@@ -26,13 +26,17 @@
   
   </style>
   
+
+
+
   <div class="container mt-4 ">
-  
+
   <div class="row">
     <div class="col-sm-4 mt-4">
     <img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
     <input type="file" value="">
     </div>
+
     <div class="col-sm-4 mt-4">
       <br>
         <input type="text" value="" placeholder="Student Name" class="form-control"  ><br>
@@ -74,7 +78,7 @@
               <div class="col-md-3"></div>
               <div class="col-md-3">
                 <label for="">Province:</label>
-                <select name="" id="" class="form-control">
+              <select name="province" id="" class="form-control">
                   <option value="">Please select one</option>
                   <option value="">Battambang</option>
                   <option value="">Phnom Penh</option>
@@ -84,7 +88,7 @@
           </div>
           <div class="col-md-3" >
             
-            <label for="" >NGO:</label>
+            <label for="" name="NGO">NGO:</label>
             <select name="" id="" class="form-control">
               <option value="">None</option>
               <option value="">PSE</option>
@@ -104,7 +108,7 @@
   <div class="row">
       <div class="col-sm-3"></div>
     <div class="col-sm-2">
-      <label for="">Gender</label>
+      <label for="" name="gender">Gender</label>
       <select name="" id="" class="input-group-sm form-control"  style="width:70px">
           <option value="">M</option>
           <option value="">F</option>
@@ -409,7 +413,6 @@
   $(document).ready(function() {
     $('#example').DataTable();
 } );
-
 </script>
 
 
