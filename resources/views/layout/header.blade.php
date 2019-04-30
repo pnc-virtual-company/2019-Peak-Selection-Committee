@@ -49,12 +49,12 @@
             <a class="dropdown-item" href="{{url('/createCandidate')}}">Create Candidate</a>            
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown mr-4">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url('users')}}">List Users</a>
+            <a class="dropdown-item" href="{{url('/users')}}">List Users</a>
             <a class="dropdown-item" href="{{url('/createuser')}}">Create User</a>            
           </div>
         </li>

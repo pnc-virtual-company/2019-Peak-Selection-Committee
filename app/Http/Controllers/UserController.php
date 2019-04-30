@@ -46,10 +46,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // $request->user()->authorizeRoles(['Administrator']);
-        $user = User::with('roles')->get();
+        // $request->user()->authorizeRoles(['Admin']);
+        $users = User::with('roles')->get();
         // return view('users.index', ['users' => $users]);
-        return view('users.index', compact('user'));
+        return view('pages.listUser', ['users' => $users]);
     }
 
     /**
@@ -74,30 +74,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'name'  => 'required',
+            'firstname'  => 'required',
+            'lastname'  => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'roles' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the validation of fields
         if ($validator->fails()) {
-            return Redirect::to('users/create')
+            return Redirect::to('createuser')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
             // store the new user and attach roles to it
             $user = new User;
-            $user->name = Input::get('name');
+            $user->firstname = Input::get('firstname');
+            $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
+            $user->role_id = Input::get('role');
             $user->password = bcrypt(Input::get('password'));
+            
             $user->save();
-            $user->roles()->attach(Input::get('roles'));
             
             // redirect
             Session::flash('message.level', 'success');
@@ -131,11 +133,12 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         $user = User::find($id);
-        $user->roleIds = $user->roles->pluck('id')->toArray();
+        // $user->roleIds = $user->roles->pluck('id')->toArray();
         $roles = Role::all();
         return view('users.edit', ['user' => $user, 'roles' => $roles]);
+        // return view('users.edit', ['roles' => $roles]);
     }
 
     /**
@@ -147,10 +150,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         // validate
         $rules = array(
-            'name'  => 'required',
+            'firstname'  => 'required',
+            'lastname'  => 'required',
             'email' => 'required|email',
             'roles' => 'required'
         );
@@ -163,10 +167,12 @@ class UserController extends Controller
         } else {
             // update user and synchronize the roles
             $user = User::find($id);
-            $user->name = Input::get('name');
+            $user->firstname = Input::get('firstname');
+            $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
+            $user->role_id = Input::get('roles');
             $user->save();
-            $user->roles()->sync(Input::get('roles'));
+            // $user->roles()->sync(Input::get('roles'));
             
             // redirect
             Session::flash('message.level', 'success');
@@ -183,9 +189,10 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrator']);
-        $user = User::find($id);
+        // $request->user()->authorizeRoles(['Administrator']);
+        $user = User::findOrFail($id);
         $user->delete();
+        return redirect()->route('users.index');
     }
 
     /**

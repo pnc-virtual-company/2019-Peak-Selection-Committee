@@ -47,29 +47,30 @@
                               <input type="password" class="form-control" name="verify" placeholder="Confirm Password">
                           </div>
                       </div>
-                      
-                      <div class="form-group">
-                          <label for="gender">Gender:</label>
-                          <select name="gender" id="gender" class="form-control">
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                          </select>
-                      </div>
                     
                       <div class="form-group">
                         <input type="text" class="form-control" name="province" placeholder="Enter your province" required>
                       </div>
                       <br>
 
+<<<<<<< HEAD
                      <a href="{{route('login')}}" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>Register New User</a>
 
 
+=======
+                     <a href="{{route('login')}}" class="btn btn-primary btn-block">
+                        <i class="fas fa-user-plus"></i>Register New User
+                      </a>
+>>>>>>> d06f706c1c694c307e1459c947707a5ba4f55e37
 
                       {{-- <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
                         Register New user
                     </button> --}}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d06f706c1c694c307e1459c947707a5ba4f55e37
                   </form>
                   </div>
               </div>
