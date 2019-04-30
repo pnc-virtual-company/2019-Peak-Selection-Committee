@@ -195,7 +195,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    /**
+    /**.
      * Export the list of users into Excel
      *
      * @return \Illuminate\Http\Response
