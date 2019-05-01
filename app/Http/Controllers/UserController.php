@@ -78,26 +78,28 @@ class UserController extends Controller
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'name'  => 'required',
+            'firstname'  => 'required',
+            'lastname'  => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'roles' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the validation of fields
         if ($validator->fails()) {
-            return Redirect::to('users/create')
+            return Redirect::to('createuser')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
             // store the new user and attach roles to it
             $user = new User;
-            $user->name = Input::get('name');
+            $user->firstname = Input::get('firstname');
+            $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
+            $user->role_id = Input::get('role');
             $user->password = bcrypt(Input::get('password'));
+            
             $user->save();
-            $user->roles()->attach(Input::get('roles'));
             
             // redirect
             Session::flash('message.level', 'success');
@@ -193,7 +195,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    /**
+    /**.
      * Export the list of users into Excel
      *
      * @return \Illuminate\Http\Response
