@@ -22,7 +22,7 @@
                         <td>
                           <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
                           <a href="{{route('users.destroy', $item->id)}}"  data-toggle="modal" data-target="#delete" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
-                          <a href="" class="text-success"><i class="large material-icons">visibility</i></a>
+                          <a href="{{route('users.show', $item->id)}}" class="text-success" data-toggle="modal" data-id="{{$item['id']}}" data-target="#exampleModalCenter"><i class="large material-icons">visibility</i></a>
                         </td>
                         <td>{{$item->firstname}}</td>
                         <td>{{$item->lastname}}</td>
@@ -70,16 +70,48 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal of View detail -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="ViewDetail">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Detail information of User</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>Name:</b> {{$item->firstname}} {{$item->lastname}}</p>
+        <p><b>Email:</b> {{$item->email}} </p>
+        <p><b>Role:</b> 
+              @if($item->role_id == 1)
+                  <td>Admin</td>
+              @else
+                  <td>Normal</td>
+              @endif  
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- end of modal view detail --}}
+
   <script src="{{asset('Js/app.js')}}" ></script>
 
     <script>
-      $('#delete').on('show.bs.modal', function (event) { 
+      $('#delete,#ViewDetail').on('show.bs.modal', function (event) { 
         var button = $(event.relatedTarget);
-        var id = button.data('id');  //get Id from button
+        var id = button.data('id');  
         var modal = $(this);
         var url="{{url('users')}}/"+id;
         console.log(url);
-        $('#fid').attr('action',url); //get Id form
+        $('#fid').attr('action',url); 
     })
     
   </script>

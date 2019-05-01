@@ -116,7 +116,7 @@ class UserController extends Controller
     public function show(Request $request, $id)
     {
         $request->user()->authorizeRoles(['Administrator']);
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->roleIds = $user->roles->pluck('id')->toArray();
         $roles = Role::all();
         return view('users.show', ['user' => $user, 'roles' => $roles]);

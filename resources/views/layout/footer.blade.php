@@ -24,7 +24,6 @@
                 colReorder: true
             } );
         } );
-        
     </script>
 
     </body>
