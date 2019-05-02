@@ -68,17 +68,10 @@
       </div>
     </div>
   </div>
-  <script src="{{asset('Js/app.js')}}" ></script>
+  {{-- <script src="{{asset('Js/app.js')}}" ></script> --}}
 
     <script>
-      $('#delete').on('show.bs.modal', function (event) { 
-        var button = $(event.relatedTarget);
-        var id = button.data('id');  //get Id from button
-        var modal = $(this);
-        var url="{{url('users')}}/"+id;
-        console.log(url);
-        $('#fid').attr('action',url); //get Id form
-    })
+    
     
   </script>
    
