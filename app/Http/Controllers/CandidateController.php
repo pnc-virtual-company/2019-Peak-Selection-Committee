@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
+use App\Answer;
 
 class CandidateController extends Controller
 {
@@ -13,7 +15,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -23,7 +25,9 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+        $answer=Answer::all();
+        $question=Question::all();
+        return view('pages.createCandidate',compact('answer'),compact('question'));
     }
 
     /**

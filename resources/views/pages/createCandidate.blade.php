@@ -30,7 +30,6 @@
 
 
 
-
   <div class="container mt-4 ">
 
   <div class="row">
@@ -120,13 +119,13 @@
           </select>
         </div>
         <div class="col-md-1"> 
-            <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
-           
+            <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>         
            </div>
      
       
       
   </div>
+
   <br>
   <div class="row">
       <div class="col-sm-3"></div>
@@ -146,23 +145,23 @@
        <input type="number" class="input-group-sm  form-control"  style="width:65px">
   </div>
   
+
   </div>
   <h5>Health Status</h5>
    <div class="row">
        <div class="col-sm-6">
-         <select name="" id="" class="form-control">
-            <option value="">Please select one</option>
-             <option value="">A. Very bad GPA and rank and lowest rank in high school</option>
-             <option value="">B. Average GPA and rank around middle of the class</option>
-             <option value="">C. Very good GPA and is able to cath up all the lessions </option>
-             <option value="">D. No answer</option>
-         </select>
+         <select name="health" id="" class="form-control">
+             @foreach ($answer as $item)
+               <option value="">{{$item['label'].". ".$item['answer']}}</option>
+             @endforeach
+
+          </select>
        </div>
        <div class="col-sm-6">
         <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
-  
        </div>
    </div>
+   
    <h5>Rank in class</h5>
    <div class="row">
        <div class="col-sm-6">

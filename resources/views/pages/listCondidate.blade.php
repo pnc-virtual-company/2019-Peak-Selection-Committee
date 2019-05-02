@@ -97,7 +97,7 @@
                 </tfoot>
             </table>
             
-             <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
+             <a href="{{route('candidate.create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
         </div>
         {{-- end table of candidate --}}
         
