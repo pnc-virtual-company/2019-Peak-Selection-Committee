@@ -43,12 +43,13 @@ class CandidateController extends Controller
             //   $user = \Auth::user();
             //   $user->profile = $fileName;
             //   $user->save();
-               return ("you are sucess");
+              
 
         }else{
             return "not sucess";
         }
 
+        return ("you are sucess");
 
     }
 
