@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ngo;
 
-class NGO extends Controller
+class NgoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class NGO extends Controller
      */
     public function index()
     {
-        //
+        $ngo =Ngo::all();
+        return view('pages.createCandidate',compact('ngo',$ngo));
     }
 
     /**
@@ -23,7 +25,7 @@ class NGO extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

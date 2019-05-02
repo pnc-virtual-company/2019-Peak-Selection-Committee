@@ -81,11 +81,11 @@ Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
 
 });
-Route::get('/createCandidate', function () {
-    return view('pages.createCandidate');
-});
+// Route::get('/createCandidate', function () {
+//     return view('pages.createCandidate');
+// });
 
 
 Route::resource('candidate','CandidateController');
 
-
+Route::resource('ngo','NgoController');
