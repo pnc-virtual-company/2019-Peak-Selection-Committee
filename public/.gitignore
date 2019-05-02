@@ -8,5 +8,8 @@ fonts/materialdesignicons-webfont.woff
 fonts/materialdesignicons-webfont.woff2
 js/*
 !js/app.js
+!js/jquery-3.3.1.min.js
+!js/mdb.min.js
+!js/popper.min.js
 jstree/
 tinymce/
