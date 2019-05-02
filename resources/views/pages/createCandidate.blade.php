@@ -23,14 +23,7 @@
      /* symbol for "collapsed" panels */
      content:"\f078";
   }
-  
   </style>
-  
-
-
-
-
-
   <div class="container mt-4 ">
 
   <div class="row">
@@ -45,20 +38,6 @@
               </div>
 
     </div>
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="col-sm-4 mt-4"> 
       <br>
@@ -113,19 +92,15 @@
             
             <label for="" name="NGO">NGO:</label>
             <select name="" id="" class="form-control">
-              <option value="">None</option>
-              <option value="">PSE</option>
-              <option value="">Enfant dasia</option>
-              <option value="">EDM</option>
+                @foreach ($ngo as $item)
+                  <option value="{{$item->name}}" name="ngo">{{$item->name}}</option>
+                @endforeach 
           </select>
         </div>
         <div class="col-md-1"> 
             <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
            
            </div>
-     
-      
-      
   </div>
   <br>
   <div class="row">
@@ -407,19 +382,12 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($ngo as $item)
                 <tr>
                   <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                  <td>Battambang</td>                 
+                  <td>{{$item->name}}</td>                 
                 </tr>
-                <tr>
-                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                  <td>Prey Veng</td>                 
-                </tr>
-                <tr>
-                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                    <td>Svay Reang</td>                 
-                </tr>
-               
+                @endforeach
             </tbody> 
           </table>   
           <button class="btn btn-primary">Add NGO</button>
