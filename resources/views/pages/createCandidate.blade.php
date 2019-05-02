@@ -1,7 +1,6 @@
-
 @extends('template')
 
-@section('pageTitle', 'Create Candidate')
+@section('pageTitle', 'Create User')
 
 @section('content')
 <style>
