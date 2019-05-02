@@ -1,4 +1,3 @@
-
 @extends('template')
 @section('pageTitle', 'List User')
 @section('content')
@@ -70,7 +69,7 @@
   </div>
 
   <!-- Modal of View detail -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="ViewDetail">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -103,7 +102,7 @@
   <script src="{{asset('Js/app.js')}}" ></script>
 
     <script>
-      $('#delete,#ViewDetail').on('show.bs.modal', function (event) { 
+      $('#delete,#exampleModalCenter').on('show.bs.modal', function (event) { 
         var button = $(event.relatedTarget);
         var id = button.data('id');  
         var modal = $(this);
