@@ -29,19 +29,42 @@
 
 
 
+
+
   <div class="container mt-4 ">
 
   <div class="row">
+    {{-- upload profile --}}
+   
     <div class="col-sm-4 mt-4">
-    <input type="file" value="<img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-    ">
-    </div>
+        <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+ <form action="{{route('candidate.store')}}" method="POST"  enctype="multipart/form-data">
+        @csrf
+              <div class="form-group" >
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
+              </div>
 
-    <div class="col-sm-4 mt-4">
+    </div>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-sm-4 mt-4"> 
       <br>
         <input type="text" value="" placeholder="Student Name" class="form-control"  ><br>
         <label for="">Global Grade</label>
-        <select name="" id="" class="form-control">
+        <select name="" id="" class="form-control" selected="true" disabled="disabled">
                 <option value="">Choose Grade</option>
                 <option value="">A+</option>
                 <option value="">A</option>
@@ -351,10 +374,10 @@
   </div>
   
   <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
-  <button class="btn btn-info float-right">Save Information</button>
-  <br><br>
-
+  <button type="submit" class="btn btn-info float-right">Save Information</button>
+</form>
   </div>
+
 </div>
 
   @endsection

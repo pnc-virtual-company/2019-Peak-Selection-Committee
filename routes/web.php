@@ -86,5 +86,6 @@ Route::get('/createCandidate', function () {
 });
 
 
+Route::resource('candidate','CandidateController');
 
 

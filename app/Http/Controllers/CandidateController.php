@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Candidate extends Controller
+class CandidateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,8 +33,23 @@ class Candidate extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {  
+        if( $request->hasFile('inputFile')){
+            $fileName=$request->file('inputFile')->getClientOriginalName();
+            $request->file('inputFile')->storeAs('public/img',$fileName);
+              
+              // $id = \Auth::user()->id;
+              // //dd($id);
+            //   $user = \Auth::user();
+            //   $user->profile = $fileName;
+            //   $user->save();
+               return ("you are sucess");
+
+        }else{
+            return "not sucess";
+        }
+
+
     }
 
     /**
