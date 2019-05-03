@@ -17,6 +17,11 @@
 <div class="card-body">
 <form method="POST" action="{{ route('register') }}">
 @csrf
+
+{{-- test role user --}}
+<input type="hidden" value="2" name="role_id">
+{{-- end --}}
+
 <div class="container">
 
 <div class="form-group row mb-4">

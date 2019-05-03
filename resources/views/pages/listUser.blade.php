@@ -99,19 +99,17 @@
 
 {{-- end of modal view detail --}}
 
-  <script src="{{asset('Js/app.js')}}" ></script>
+<script src="{{asset('Js/app.js')}}" ></script>
 
-    <script>
-      $('#delete,#exampleModalCenter').on('show.bs.modal', function (event) { 
-        var button = $(event.relatedTarget);
-        var id = button.data('id');  
-        var modal = $(this);
-        var url="{{url('users')}}/"+id;
-        console.log(url);
-        $('#fid').attr('action',url); 
-    })
-    
-  </script>
-   
+<script>
+  $('#delete,#exampleModalCenter').on('show.bs.modal', function (event) { 
+    var button = $(event.relatedTarget);
+    var id = button.data('id');  
+    var modal = $(this);
+    var url="{{url('users')}}/"+id;
+    console.log(url);
+    $('#fid').attr('action',url); 
+})
+</script>
 
 
