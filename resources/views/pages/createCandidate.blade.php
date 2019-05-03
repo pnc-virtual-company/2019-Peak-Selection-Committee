@@ -23,25 +23,27 @@
      /* symbol for "collapsed" panels */
      content:"\f078";
   }
-  
   </style>
-  
-
-
-
   <div class="container mt-4 ">
 
   <div class="row">
+    {{-- upload profile --}}
+   
     <div class="col-sm-4 mt-4">
-    <input type="file" value="<img src="{{url('storage/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-    ">
+        <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+ <form action="{{route('candidate.store')}}" method="POST"  enctype="multipart/form-data">
+        @csrf
+              <div class="form-group" >
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
+              </div>
+
     </div>
 
-    <div class="col-sm-4 mt-4">
+    <div class="col-sm-4 mt-4"> 
       <br>
         <input type="text" value="" placeholder="Student Name" class="form-control"  ><br>
         <label for="">Global Grade</label>
-        <select name="" id="" class="form-control">
+        <select name="" id="" class="form-control" selected="true" disabled="disabled">
                 <option value="">Choose Grade</option>
                 <option value="">A+</option>
                 <option value="">A</option>
@@ -90,19 +92,15 @@
             
             <label for="" name="NGO">NGO:</label>
             <select name="" id="" class="form-control">
-              <option value="">None</option>
-              <option value="">PSE</option>
-              <option value="">Enfant dasia</option>
-              <option value="">EDM</option>
+                @foreach ($ngo as $item)
+                  <option value="{{$item->name}}" name="ngo">{{$item->name}}</option>
+                @endforeach 
           </select>
         </div>
         <div class="col-md-1"> 
             <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
            
            </div>
-     
-      
-      
   </div>
   <br>
   <div class="row">
@@ -351,10 +349,10 @@
   </div>
   
   <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
-  <button class="btn btn-info float-right">Save Information</button>
-  <br><br>
-
+  <button type="submit" class="btn btn-info float-right">Save Information</button>
+</form>
   </div>
+
 </div>
 
   @endsection
@@ -384,19 +382,12 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($ngo as $item)
                 <tr>
                   <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                  <td>Battambang</td>                 
+                  <td>{{$item->name}}</td>                 
                 </tr>
-                <tr>
-                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                  <td>Prey Veng</td>                 
-                </tr>
-                <tr>
-                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                    <td>Svay Reang</td>                 
-                </tr>
-               
+                @endforeach
             </tbody> 
           </table>   
           <button class="btn btn-primary">Add NGO</button>
@@ -414,5 +405,9 @@
     $('#example').DataTable();
 } );
 </script>
+
+
+
+
 
 

@@ -1,9 +1,5 @@
 /node_modules
 /public/hot
-<<<<<<< HEAD
-
-=======
->>>>>>> d06f706c1c694c307e1459c947707a5ba4f55e37
 /storage/*.key
 /vendor
 /.idea
