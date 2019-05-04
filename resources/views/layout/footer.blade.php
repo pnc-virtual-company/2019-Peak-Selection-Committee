@@ -1,4 +1,5 @@
-
+    
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>
         $('#delete').on('show.bs.modal', function (event) { 
@@ -11,9 +12,6 @@
         })
     </script>
 
-       {{-- hany --}}
-       
-    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/colreorder/1.5.1/js/dataTables.colReorder.min.js"></script>
@@ -34,7 +32,27 @@
                 colReorder: true
             } );
 
+<<<<<<< HEAD
         } );
+=======
+            $(document).ready(function() {
+                $('#ngo').DataTable();
+            } );
+
+            // =====================table ngo========================
+            // Append table with add row form on add new button click
+            $(".add-new").click(function(){
+                $(this).attr("disabled", "disabled");
+                var index = $("table tbody tr:last-child").index();
+                var row = '<tr>' +
+                    '<td></td>' +
+                    '<td><input type="text" class="form-control" name="name" placeholder="Name NGO"/></td>' +
+                    '</tr>';
+                $("table").append(row);		
+            });
+        });
+
+>>>>>>> 4ea372d5486f5961b0863178047aac40fc45a265
     </script>
 
     </body>

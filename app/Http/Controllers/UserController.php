@@ -80,8 +80,9 @@ class UserController extends Controller
         $rules = array(
             'firstname'  => 'required',
             'lastname'  => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => 'email',
+            'password' => 'required|min:6',
+            'verify' =>  'required_with:password|same:password|min:6'
         );
         $validator = Validator::make(Input::all(), $rules);
 
