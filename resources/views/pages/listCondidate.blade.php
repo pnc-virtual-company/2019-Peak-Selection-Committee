@@ -95,8 +95,7 @@
                         <th>Salary</th>
                     </tr>
                 </tfoot>
-            </table>
-            
+            </table>           
              <a href="{{route('candidate.create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
         </div>
         {{-- end table of candidate --}}

@@ -36,9 +36,9 @@
                 <div class="form-group" >
                   <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
                 </div>
-  
+            
       </div>
-  
+  {{-- /*Student information*/ --}}
       <div class="col-sm-4 mt-4"> 
         <br>
           <input type="text" value="" placeholder="Student Name" class="form-control"  ><br>
@@ -58,7 +58,7 @@
     <br>
     <h5>Instructions on how to fill out the form: </h5>
     <ul>
-      <li> All answers are by default on "D. No answer". If the question is not relevant, or you do  not  have the answer, do not change it</li>
+      <li> All answers are by default on " No answer". If the question is not relevant, or you do  not  have the answer, do not change it</li>
       <li>Otherwise, you can choose the answer closer to the reality. If more than 1 answer is correct, take the strongest (example: several sickness in a family).</li>
        <li> In the optionnal notes, please fill in the most information possible (the exact number when the answer is a range, or anything else relevant / interesting).</li>
     </ul>
@@ -80,18 +80,12 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                   <label for="">Province:</label>
-                <select name="province" id="" class="form-control">
-                    <option value="">Please select one</option>
-                    <option value="">Battambang</option>
-                    <option value="">Phnom Penh</option>
-                    <option value="">Kandal</option>
-                    <option value="">Banteay Meanchey</option>
-                </select>
-            </div>
+                   <input type="text" class="form-control" name="province">
+                </div>
             <div class="col-md-3" >
               
               <label for="" name="NGO">NGO:</label>
-              <select name="" id="" class="form-control">
+              <select name="ngo" id="" class="form-control">
                   @foreach ($ngo as $item)
                     <option value="{{$item->name}}" name="ngo">{{$item->name}}</option>
                   @endforeach 
@@ -106,29 +100,32 @@
     <div class="row">
         <div class="col-sm-3"></div>
       <div class="col-sm-2">
-        <label for="" name="gender">Gender</label>
-        <select name="" id="" class="input-group-sm form-control"  style="width:70px">
-            <option value="">M</option>
-            <option value="">F</option>
+        <label for="" >Gender</label>
+        <select name="gender" id="" class="input-group-sm form-control"  style="width:70px">
+            <option value="Male">M</option>
+            <option value="Female">F</option>
         </select>
     </div>
+
     <div class="col-sm-2">
         <label for="">Age</label>
-        <input type="number" class="input-group-sm form-control " style="width:65px">
+        <input type="number" class="input-group-sm form-control" name="age" style="width:65px">
     </div>
     <div class="col-sm-4">
         <label for="">Years of selection</label>
-         <input type="number" class="input-group-sm  form-control"  style="width:65px">
+         <input type="nu****************mber" class="input-group-sm  form-control"  name="year" style="width:65px">
     </div>
-    
+   {{-- /* ************************************************************************************************/  --}}
   
+
+
     </div>
  
     <h5>Health Status</h5>
      <div class="row">
          <div class="col-sm-6">
            <select name="health" id="" class="form-control">
-              <option value="">D.No answer</option>
+              <option value="">No answer</option>
                @foreach ( DB::table('answers')->where('Question_id',4)->get() as $value)
                 <option value="">{{$value->label.". ".$value->answer}}</option>
                @endforeach
@@ -144,7 +141,7 @@
      <div class="row">
          <div class="col-sm-6">
            <select name="" id="" class="form-control">
-              <option value="">D.No answer</option>
+              <option value="">No answer</option>
              @foreach ( DB::table('answers')->where('Question_id',5)->get() as $value)
               <option value="">{{$value->label.". ".$value->answer}}</option>
              @endforeach
@@ -173,7 +170,7 @@
     <div class="row">
       <div class="col-sm-6">
         <select name="" id="" class="form-control">
-         <option value="">D.No answer</option>
+         <option value="">No answer</option>
          @foreach ( DB::table('answers')->where('Question_id',3)->get() as $value)
          <option value="">{{$value->label.". ".$value->answer}}</option>
         @endforeach
@@ -189,7 +186,7 @@
     <div class="row">
       <div class="col-sm-6">
         <select name="" id="" class="form-control">
-            <option value="">D.No answer</option>
+            <option value="">No answer</option>
         @foreach ( DB::table('answers')->where('Question_id',1)->get() as $value)
          <option value="">{{$value->label.". ".$value->answer}}</option>
         @endforeach
@@ -205,7 +202,7 @@
     <div class="row">
       <div class="col-sm-6">
         <select name="" id="" class="form-control">
-            <option value="">D.No answer</option>
+            <option value="">No answer</option>
         @foreach ( DB::table('answers')->where('Question_id',2)->get() as $value)
          <option value="">{{$value->label.". ".$value->answer}}</option>
         @endforeach
@@ -255,7 +252,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                               <select name="health" id="" class="form-control">
-                                 <option value="">D.No answer</option>
+                                 <option value="">No answer</option>
                                   @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                                    <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                                   @endforeach
@@ -274,7 +271,7 @@
            <div class="row">
                <div class="col-sm-6">
                  <select name="health" id="" class="form-control">
-                    <option value="">D.No answer</option>
+                    <option value="">No answer</option>
                      @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                       <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                      @endforeach
@@ -293,7 +290,7 @@
        <div class="row">
            <div class="col-sm-6">
              <select name="health" id="" class="form-control">
-                <option value="">D.No answer</option>
+                <option value="">No answer</option>
                  @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                   <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                  @endforeach
@@ -335,7 +332,7 @@
                    <div class="row">
                        <div class="col-sm-6">
                          <select name="health" id="" class="form-control">
-                            <option value="0">D.No answer</option>
+                            <option value="0">No answer</option>
                              @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                               <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                              @endforeach
@@ -354,7 +351,7 @@
               <div class="row">
                   <div class="col-sm-6">
                     <select name="health" id="" class="form-control">
-                       <option value="0">D.No answer</option>
+                       <option value="0">No answer</option>
                         @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                          <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                         @endforeach
@@ -391,7 +388,7 @@
                   <div class="row">
                       <div class="col-sm-6">
                         <select name="health" id="" class="form-control">
-                           <option value="0">D.No answer</option>
+                           <option value="0">No answer</option>
                             @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                              <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                             @endforeach
@@ -410,7 +407,7 @@
             <div class="row">
                 <div class="col-sm-6">
                   <select name="health" id="" class="form-control">
-                     <option value="0">D.No answer</option>
+                     <option value="0">No answer</option>
                       @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                        <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                       @endforeach
@@ -444,7 +441,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                       <select name="health" id="" class="form-control">
-                         <option value="0">D.No answer</option>
+                         <option value="0">No answer</option>
                           @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                            <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                           @endforeach
@@ -463,7 +460,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                       <select name="health" id="" class="form-control">
-                         <option value="0">D.No answer</option>
+                         <option value="0">No answer</option>
                           @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                            <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                           @endforeach
@@ -514,7 +511,7 @@
                       <div class="row">
                           <div class="col-sm-6">
                             <select name="health" id="" class="form-control">
-                               <option value="">D.No answer</option>
+                               <option value="">No answer</option>
                                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                                  <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                                 @endforeach
@@ -550,7 +547,7 @@
                  <div class="row">
                      <div class="col-sm-6">
                        <select name="health" id="" class="form-control">
-                          <option value="">D.No answer</option>
+                          <option value="">No answer</option>
                            @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                             <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                            @endforeach
@@ -570,7 +567,7 @@
              <div class="row">
                  <div class="col-sm-6">
                    <select name="health" id="" class="form-control">
-                      <option value="">D.No answer</option>
+                      <option value="">No answer</option>
                        @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                         <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                        @endforeach
@@ -607,7 +604,7 @@
                  <div class="row">
                      <div class="col-sm-6">
                        <select name="health" id="" class="form-control">
-                          <option value="">D.No answer</option>
+                          <option value="">No answer</option>
                            @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                             <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                            @endforeach
@@ -627,7 +624,7 @@
     <div class="row">
         <div class="col-sm-6">
           <select name="health" id="" class="form-control">
-             <option value="">D.No answer</option>
+             <option value="">No answer</option>
               @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
               @endforeach
@@ -665,7 +662,7 @@
       <div class="row">
           <div class="col-sm-6">
             <select name="health" id="" class="form-control">
-               <option value="">D.No answer</option>
+               <option value="">No answer</option>
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                  <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                 @endforeach
@@ -702,7 +699,7 @@
       <div class="row">
           <div class="col-sm-6">
             <select name="health" id="" class="form-control">
-               <option value="">D.No answer</option>
+               <option value="">No answer</option>
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                  <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                 @endforeach
@@ -723,7 +720,7 @@
   <div class="row">
       <div class="col-sm-6">
         <select name="health" id="" class="form-control">
-           <option value="">D.No answer</option>
+           <option value="">No answer</option>
             @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
              <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
             @endforeach
@@ -738,7 +735,7 @@
 @endfor
 <br>
 <h5>Summary</h5>
-<textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+<textarea name="" id="" cols="30" rows="5"  required class="form-control" placeholder="Please Comment"></textarea> <br>
 
 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseD" >Save Information</button><br><br>
 
@@ -761,7 +758,7 @@
         <div class="row">
             <div class="col-sm-6">
               <select name="health" id="" class="form-control">
-                 <option value="">D.No answer</option>
+                 <option value="">No answer</option>
                   @foreach ( DB::table('answers')->where('Question_id',72)->get() as $value)
                    <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
                   @endforeach
@@ -800,7 +797,8 @@
     <br><br>
     <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
     <button type="submit" class="btn btn-info float-right">Save Information</button>
-  </form>
+   </form>
+   <br><br>
     </div>
   
   </div>

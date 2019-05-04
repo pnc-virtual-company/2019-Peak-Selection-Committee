@@ -10,7 +10,7 @@
            <div class="card">
 
                <div class="card-body">
-                   <img src="images/logo.png" class="p-3" style="width: 300px;" alt="logo">
+                   <img src="{{url('storage/img/logo.png')}}" class="p-3" style="width: 300px;" alt="logo">
                    <hr>
                    <form method="POST" action="{{ route('login') }}">
                        @csrf
