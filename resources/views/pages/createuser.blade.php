@@ -31,11 +31,15 @@
 
                         <div class="form-group">
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="email" required>
+                                @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
                         </div>
 
                         <div class="form-group">
                             <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
-
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="verify" placeholder="Confirm Password" required>

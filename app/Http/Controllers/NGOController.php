@@ -28,7 +28,7 @@ class NgoController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -39,7 +39,11 @@ class NgoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        Ngo::create($request->all());
+        return redirect()->route('candidate.create');
     }
 
     /**
@@ -84,6 +88,6 @@ class NgoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }
