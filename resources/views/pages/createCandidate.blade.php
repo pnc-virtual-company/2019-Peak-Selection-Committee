@@ -43,7 +43,7 @@
       <br>
         <input type="text" value="" placeholder="Student Name" class="form-control"  ><br>
         <label for="">Global Grade</label>
-        <select name="" id="" class="form-control" selected="true" disabled="disabled">
+        <select name="" id="" class="" selected="true" disabled="disabled">
                 <option value="">Choose Grade</option>
                 <option value="">A+</option>
                 <option value="">A</option>
@@ -51,6 +51,10 @@
                 <option value="">B+</option>
                 <option value="">B</option>
                 <option value="">B-</option>
+        </select>
+        <select name="" id="" selected="true">
+                <option value="">+</option>
+                <option value="">-</option>
         </select><br>
         <input type="checkbox"><label for="">Information is filled by PNC employee</label>
     </div>

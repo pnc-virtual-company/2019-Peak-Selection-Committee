@@ -1,5 +1,7 @@
 @extends('template')
 
+@section('pageTitle', 'Edit user')
+
 @section('content')
 
 @include('validation-errors')
@@ -40,13 +42,13 @@
                                     {{-- <option value="{{ $role->id }}" @if(in_array($role->id, $user->roleIds)) selected @endif>{!! $role->name !!}</option> --}}
                                 {{-- @endforeach --}}
                             @foreach ($roles as $role) 
-                                @if ($role->id == $user->role_id)
-                                    <label class="radio-inline">
-                                        <input type="radio" value="{{ $role->id }}" name="roles" checked> {{$role->name}}
-                                    </label>                                        
-                                @else
+                                @if ($role->id != $user->role_id)
                                     <label class="radio-inline">
                                         <input type="radio" value="{{ $role->id }}" name="roles"> {{$role->name}}
+                                    </label>                                                                                
+                                @else
+                                    <label class="radio-inline">
+                                        <input type="radio" value="{{ $role->id }}" name="roles" checked> {{$role->name}}
                                     </label>                                        
                                 @endif
                             @endforeach

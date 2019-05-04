@@ -1,7 +1,7 @@
 
     <script src="{{asset('js/app.js')}}"></script>
     <script>
-        $('#delete').on('show.bs.modal', function (event) { 
+        $('#delete ,#exampleModalCenter').on('show.bs.modal', function (event) { 
             var button = $(event.relatedTarget);
             var id = button.data('id');  //get Id from button
             var modal = $(this);

@@ -48,7 +48,6 @@ class UserController extends Controller
     {
         // $request->user()->authorizeRoles(['Admin']);
         $users = User::with('roles')->get();
-        // return view('users.index', ['users' => $users]);
         return view('pages.listUser', ['users' => $users]);
     }
 
@@ -137,8 +136,7 @@ class UserController extends Controller
         $user = User::find($id);
         // $user->roleIds = $user->roles->pluck('id')->toArray();
         $roles = Role::all();
-        return view('users.edit', ['user' => $user, 'roles' => $roles]);
-        // return view('users.edit', ['roles' => $roles]);
+        return view('pages.editUser', compact('user', 'roles'));
     }
 
     /**
