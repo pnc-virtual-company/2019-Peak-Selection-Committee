@@ -10,6 +10,7 @@ class Answer extends Model
     {
         return $this->belongsToMany(Candidate::class);
     }
+    
     public function question()
     {
         return $this->belongsTo(Question::class);

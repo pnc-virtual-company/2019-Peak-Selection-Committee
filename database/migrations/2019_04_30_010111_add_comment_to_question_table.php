@@ -14,6 +14,8 @@ class AddCommentToQuestionTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
+            $table->text('comment')->nullable();
+
         });
     }
 
