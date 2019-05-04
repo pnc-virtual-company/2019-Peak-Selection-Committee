@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
+use App\Answer;
 use App\Ngo;
-use App\Candidate;
+use App\Canidate;
 
 class CandidateController extends Controller
 {
@@ -15,7 +17,9 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('pages.listCondidate');
+        
     }
 
     /**
@@ -25,8 +29,10 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        $ngo = Ngo::all();
-        return view('pages.createCandidate',compact('ngo',$ngo));
+        // $answer=Answer::all();
+        // $question=Question::all();
+        $ngo =Ngo::all();
+        return view('pages.createCandidate',compact('answer'),compact('ngo'));
     }
 
     /**
@@ -40,19 +46,21 @@ class CandidateController extends Controller
         if( $request->hasFile('inputFile')){
             $fileName=$request->file('inputFile')->getClientOriginalName();
             $request->file('inputFile')->storeAs('public/img',$fileName);
-              
-              // $id = \Auth::user()->id;
-              // //dd($id);
-            //   $user = \Auth::user();
-            //   $user->profile = $fileName;
-            //   $user->save();
-              
-
-        }else{
-            return "not sucess";
         }
+        
+        
 
-        return ("you are sucess");
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

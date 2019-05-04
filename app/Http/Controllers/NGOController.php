@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ngo;
+use App\Question;
+use App\Answer;
 
 class NgoController extends Controller
 {
@@ -14,7 +16,9 @@ class NgoController extends Controller
      */
     public function index()
     {
-        //
+        $ngo =Ngo::all();
+        return view('pages.createCandidate',compact('answer'),compact('ngo'));
+
     }
 
     /**
