@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ngo;
+use App\Candidate;
 
 class CandidateController extends Controller
 {
@@ -23,7 +25,8 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+        $ngo = Ngo::all();
+        return view('pages.createCandidate',compact('ngo',$ngo));
     }
 
     /**

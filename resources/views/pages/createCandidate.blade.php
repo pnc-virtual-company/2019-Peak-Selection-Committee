@@ -6,7 +6,7 @@
 @section('content')
     
 
-<style>
+<style type="text/css">
   @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
   .panel-heading {
      cursor: pointer;
@@ -23,13 +23,18 @@
      /* symbol for "collapsed" panels */
      content:"\f078";
   }
+
+  table.table th:first-child {
+      width: 100px;
+  }  
+
   </style>
-  <div class="container mt-4 ">
+  <div class="container mt-4">
 
   <div class="row">
     {{-- upload profile --}}
    
-    <div class="col-sm-4 mt-4">
+  <div class="col-sm-4 mt-4">
         <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
  <form action="{{route('candidate.store')}}" method="POST"  enctype="multipart/form-data">
         @csrf
@@ -355,12 +360,10 @@
 
 </div>
 
+
   @endsection
 
-
-
-
-    {{-- modal --}}
+    {{--================ modal add for ngo=============== --}}
 
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -373,38 +376,41 @@
         </div>
         <div class="modal-body">
           
-          <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <form action="{{route('ngo.store')}}" method="post">
+            @csrf
+            
+          <table id="ngo" class="table table-striped table-bordered" style="width:100%">
             <thead>
-                <tr>
-                    <th></th>
-                    <th>Position</th>
-               
-                </tr>
+              <tr>
+                <th>Actions</th>
+                <th>Position</th>
+              </tr>
             </thead>
             <tbody>
-                @foreach ($ngo as $item)
+              @foreach ($ngo as $item)
                 <tr>
-                  <td > <a href="" class="text-danger"> <i class="material-icons">delete</i></a> </td>
-                  <td>{{$item->name}}</td>                 
+                  <td>
+                    <a href="" class="text-danger" title="Delete">
+                      <i class="material-icons">&#xE872;</i>
+                    </a>
+                  </td>
+                  <td>{{$item->name}}</td>
                 </tr>
-                @endforeach
-            </tbody> 
+              @endforeach
+            </tbody>
           </table>   
-          <button class="btn btn-primary">Add NGO</button>
+          <button type="button" class="btn btn-primary add-new"><i class="fa fa-plus"></i> Add NGO</button>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+            <input type="submit" value="Save list" class="btn btn-info">
         </div>
+
+      </form>
+
       </div>
     </div>
   </div>
 
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
 
 
 

@@ -46,7 +46,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{url('/listCan')}}">List Candidates</a>
-            <a class="dropdown-item" href="{{url('/ngo')}}">Create Candidate</a>            
+            <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>            
           </div>
         </li>
         <li class="nav-item dropdown mr-4">
