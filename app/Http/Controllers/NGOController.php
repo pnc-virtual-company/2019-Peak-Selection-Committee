@@ -88,6 +88,8 @@ class NgoController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+       $ngo = Ngo::findOrFail($id);
+       $ngo->delete();
+       return redirect()->route('ngo.index');
     }
 }

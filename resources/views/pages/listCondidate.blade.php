@@ -93,16 +93,6 @@
                             <td>No</td>
                         </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Year</th>
-                        <th>Province</th>
-                        <th>Gender</th>
-                        <th>Global Grade</th>
-                        <th>Seleted</th>
-                    </tr>
-                </tfoot>
             </table>
             
              <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>

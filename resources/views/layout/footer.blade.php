@@ -9,6 +9,14 @@
             var url="{{url('users')}}/"+id;
             console.log(url);
             $('#fid').attr('action',url); //get Id form
+        });
+        $('#deleteNGO').on('show.bs.modal', function (event) { 
+            var button = $(event.relatedTarget);
+            var id = button.data('id');  //get Id from button
+            var modal = $(this);
+            var url="{{url('ngo')}}/"+id;
+            console.log(url);
+            $('#fid').attr('action',url); //get Id form
         })
     </script>
 
@@ -32,9 +40,9 @@
                 colReorder: true
             } );
 
-<<<<<<< HEAD
+
         } );
-=======
+
             $(document).ready(function() {
                 $('#ngo').DataTable();
             } );
@@ -52,7 +60,7 @@
             });
         });
 
->>>>>>> 4ea372d5486f5961b0863178047aac40fc45a265
+
     </script>
 
     </body>
