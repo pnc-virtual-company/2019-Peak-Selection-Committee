@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ngo;
+use App\Question;
+use App\Answer;
 
-class NGO extends Controller
+class NgoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,9 @@ class NGO extends Controller
      */
     public function index()
     {
-        //
+        $ngo =Ngo::all();
+        return view('pages.createCandidate',compact('answer'),compact('ngo'));
+
     }
 
     /**
@@ -34,7 +39,11 @@ class NGO extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        Ngo::create($request->all());
+        return redirect()->route('candidate.create');
     }
 
     /**
@@ -79,6 +88,6 @@ class NGO extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }
