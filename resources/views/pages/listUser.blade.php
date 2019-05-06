@@ -48,7 +48,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Delete User</h5>
           <button type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -61,19 +61,14 @@
             <form action="" id="fid" method="post">
                 @csrf
                 @method('delete')
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
           <button type="submit"  class="btn btn-primary">Yes</button>
         </form>
         </div>
       </div>
     </div>
   </div>
-  {{-- <script src="{{asset('Js/app.js')}}" ></script> --}}
-
-    <script>
-    
-    
-  </script>
+  <script src="{{asset('Js/app.js')}}" ></script>
    
 
 
