@@ -4,8 +4,6 @@
 @section('pageTitle', 'Create Candidate')
 
 @section('content')
-    
-
 <style>
   @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
   .panel-heading {
@@ -25,12 +23,6 @@
   }
   
   </style>
-  
-
-
-
-
-
   <div class="container mt-4 ">
 
   <div class="row">
@@ -46,20 +38,6 @@
 
     </div>
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="col-sm-4 mt-4"> 
       <br>
         <input type="text" value="" placeholder="Student Name" class="form-control"  ><br>
@@ -88,8 +66,6 @@
     <li>Otherwise, you can choose the answer closer to the reality. If more than 1 answer is correct, take the strongest (example: several sickness in a family).</li>
      <li> In the optionnal notes, please fill in the most information possible (the exact number when the answer is a range, or anything else relevant / interesting).</li>
   </ul>
-  
-  
   {{-- Part1 --}}
   
   <div class="panel-group mt-4 " id="accordion">
@@ -127,9 +103,6 @@
             <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
            
            </div>
-     
-      
-      
   </div>
   <br>
   <div class="row">
@@ -345,9 +318,6 @@
                 </div>
             </div>
             </div>
-
-
-
         </div>
     </div>
   </div>
@@ -371,63 +341,59 @@
       </div>
   </div>
   </div>
-
-
-
-  
   </div>
-  
   <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
   <button type="submit" class="btn btn-info float-right">Save Information</button>
 </form>
   </div>
 
 </div>
-
   @endsection
-
-
-
-
-    {{-- modal --}}
-
+  {{-- modal --}}
+  
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Edit othe list of NGO</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          
-          <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Position</th>
-               
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($ngo as $item)
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Edit othe list of NGO</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+            <form action="{{route('ngo.store')}}" method="post">
+                @csrf
+                
+              <table id="ngo" class="table table-striped table-bordered" style="width:100%">
+                <thead>
                   <tr>
-                    <td ><a href="{{route('users.destroy', $item->id)}}"  data-toggle="modal" data-target="#deleteNGO" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a></td>
-                    <td>{{$item->name}}</td>                 
+                    <th>Actions</th>
+                    <th>Position</th>
                   </tr>
+                </thead>
+                <tbody>
+                  @foreach ($ngo as $item)
+                    <tr>
+                      <td>
+                        <a href="{{route('ngo.destroy', $item->id)}}" data-toggle="modal" data-target="#deleteNGO" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
+                      </td>
+                      <td>{{$item->name}}</td>
+                    </tr>
                   @endforeach
-            </tbody> 
-          </table>   
-          <button class="btn btn-primary">Add NGO</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+                </tbody>
+              </table>   
+              <button type="button" class="btn btn-primary add-new"><i class="fa fa-plus"></i> Add NGO</button>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Save list" class="btn btn-info">
+            </div>
+    
+          </form>
+    
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
 <script>
   $(document).ready(function() {
