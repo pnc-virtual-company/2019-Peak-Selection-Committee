@@ -10,6 +10,10 @@ use App\Canidate;
 
 class CandidateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +21,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-
         return view('pages.listCondidate');
-        
     }
 
     /**
@@ -47,22 +49,21 @@ class CandidateController extends Controller
             $fileName=$request->file('inputFile')->getClientOriginalName();
             $request->file('inputFile')->storeAs('public/img',$fileName);
         }
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
+        $name=$request->name;
+        $province=$request->province;
+        $year=$request->slectionYears;
+        $ngo=$request->ngo;
+        $candidate=new Candidate;
+        $candidate->Candidate_Name=$name;
+        $candidate->province=$province;
+        $candidate->years=$year;
+        $candidate->ngo_id=$ngo;
+        $candidate->profile=$fileName; 
+        $candidate->save();
+        return redirect('/candidate');
     }
+       
+    
 
     /**
      * Display the specified resource.

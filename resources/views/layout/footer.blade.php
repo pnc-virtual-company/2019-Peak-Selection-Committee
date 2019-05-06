@@ -58,9 +58,6 @@
                     '</tr>';
                 $("table").append(row);		
             });
-        });
-
-
     </script>
 
     </body>

@@ -20,11 +20,11 @@ class UserController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-        //Only authenticated users may access to the pages of this controller
-        // $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        // Only authenticated users may access to the pages of this controller
+        $this->middleware('auth');
+    }
 
     /**
      * Display a the profile page. Accessible to any authenticated user.
@@ -60,8 +60,11 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        // $request->user()->authorizeRoles(['Administrator']);
+        $request->user()->authorizeRoles(['Administrator']);
         $roles = Role::all();
+        if(auth()->user()->id !== $user->role_id){
+            return redirect('users')->with('successDelete','Unauthorized Page');
+        }
         return view('users.create', ['roles' => $roles]);
     }
 
@@ -136,6 +139,9 @@ class UserController extends Controller
     {
         // $request->user()->authorizeRoles(['Administrator']);
         $user = User::find($id);
+        if(auth()->user()->id !== $user->role_id){
+            return redirect('users')->with('successDelete','Unauthorized Page');
+        }
         // $user->roleIds = $user->roles->pluck('id')->toArray();
         $roles = Role::all();
         return view('users.edit', ['user' => $user, 'roles' => $roles]);
