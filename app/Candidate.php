@@ -15,5 +15,6 @@ class Candidate extends Model
     {
         return $this->belongsToMany(Answer::class);
     }
+    public $timestamps = false;
   
 }

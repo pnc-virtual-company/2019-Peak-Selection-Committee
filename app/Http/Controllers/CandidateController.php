@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Question;
 use App\Answer;
 use App\Ngo;
-use App\Canidate;
+use App\Candidate;
 
 class CandidateController extends Controller
 {
