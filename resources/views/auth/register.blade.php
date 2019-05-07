@@ -74,7 +74,7 @@
                                 {{-- end --}}
 
                                 <div class="form-group mb-4">
-                                    <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>
+                                    <button type="submit" name="message" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>
                                     {{ _('Register') }}
                                     </button>
                                 </div>
