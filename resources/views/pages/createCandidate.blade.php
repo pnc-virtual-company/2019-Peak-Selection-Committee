@@ -405,7 +405,7 @@
           <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Action</th>
                     <th>Position</th>
                
                 </tr>
@@ -429,11 +429,11 @@
     </div>
   </div>
 
-<script>
+{{-- <script>
   $(document).ready(function() {
     $('#example').DataTable();
 } );
-</script>
+</script> --}}
 
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteNGO">
     <div class="modal-dialog" role="document">
