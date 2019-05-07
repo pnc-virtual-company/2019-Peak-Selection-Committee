@@ -22,7 +22,7 @@
                  @foreach ($users as $item)
                     <tr>
                         @auth
-                        @if(\Auth::user()->role_id==1)
+                          @if(Auth::user()->role_id==1)
                             <td>
                                 <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
                                 <a href="{{route('users.destroy', $item->id)}}"  data-toggle="modal" data-target="#delete" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
@@ -37,17 +37,16 @@
                             <td>Admin</td>
                         @else
                             <td>Normal</td>
-                        @endif  
-                       {{-- <span>{{ $item->roles->pluck('name')->implode(', ') }}</span> --}}        
+                        @endif         
                     </tr>
                 @endforeach
                </tbody>     
             </table>
             <br/>
             @auth
-                @if(\Auth::user()->role_id==1)
-                    <a href="{{url('createuser')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
-                    <button class="btn btn-primary"><i class="material-icons left">import_export</i> Export  List</button>
+                @if(Auth::user()->role_id==1)
+                    <a href="{{route('users.create')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
+                    <a class="btn btn-primary" href="{{url('users/export')}}" download><i class="material-icons left">import_export</i> Export  List</a>
                 @endif
             @endauth
         </div>
@@ -79,7 +78,6 @@
     </div>
   </div>
 
-  {{-- <script src="{{asset('Js/app.js')}}" ></script> --}}
 
   {{-- end of modal delete user --}}
 
@@ -110,7 +108,6 @@
         </div>
       </div>
       {{-- end of modal user --}}
-  {{-- <script src="{{asset('Js/app.js')}}" ></script> --}}
 
    
 

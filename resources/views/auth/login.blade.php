@@ -9,10 +9,17 @@
 <div class="container">
    <div class="row justify-content-center mt-5">
        <div class="col-md-4">
+           
+            @if(Session::has('register'))               
+                <p class="alert alert-info mb-3 mt-3" id="aRegister">
+                    {{ Session::get('register') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </p>               
+            @endif
+
            <div class="card">
-            @if(Session::has('message'))               
-                <p class="alert alert-info ">{{ Session::get('message') }}</p>               
-              @endif
                <div class="card-body">
                    <img src="{{url('storage/img/logo.png')}}" class="p-3" style="width: 300px;" alt="logo">
                    <hr>
@@ -61,18 +68,5 @@
        </div>
    </div>
 </div>
-
-
-    <script>
-        var msg = '{{Session::get('alert')}}';
-        var exist = '{{Session::has('alert')}}';
-        if(exist){
-          alert(msg);
-        }
-    </script>
-
-
-
-
 
 @endsection
