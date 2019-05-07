@@ -1,3 +1,4 @@
+
 @extends('template')
 @section('pageTitle', 'Create Candidate')
 @section('content')
@@ -45,14 +46,12 @@
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
             <option value="">Choose Grade</option>
-            <option value="">A+</option>
             <option value="">A</option>
-            <option value="">A-</option>
-            <option value="">B+</option>
             <option value="">B</option>
-            <option value="">B-</option>
+            <option value="">Fail</option>
     </select>
     <select name="" id="" selected="true" >
+        <option value="">...</option>
         <option value="">+</option>
         <option value="">-</option>
         
@@ -198,9 +197,6 @@
                        Parential information
                     </h4>
                     
-            
-                
-
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                   <div class="panel-body">
@@ -326,9 +322,7 @@
         <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
         <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse4" >Save Information</button><br><br>
         
-
-          
-                  </div>
+      </div>
               </div>
               </div>
               <div class="panel panel-primary">
@@ -600,8 +594,6 @@
 <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseS" >Save Information</button><br><br>
 
-
-            
           </div>
       </div>
       </div>
@@ -641,16 +633,9 @@
 
 
 
-
-
-
-
-
         </div>
     </div>
     </div>
-
-
 
 <div class="panel panel-info">
   <div class="panel-heading " data-toggle="collapse" data-parent="#accordion" data-target="#collapseD">
@@ -709,8 +694,6 @@
 
 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseD" >Save Information</button><br><br>
 
-
-
   </div>
 </div>
 </div>
@@ -751,10 +734,21 @@
 </div>
 </div>
 
-
-
-
-
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Edit othe list of NGO</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Action</th>
 
     </div>    
     </div>
@@ -769,13 +763,13 @@
   
   </div>
   
-    @endsection
-    
+  
+  @endsection
   
   
   {{-- /*******************************************************************************************/ --}}
   
-      {{-- modal --}}
+      {{-- modal add ngo --}}
   
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -795,6 +789,7 @@
                 <thead>
                   <tr>
                     <th>Actions</th>
+
                     <th>Position</th>
                   </tr>
                 </thead>
@@ -822,6 +817,7 @@
     
       {{-- end of modal NGO --}}
 
+
       {{-- modal of Delete NGO --}}
     
       <div class="modal fade" tabindex="-1" role="dialog" id="deleteNGO">
@@ -848,4 +844,5 @@
           </div>
         </div>
       </div>
-    
+
+      

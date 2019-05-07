@@ -79,7 +79,6 @@ Route::get('/detailInfo', function () {
 
 });
 
-
 Route::resource('candidate','CandidateController');
 
 Route::resource('ngo','NgoController');

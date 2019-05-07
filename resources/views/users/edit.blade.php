@@ -35,10 +35,6 @@
 
                         <div class="form-group">
                             <label for="roles[]">User Role: </label>
-                            {{-- <select class="form-control" id="roles" name="roles[]" multiple size="5"> --}}
-                                {{-- @foreach ($roles as $role) --}}
-                                    {{-- <option value="{{ $role->id }}" @if(in_array($role->id, $user->roleIds)) selected @endif>{!! $role->name !!}</option> --}}
-                                {{-- @endforeach --}}
                             @foreach ($roles as $role) 
                                 @if ($role->id == $user->role_id)
                                     <label class="radio-inline">
@@ -50,7 +46,6 @@
                                     </label>                                        
                                 @endif
                             @endforeach
-                            {{-- </select> --}}
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Save" />

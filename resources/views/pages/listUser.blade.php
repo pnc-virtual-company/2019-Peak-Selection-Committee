@@ -78,6 +78,9 @@
       </div>
     </div>
   </div>
+
+  {{-- <script src="{{asset('Js/app.js')}}" ></script> --}}
+
   {{-- end of modal delete user --}}
 
   {{-- Modal view user   --}}
@@ -107,7 +110,8 @@
         </div>
       </div>
       {{-- end of modal user --}}
-  <script src="{{asset('Js/app.js')}}" ></script>
+  {{-- <script src="{{asset('Js/app.js')}}" ></script> --}}
+
    
 
 

@@ -18,26 +18,25 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
+            $table->integer('role_id')->unsigned();
+            $table->foreign('role_id')
+                  ->references('id')
+                  ->on('roles')
+                  ->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('role_id')->unsigned();
-            $table->foreign('role_id')
-            ->references('id')
-            ->on('roles')
-            ->onDelete('cascade');
         });
 
         //Insert the default admin user
         DB::table('users')->insert(
             array(
-                'id' => 1,
                 'firstname' => 'Admin',
                 'lastname' => 'Admin',
                 'email' => 'manager@example.com',
                 'password' => bcrypt('password'),
-                'remember_token' => str_random(10),
+                // 'remember_token' => str_random(10),
                 'role_id'=>1
             )
         );

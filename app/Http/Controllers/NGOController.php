@@ -20,9 +20,7 @@ class NgoController extends Controller
      */
     public function index()
     {
-        $ngo =Ngo::all();
-        return view('pages.createCandidate',compact('answer'),compact('ngo'));
-
+        //
     }
 
     /**
