@@ -46,6 +46,7 @@
 
         } );
 
+
         // =====================table ngo========================
         // Append table with add row form on add new button click
         $(".add-new").click(function(){
@@ -57,8 +58,7 @@
                 '</tr>';
             $("table").append(row);		
         });
-
-
+ 
     </script>
 
     </body>

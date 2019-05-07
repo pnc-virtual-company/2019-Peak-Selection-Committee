@@ -9,6 +9,10 @@ use App\Answer;
 
 class NgoController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +20,7 @@ class NgoController extends Controller
      */
     public function index()
     {
-        $ngo =Ngo::all();
-        return view('pages.createCandidate',compact('answer'),compact('ngo'));
-
+        //
     }
 
     /**

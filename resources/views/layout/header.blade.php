@@ -46,7 +46,11 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{url('candidate')}}">List Candidates</a>
-            <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>            
+            @auth
+               @if(\Auth::user()->role_id==1)
+                  <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>            
+               @endif
+            @endauth
           </div>
         </li>
         <li class="nav-item dropdown mr-4">
@@ -55,7 +59,11 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{url('/users')}}">List Users</a>
-            <a class="dropdown-item" href="{{url('/createuser')}}">Create User</a>            
+            @auth
+                @if(\Auth::user()->role_id==1)
+                 <a class="dropdown-item" href="{{url('/createuser')}}">Create User</a>            
+               @endif
+            @endauth
           </div>
         </li>
         <li class="nav-item">

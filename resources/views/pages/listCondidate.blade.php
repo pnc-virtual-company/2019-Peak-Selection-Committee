@@ -7,7 +7,6 @@
 
         <div class="col-sm-12 col-md-12 col-lg-7">
             <h1 class="text-center">List of Candidates</h1>
-
             <br>
             <div class="float-right">
                 <a href="{{url('/infoCan')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
@@ -94,8 +93,11 @@
                         </tr>
                 </tbody>
             </table>
-            
-             <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
+            @auth
+               @if(\Auth::user()->role_id==1)
+                    <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
+               @endif
+            @endauth
         </div>
         {{-- end table of candidate --}}
         
