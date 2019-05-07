@@ -4,11 +4,15 @@
 
 @section('content')
 
+      
+
 <div class="container">
    <div class="row justify-content-center mt-5">
        <div class="col-md-4">
            <div class="card">
-
+            @if(Session::has('message'))               
+                <p class="alert alert-info ">{{ Session::get('message') }}</p>               
+              @endif
                <div class="card-body">
                    <img src="{{url('storage/img/logo.png')}}" class="p-3" style="width: 300px;" alt="logo">
                    <hr>
@@ -57,5 +61,18 @@
        </div>
    </div>
 </div>
+
+
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+          alert(msg);
+        }
+    </script>
+
+
+
+
 
 @endsection
