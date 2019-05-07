@@ -34,6 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    // protected $redirectTo = '/';
     protected $redirectTo = '/';
     /**
      * Create a new controller instance.
@@ -82,7 +83,7 @@ class RegisterController extends Controller
                 'role_id'=>2
             )
         );
-        return redirect()->back() ->with('alert', 'Successfully registered a user');
+        return redirect()->back() ->with('register', 'Successfully registered a user');
 
     }
 
