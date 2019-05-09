@@ -18,7 +18,7 @@ class CreateCandidatesTable extends Migration
             $table->string('Candidate_Name');
             $table->text('province');
             $table->text('grade');
-            $table->timestamp('years');
+            $table->text('years');
             $table->integer('ngo_id')->unsigned();
             $table->foreign('ngo_id')
             ->references('id')

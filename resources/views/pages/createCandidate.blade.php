@@ -41,7 +41,7 @@
   
       <div class="col-sm-4 mt-4"> 
         <br>
-          <input type="text" value="" placeholder="Student Name" class="form-control"  name="name" ><br>
+          <input type="text" value="" placeholder="Student Name" class="form-control"  name="name" required><br>
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
             <option value="">Choose Grade</option>
@@ -52,13 +52,14 @@
             <option value="">B</option>
             <option value="">B-</option>
     </select>
-    <select name="" id="" selected="true" >
-        <option value="">+</option>
-        <option value="">-</option>
+    <select name="sign"  selected="true" >
+        <option value=" ">...</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
         
 </select><br>
           
-          <input type="checkbox"><label for="">Information is filled by PNC employee</label>
+          <input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
       </div>
     </div>
     <br>
@@ -87,7 +88,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                   <label for="">Province:</label>
-                <input type="text" name="province" class="form-control">
+                <input type="text" name="province" class="form-control" required>
                 </div>
             <div class="col-md-3" >
               
@@ -108,36 +109,37 @@
         <div class="col-sm-3"></div>
       <div class="col-sm-2">
         <label for="" name="gender">Gender</label>
-        <select name="gender" id="" class="input-group-sm form-control"  style="width:70px">
-            <option value="">M</option>
-            <option value="">F</option>
+        <select name="gender" id="" class="input-group-sm form-control" required style="width:70px">
+            <option value="Male">M</option>
+            <option value="Female">F</option>
         </select>
     </div>
     <div class="col-sm-2">
         <label for="">Age</label>
-        <input type="number" class="input-group-sm form-control " name="age" style="width:65px">
+        <input type="number" class="input-group-sm form-control " name="age" required style="width:65px">
     </div>
     <div class="col-sm-4">
         <label for="">Years of selection</label>
-         <input type="number" name="slectionYears" class="input-group-sm  form-control"  style="width:65px">
+         <input type="number" name="slectionYears"   class="input-group-sm  form-control" required  style="width:100px">
     </div>
     </div>
 {{-- /******************************************************************************************************************/ --}}
 
-@for($id=4;$id<=5;++$id)
-    @foreach (  $question=DB::table('questions')->where('id',$id)->get() as $value)         
+
+
+@for($id=4;$id<=6;++$id)
+    @foreach ($question=DB::table('questions')->where('id',$id)->get() as $value)         
       <h6>{{$value->question}}</h6>
       <div class="row">
           <div class="col-sm-6">
-            <select name="health" id="" class="form-control">
-               <option value="">No answer</option>
+            <select name="answer[]"  class="form-control">
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                 <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                 <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                 @endforeach
              </select>                 
           </div>
           <div class="col-sm-6">
-           <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
           </div>
       </div>                
    @endforeach
@@ -146,13 +148,13 @@
 <h5>Motivation</h5> <br>
     <div class="row">
         <div class="col-sm-3">
-            <label for="">Motivation for PNC:</label><input type="number" class="form-control" style="width:100px;"><br>
+            <label for="">Motivation for PNC:</label><input type="text" name="moivation"  value="/30" class="form-control"   style="width:100px;" ><br>
         </div>
         <div class="col-sm-3">
-            <label for="">Communication :</label><input type="number" class="form-control" style="width:100px;">
+            <label for="">Communication :</label><input type="text" name="cammunication" class="form-control"  value="/10"  style="width:100px;" >
         </div>
         <div class="col-sm-3">
-            <label for="">Responsibility and maturty :</label><input type="number" class="form-control" style="width:100px;">
+            <label for="">Responsibility and maturty :</label><input type="text"   name="responsible" value="/30" class="form-control"   style="width:100px;" >
         </div>
         </div>
         @for($id=3;$id>=1;--$id)
@@ -160,21 +162,20 @@
           <h6>{{$value->question}}</h6>
           <div class="row">
               <div class="col-sm-6">
-                <select name="health" id="" class="form-control">
-                   <option value="">No answer</option>
+                <select name="answer[]" id="" class="form-control">
                     @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                     <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                     <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                     @endforeach
                  </select>                 
               </div>
               <div class="col-sm-6">
-               <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+               <textarea name="note[]" id="note[]" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
               </div>
           </div>                
        @endforeach
     @endfor
     <br><h5>Summary</h5>
-    <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br> 
+    <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br> 
     <button class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" >Save Information</button><br><br>
     </div>
     </div>    
@@ -186,8 +187,7 @@
           <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
              <h4 class="panel-title accordion-toggle  btn btn-primary text-left  btn-block">
              Farmily Information
-            </h4>
-            
+            </h4>    
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
           <div class="panel-body">
@@ -197,10 +197,6 @@
                      <h4 class="panel-title accordion-toggle btn btn-info text-left  btn-block">
                        Parential information
                     </h4>
-                    
-            
-                
-
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                   <div class="panel-body">
@@ -210,15 +206,14 @@
                         <h6>{{$value->question}}</h6>
                         <div class="row">
                             <div class="col-sm-6">
-                              <select name="health" id="" class="form-control">
-                                 <option value="">No answer</option>
+                              <select name="answer[]" id="" class="form-control">
                                   @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                                   <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                                   <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                                   @endforeach
                                </select>                 
                             </div>
                             <div class="col-sm-6">
-                             <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                             </div>
                         </div>                
                      @endforeach
@@ -229,15 +224,14 @@
            <h6>{{$value->question}}</h6>
            <div class="row">
                <div class="col-sm-6">
-                 <select name="health" id="" class="form-control">
-                    <option value="">No answer</option>
+                 <select name="answer[]" id="" class="form-control">
                      @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                      <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                      <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                      @endforeach
                   </select>                 
                </div>
                <div class="col-sm-6">
-                <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                </div>
            </div>                
         @endforeach
@@ -248,23 +242,20 @@
        <h6>{{$value->question}}</h6>
        <div class="row">
            <div class="col-sm-6">
-             <select name="health" id="" class="form-control">
-                <option value="">No answer</option>
+             <select name="answer[]" id="" class="form-control">
                  @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                  <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                  <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                  @endforeach
               </select>                 
            </div>
            <div class="col-sm-6">
-            <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+            <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
            </div>
        </div>                
     @endforeach
- @endfor
-
-
+ @endfor 
                   <br><h5>Summary</h5>
-                  <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+                  <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
                   <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" >Save Information</button><br><br>
               
   
@@ -290,15 +281,14 @@
                    <h6>{{$value->question}}</h6>
                    <div class="row">
                        <div class="col-sm-6">
-                         <select name="health" id="" class="form-control">
-                            <option value="0">No answer</option>
+                         <select name="answer[]" id="" class="form-control">
                              @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                              <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                              <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                              @endforeach
                           </select>                 
                        </div>
                        <div class="col-sm-6">
-                        <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                        <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                        </div>
                    </div>                
                 @endforeach
@@ -309,21 +299,20 @@
               <h6>{{$value->question}}</h6>
               <div class="row">
                   <div class="col-sm-6">
-                    <select name="health" id="" class="form-control">
-                       <option value="0">No answer</option>
+                    <select name="answer[]" id="" class="form-control">
                         @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                         <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                         <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                         @endforeach
                      </select>                 
                   </div>
                   <div class="col-sm-6">
-                   <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                   <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                   </div>
               </div>                
            @endforeach
         @endfor
         <br><h5>Summary</h5>
-        <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+        <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
         <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse4" >Save Information</button><br><br>
         
 
@@ -346,15 +335,14 @@
                   <h6>{{$value->question}}</h6>
                   <div class="row">
                       <div class="col-sm-6">
-                        <select name="health" id="" class="form-control">
-                           <option value="0">No answer</option>
+                        <select name="answer[]" id="" class="form-control">
                             @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                             <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                             <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                             @endforeach
                          </select>                 
                       </div>
                       <div class="col-sm-6">
-                       <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                       </div>
                   </div>                
                @endforeach
@@ -365,15 +353,14 @@
             <h6>{{$value->question}}</h6>
             <div class="row">
                 <div class="col-sm-6">
-                  <select name="health" id="" class="form-control">
-                     <option value="0">No answer</option>
+                  <select name="answer[]" id="" class="form-control">
                       @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                       <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                       <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                       @endforeach
                    </select>                 
                 </div>
                 <div class="col-sm-6">
-                 <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                 <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                 </div>
             </div>                
          @endforeach
@@ -399,15 +386,14 @@
                 <h6>{{$value->question}}</h6>
                 <div class="row">
                     <div class="col-sm-6">
-                      <select name="health" id="" class="form-control">
-                         <option value="0">No answer</option>
+                      <select name="answer[]" id="" class="form-control">
                           @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                           <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                           <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                           @endforeach
                        </select>                 
                     </div>
                     <div class="col-sm-6">
-                     <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                     <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                     </div>
                 </div>                
              @endforeach
@@ -418,21 +404,20 @@
                 <h6>{{$value->question}}</h6>
                 <div class="row">
                     <div class="col-sm-6">
-                      <select name="health" id="" class="form-control">
-                         <option value="0">No answer</option>
+                      <select name="answer[]" id="" class="form-control">
                           @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                           <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                           <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                           @endforeach
                        </select>                 
                     </div>
                     <div class="col-sm-6">
-                     <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                     <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                     </div>
                 </div>                
              @endforeach
           @endfor
           <br><h5>Summary</h5>
-          <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+          <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
           <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix" >Save Information</button><br><br>
  
               </div>
@@ -469,21 +454,20 @@
                       <h6>{{$value->question}}</h6>
                       <div class="row">
                           <div class="col-sm-6">
-                            <select name="health" id="" class="form-control">
-                               <option value="">No answer</option>
+                            <select name="answer[]" id="" class="form-control">
                                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                                 <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                                 <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                                 @endforeach
                              </select>                 
                           </div>
                           <div class="col-sm-6">
-                           <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                           </div>
                       </div>                
                    @endforeach
                 @endfor
                 <br><h5>Summary</h5>
-                <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+                <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
                 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse1" >Save Information</button><br><br>
             
 
@@ -505,42 +489,40 @@
                  <h6>{{$value->question}}</h6>
                  <div class="row">
                      <div class="col-sm-6">
-                       <select name="health" id="" class="form-control">
-                          <option value="">No answer</option>
+                       <select name="answer[]" id="" class="form-control">
                            @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                            <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                            <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                            @endforeach
                         </select>                 
                      </div>
                      <div class="col-sm-6">
-                      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                      </div>
                  </div>                
               @endforeach
            @endfor
 
-           <h4>Animal</h4>  
+           <h4>Possessions</h4>  
            @for($id=47;$id<=49;++$id)
            @foreach (  $question=DB::table('questions')->where('id',$id)->get() as $value)         
              <h6>{{$value->question}}</h6>
              <div class="row">
                  <div class="col-sm-6">
-                   <select name="health" id="" class="form-control">
-                      <option value="">No answer</option>
+                   <select name="answer[]" id="" class="form-control">
                        @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                        <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                        <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                        @endforeach
                     </select>                 
                  </div>
                  <div class="col-sm-6">
-                  <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                  <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                  </div>
              </div>                
           @endforeach
          @endfor    
          
          <br><h5>Summary</h5>
-         <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+         <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
          <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseK" >Save Information</button><br><br>
          
                    
@@ -552,7 +534,6 @@
              <h4 class="panel-title accordion-toggle btn btn-info text-left  btn-block">
               Farmily Self production
             </h4>
-            
         </div>
         <div id="collapseS" class="panel-collapse collapse">
           <div class="panel-body">
@@ -562,15 +543,14 @@
                  <h6>{{$value->question}}</h6>
                  <div class="row">
                      <div class="col-sm-6">
-                       <select name="health" id="" class="form-control">
-                          <option value="">No answer</option>
+                       <select name="answer[]" id="" class="form-control">
                            @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                            <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                            <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                            @endforeach
                         </select>                 
                      </div>
                      <div class="col-sm-6">
-                      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
                      </div>
                  </div>                
               @endforeach
@@ -582,22 +562,21 @@
     <h6>{{$value->question}}</h6>
     <div class="row">
         <div class="col-sm-6">
-          <select name="health" id="" class="form-control">
-             <option value="">No answer</option>
+          <select name="answer[]" id="" class="form-control">
               @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-               <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+               <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
               @endforeach
            </select>                 
         </div>
         <div class="col-sm-6">
-         <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+         <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
         </div>
     </div>                
  @endforeach
 @endfor    
 
 <br><h5>Summary</h5>
-<textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseS" >Save Information</button><br><br>
 
 
@@ -620,15 +599,14 @@
       <h6>{{$value->question}}</h6>
       <div class="row">
           <div class="col-sm-6">
-            <select name="health" id="" class="form-control">
-               <option value="">No answer</option>
+            <select name="answer[]" id="" class="form-control">
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                 <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                 <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                 @endforeach
              </select>                 
           </div>
           <div class="col-sm-6">
-           <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
           </div>
       </div>    
  
@@ -636,17 +614,10 @@
 @endfor
 <br>
 <h5>Summary</h5>
-<textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseC" >Save Information</button><br><br>
 
-
-
-
-
-
-
-
-        </div>
+    </div>
     </div>
     </div>
 
@@ -668,15 +639,14 @@
       <h6>{{$value->question}}</h6>
       <div class="row">
           <div class="col-sm-6">
-            <select name="health" id="" class="form-control">
-               <option value="">No answer</option>
+            <select name="answer[]" id="" class="form-control">
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-                 <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                 <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                 @endforeach
              </select>                 
           </div>
           <div class="col-sm-6">
-           <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
           </div>
       </div>    
  
@@ -689,15 +659,14 @@
   <h6>{{$value->question}}</h6>
   <div class="row">
       <div class="col-sm-6">
-        <select name="health" id="" class="form-control">
-           <option value="">No answer</option>
+        <select name="answer[]" id="" class="form-control">
             @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
-             <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+             <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
             @endforeach
          </select>                 
       </div>
       <div class="col-sm-6">
-       <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
       </div>
   </div>    
 
@@ -705,7 +674,7 @@
 @endfor
 <br>
 <h5>Summary</h5>
-<textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
 
 <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseD" >Save Information</button><br><br>
 
@@ -729,22 +698,21 @@
         <h6>{{$value->question}}</h6>
         <div class="row">
             <div class="col-sm-6">
-              <select name="health" id="" class="form-control">
-                 <option value="">No answer</option>
+              <select name="answer[]" id="" class="form-control">
                   @foreach ( DB::table('answers')->where('Question_id',72)->get() as $value)
-                   <option value="$value->id">{{$value->label.". ".$value->answer}}</option>
+                   <option value="{{$value->id}}" selected>{{$value->label.". ".$value->answer}}</option>
                   @endforeach
                </select>                 
             </div>
             <div class="col-sm-6">
-             <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
+             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"></textarea>
             </div>
         </div>    
       
       @endforeach
       <br>
       <h5>Summary</h5>
-      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+      <textarea name="summa[]"  cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
       
       <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseT" >Save Information</button><br><br>
 </div>
@@ -762,7 +730,7 @@
    
     </div>
     <br><br>
-    <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment"></textarea> <br>
+    <textarea name="summary" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment" required></textarea> <br>
     <button type="submit" class="btn btn-info float-right">Save Information</button>
   </form>
     </div>
