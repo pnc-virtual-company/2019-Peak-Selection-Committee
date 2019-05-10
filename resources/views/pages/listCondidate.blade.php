@@ -9,13 +9,13 @@
             <h1 class="text-center">List of Candidates</h1>
             <br>
             <div class="float-right">
-                <a href="{{url('/infoCan')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
-                <button class="btn btn-success btn-sm">Selected Candidates</button>
+                <a href="{{url('/all')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
+                <a href="{{url('/selected')}}" class="btn btn-success btn-sm ml-2">Selected Candidates</a>
+                
             </div>
-            <br><br>
 
             {{-- table of candidate --}}
-            <table id="listCandidates" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -23,75 +23,22 @@
                         <th>Province</th>
                         <th>Gender</th>
                         <th>Global Grade</th>
-                        <th>Seleted</th>
+                        <th>Seleted</th>            
                     </tr>
                 </thead>
                 <tbody>
+                 @foreach ($candidate as $item)
                     <tr>
-                        <td>Tiger</td>
-                        <td>System </td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>A</td>
-                        <td>No</td>
+                        <td>{{$item->Candidate_Name}}</td>
+                        <td>{{$item->years}}</td>
+                        <td>{{$item->province}}</td>
+                        <td>{{$item->gender}}</td>
+                        <td>{{$item->grade}}</td>
+                        <td>{{$item->select}}</td>
+                         
                     </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>Software</td>
-                        <td>London</td>
-                        <td>38</td>
-                        <td>B</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Sakura</td>
-                        <td>Support</td>
-                        <td>Tokyo</td>
-                        <td>37</td>
-                        <td>A</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                            <td>Tiger</td>
-                            <td>System </td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>A+</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>Bruno</td>
-                            <td>Software</td>
-                            <td>London</td>
-                            <td>38</td>
-                            <td>B+</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Sakura</td>
-                            <td>Support</td>
-                            <td>Tokyo</td>
-                            <td>37</td>
-                            <td>B-</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Thor</td>
-                            <td>Developer</td>
-                            <td>New</td>
-                            <td>61</td>
-                            <td>A-</td>
-                            <td>No</td>
-                        </tr>
-                </tbody>
+                @endforeach
+               </tbody>     
             </table>
             @auth
                @if(\Auth::user()->role_id==1)
@@ -175,7 +122,7 @@
         var ctxP = document.getElementById("ngo").getContext('2d');
         var myPieChart = new Chart(ctxP, {
             type: 'pie',
-            data: {
+            data: {        
                 labels: ["Yes", "No"],
                 datasets: [{
                 data: [40, 120],
@@ -232,3 +179,5 @@
 </script>
 
 @endsection
+<script>
+</script>

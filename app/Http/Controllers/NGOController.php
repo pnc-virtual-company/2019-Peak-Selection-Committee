@@ -92,6 +92,6 @@ class NgoController extends Controller
     {
        $ngo = Ngo::findOrFail($id);
        $ngo->delete();
-       return redirect()->route('ngo.index');
+       return redirect()->route('candidate.create');
     }
 }
