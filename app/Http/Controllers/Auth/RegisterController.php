@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use DB;
+// use App\Session;
 use App\User;
 use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Session;
+
 
 
 class RegisterController extends Controller
@@ -31,6 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    // protected $redirectTo = '/';
     protected $redirectTo = '/';
     /**
      * Create a new controller instance.
@@ -55,8 +59,9 @@ class RegisterController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role_id' => 'required',
+            'role_id' => 'required'
         ]);
+       
     }
 
     /**
@@ -67,6 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Session::flash('message', 'Register is sucessful'); 
 
         $user = DB::table('users')->insert(
             array(
@@ -77,6 +83,7 @@ class RegisterController extends Controller
                 'role_id'=>2
             )
         );
+        return redirect()->back() ->with('register', 'Successfully registered a user');
 
     }
 

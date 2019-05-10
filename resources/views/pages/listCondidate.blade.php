@@ -35,11 +35,11 @@
                         <td>{{$item->gender}}</td>
                         <td>{{$item->grade}}</td>
                         <td>{{$item->select}}</td>
-                         
                     </tr>
                 @endforeach
                </tbody>     
             </table>
+
             @auth
                @if(\Auth::user()->role_id==1)
                     <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
