@@ -61,7 +61,7 @@
             <a class="dropdown-item" href="{{url('/users')}}">List Users</a>
             @auth
                 @if(\Auth::user()->role_id==1)
-                 <a class="dropdown-item" href="{{url('/createuser')}}">Create User</a>            
+                 <a class="dropdown-item" href="{{route('users.create')}}">Create User</a>            
                @endif
             @endauth
           </div>
