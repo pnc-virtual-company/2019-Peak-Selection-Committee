@@ -68,13 +68,14 @@ Route::get('/', function () {
 });
 
 Route::get('/infoCan', function () {
-    return view('pages.Infocadidate');
+    return view('pages.selectedCandidate');
 });
 Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
 
 });
-
 Route::resource('candidate','CandidateController');
-
 Route::resource('ngo','NgoController');
+Route::get('selected','SelectedCandidate@selected');
+Route::get('all','SelectedCandidate@allCandidates');
+
