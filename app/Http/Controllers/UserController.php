@@ -48,7 +48,6 @@ class UserController extends Controller
     {
         // $request->user()->authorizeRoles(['Admin']);
         $users = User::with('roles')->get();
-        // return view('users.index', ['users' => $users]);
         return view('pages.listUser', ['users' => $users]);
     }
 
@@ -60,12 +59,13 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrator']);
+        // $request->user()->authorizeRoles(['Administrator']);
         $roles = Role::all();
-        if(auth()->user()->id !== $user->role_id){
-            return redirect('users')->with('successDelete','Unauthorized Page');
+        if(Auth::user()->role_id == 2){
+            return redirect('users');
+        } else {
+            return view('pages.createUser', ['roles' => $roles]);
         }
-        return view('users.create', ['roles' => $roles]);
     }
 
     /**
@@ -139,13 +139,12 @@ class UserController extends Controller
     {
         // $request->user()->authorizeRoles(['Administrator']);
         $user = User::find($id);
-        if(auth()->user()->id !== $user->role_id){
-            return redirect('users')->with('successDelete','Unauthorized Page');
+        if(Auth::user()->role_id == 2){
+            return redirect('users');
+        } else {
+            $roles = Role::all();
+            return view('users.edit', ['user' => $user, 'roles' => $roles]);
         }
-        // $user->roleIds = $user->roles->pluck('id')->toArray();
-        $roles = Role::all();
-        return view('users.edit', ['user' => $user, 'roles' => $roles]);
-        // return view('users.edit', ['roles' => $roles]);
     }
 
     /**
@@ -197,9 +196,14 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         // $request->user()->authorizeRoles(['Administrator']);
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('users.index');
+        if(Auth::user()->role_id == 2){
+            return redirect('users');
+        } else {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->route('users.index');
+        }
+
     }
 
     /**.

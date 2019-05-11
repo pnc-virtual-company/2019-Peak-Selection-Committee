@@ -17,14 +17,14 @@ class CreateCandidatesTable extends Migration
             $table->increments('id');
             $table->string('Candidate_Name');
             $table->text('province');
-            $table->text('grade');
+            $table->text('grade')->nullable();
             $table->text('years');
             $table->integer('ngo_id')->unsigned();
             $table->foreign('ngo_id')
             ->references('id')
             ->on('ngos')
             ->onDelete('cascade');
-            
+
         });
     }
 

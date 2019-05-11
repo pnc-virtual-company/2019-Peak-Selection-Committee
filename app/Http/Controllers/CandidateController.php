@@ -44,35 +44,36 @@ class CandidateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
         $fileName="";
 
         if( $request->hasFile('inputFile')){
             $fileName=$request->file('inputFile')->getClientOriginalName();
-            $request->file('inputFile')->storeAs('public/img',$fileName);       
-        }  
+            $request->file('inputFile')->storeAs('/public/img',$fileName);
+        }
         $candidate=new Candidate;
         $candidate->Candidate_Name=$request->name;;
         $candidate->province=$request->province;
         $candidate->gender=$request->gender;
         $candidate->years=$request->slectionYears;
         $candidate->ngo_id=$request->ngo;
-        $candidate->profile=$fileName; 
+        $candidate->profile=$fileName;
         $candidate->Fill_By=$request->fil;
-        $candidate->save();   
+        $candidate->age=$request->age;
+        $candidate->save();
         $answer=$request->answer;
         $i=0;
         $j=0;
         foreach($answer as $data){
             $candidate->answers()->attach($data);
-            $getId=\DB::table('answer_candidate')->get()->last();    
+            $getId=\DB::table('answer_candidate')->get()->last();
             \DB::table('answer_candidate')
             ->where('id',$getId->id)
             ->update(["comment"=>$request->note[$i]]);
             if($request->summa[$j]!=""){
                      \DB::table('answer_candidate')
                      ->where('id',$getId->id)
-                     ->update(["summary"=>$request->summa[$j]]);         
+                     ->update(["summary"=>$request->summa[$j]]);
                      $j++;
             }
             ++$i;
@@ -90,7 +91,7 @@ class CandidateController extends Controller
              else if(Answer::find($value->answer_id)->label=="B"){
                 $countCoficient+=Answer::find($value->answer_id)->score;
                 $TotalScore+=Answer::find($value->answer_id)->score*2;
-            } 
+            }
             else  if(Answer::find($value->answer_id)->label=="C"){
                 $countCoficient+=Answer::find($value->answer_id)->score;
                 $TotalScore+=Answer::find($value->answer_id)->score*3;
@@ -100,8 +101,8 @@ class CandidateController extends Controller
                 $TotalScore+=Answer::find($value->answer_id)->score*0;
             }
         }
-        $grade="";
-        $select="";
+        $grade=" ";
+        $select=" ";
         $ScoreGrade=$TotalScore/$countCoficient;
           if($ScoreGrade<1.5){
                   $grade="A";
@@ -112,7 +113,7 @@ class CandidateController extends Controller
           }else{
               $grade="Fail";
               $select="No";
-          } 
+          }
           $summary=$request->summary;
           $sign=$request->sign;
           $moivation=$request->moivation;
@@ -129,8 +130,8 @@ class CandidateController extends Controller
           ]);
         return redirect('/candidate');
     }
-       
-    
+
+
 
     /**
      * Display the specified resource.
@@ -151,7 +152,10 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.editCaniddate');
+        $candidate=Candidate::find($id);
+        $ngo =Ngo::all();
+
+        return view('pages.editCaniddate',compact('candidate'),compact('ngo'));
 
     }
 

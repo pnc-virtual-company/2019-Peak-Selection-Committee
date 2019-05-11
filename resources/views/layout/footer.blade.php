@@ -32,32 +32,33 @@
         
     // ========== datatable ===============
         $(document).ready(function() {
-            $('#example').DataTable( {
-                colReorder: true
-            } );
-
             $('#listCandidates').DataTable( {
                 colReorder: true
-            } );
+            });
 
+            $('#example').DataTable( {
+                colReorder: true
+            });
+
+            $('#ngo').DataTable( {
+                colReorder: true
+            });
 
         } );
 
-            $(document).ready(function() {
-                $('#ngo').DataTable();
-            } );
 
-            // =====================table ngo========================
-            // Append table with add row form on add new button click
-            $(".add-new").click(function(){
-                $(this).attr("disabled", "disabled");
-                var index = $("table tbody tr:last-child").index();
-                var row = '<tr>' +
-                    '<td></td>' +
-                    '<td><input type="text" class="form-control" name="name" placeholder="Name NGO"/></td>' +
-                    '</tr>';
-                $("table").append(row);		
-            });
+        // =====================table ngo========================
+        // Append table with add row form on add new button click
+        $(".add-new").click(function(){
+            $(this).attr("disabled", "disabled");
+            var index = $("table tbody tr:last-child").index();
+            var row = '<tr>' +
+                '<td></td>' +
+                '<td><input type="text" class="form-control" name="name" placeholder="Name NGO"/></td>' +
+                '</tr>';
+            $("table").append(row);		
+        });
+
     </script>
 
     </body>
