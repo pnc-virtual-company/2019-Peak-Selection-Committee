@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v3.9.0
+ * FullCalendar v3.10.0
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */
@@ -572,7 +572,7 @@ a.fc-more:hover {
   -ms-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 /*
 TODO: more distinction between this file and common.css
@@ -1706,7 +1706,11 @@ div.dt-button-collection-title {
   font-size: 0.9em;
 }
 
-ul.dt-button-collection.dropdown-menu {
+div.dt-button-collection-title:empty {
+  display: none;
+}
+
+div.dt-button-collection.dropdown-menu {
   display: block;
   z-index: 2002;
   -webkit-column-gap: 8px;
@@ -1714,27 +1718,27 @@ ul.dt-button-collection.dropdown-menu {
   -o-column-gap: 8px;
   column-gap: 8px;
 }
-ul.dt-button-collection.dropdown-menu.fixed {
+div.dt-button-collection.dropdown-menu.fixed {
   position: fixed;
   top: 50%;
   left: 50%;
   margin-left: -75px;
   border-radius: 0;
 }
-ul.dt-button-collection.dropdown-menu.fixed.two-column {
+div.dt-button-collection.dropdown-menu.fixed.two-column {
   margin-left: -150px;
 }
-ul.dt-button-collection.dropdown-menu.fixed.three-column {
+div.dt-button-collection.dropdown-menu.fixed.three-column {
   margin-left: -225px;
 }
-ul.dt-button-collection.dropdown-menu.fixed.four-column {
+div.dt-button-collection.dropdown-menu.fixed.four-column {
   margin-left: -300px;
 }
-ul.dt-button-collection.dropdown-menu > * {
+div.dt-button-collection.dropdown-menu > * {
   -webkit-column-break-inside: avoid;
   break-inside: avoid;
 }
-ul.dt-button-collection.dropdown-menu.two-column {
+div.dt-button-collection.dropdown-menu.two-column {
   width: 300px;
   padding-bottom: 1px;
   -webkit-column-count: 2;
@@ -1742,7 +1746,7 @@ ul.dt-button-collection.dropdown-menu.two-column {
   -o-column-count: 2;
   column-count: 2;
 }
-ul.dt-button-collection.dropdown-menu.three-column {
+div.dt-button-collection.dropdown-menu.three-column {
   width: 450px;
   padding-bottom: 1px;
   -webkit-column-count: 3;
@@ -1750,7 +1754,7 @@ ul.dt-button-collection.dropdown-menu.three-column {
   -o-column-count: 3;
   column-count: 3;
 }
-ul.dt-button-collection.dropdown-menu.four-column {
+div.dt-button-collection.dropdown-menu.four-column {
   width: 600px;
   padding-bottom: 1px;
   -webkit-column-count: 4;
@@ -1758,37 +1762,37 @@ ul.dt-button-collection.dropdown-menu.four-column {
   -o-column-count: 4;
   column-count: 4;
 }
-ul.dt-button-collection.dropdown-menu .dt-button {
+div.dt-button-collection.dropdown-menu .dt-button {
   border-radius: 0;
 }
 
-ul.dt-button-collection {
+div.dt-button-collection {
   -webkit-column-gap: 8px;
   -ms-column-gap: 8px;
   -o-column-gap: 8px;
   column-gap: 8px;
 }
-ul.dt-button-collection.fixed {
+div.dt-button-collection.fixed {
   position: fixed;
   top: 50%;
   left: 50%;
   margin-left: -75px;
   border-radius: 0;
 }
-ul.dt-button-collection.fixed.two-column {
+div.dt-button-collection.fixed.two-column {
   margin-left: -150px;
 }
-ul.dt-button-collection.fixed.three-column {
+div.dt-button-collection.fixed.three-column {
   margin-left: -225px;
 }
-ul.dt-button-collection.fixed.four-column {
+div.dt-button-collection.fixed.four-column {
   margin-left: -300px;
 }
-ul.dt-button-collection > * {
+div.dt-button-collection > * {
   -webkit-column-break-inside: avoid;
   break-inside: avoid;
 }
-ul.dt-button-collection.two-column {
+div.dt-button-collection.two-column {
   width: 300px;
   padding-bottom: 1px;
   -webkit-column-count: 2;
@@ -1796,7 +1800,7 @@ ul.dt-button-collection.two-column {
   -o-column-count: 2;
   column-count: 2;
 }
-ul.dt-button-collection.three-column {
+div.dt-button-collection.three-column {
   width: 450px;
   padding-bottom: 1px;
   -webkit-column-count: 3;
@@ -1804,7 +1808,7 @@ ul.dt-button-collection.three-column {
   -o-column-count: 3;
   column-count: 3;
 }
-ul.dt-button-collection.four-column {
+div.dt-button-collection.four-column {
   width: 600px;
   padding-bottom: 1px;
   -webkit-column-count: 4;
@@ -1812,13 +1816,13 @@ ul.dt-button-collection.four-column {
   -o-column-count: 4;
   column-count: 4;
 }
-ul.dt-button-collection .dt-button {
+div.dt-button-collection .dt-button {
   border-radius: 0;
 }
-ul.dt-button-collection.fixed {
+div.dt-button-collection.fixed {
   max-width: none;
 }
-ul.dt-button-collection.fixed:before, ul.dt-button-collection.fixed:after {
+div.dt-button-collection.fixed:before, div.dt-button-collection.fixed:after {
   display: none;
 }
 
@@ -3539,6 +3543,11 @@ span.CodeMirror-selectedtext { background: none; }
 .numInputWrapper input::-ms-clear {
   display: none;
 }
+.numInputWrapper input::-webkit-outer-spin-button,
+.numInputWrapper input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
 .numInputWrapper span {
   position: absolute;
   right: 0;
@@ -3650,6 +3659,9 @@ span.CodeMirror-selectedtext { background: none; }
   border: 0;
   border-radius: 0;
   vertical-align: initial;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 .flatpickr-current-month input.cur-year:focus {
   outline: 0;
@@ -3975,6 +3987,9 @@ span.flatpickr-weekday {
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 .flatpickr-time input.flatpickr-hour {
   font-weight: bold;
@@ -4015,7 +4030,7 @@ span.flatpickr-weekday {
 .flatpickr-time .flatpickr-am-pm:hover,
 .flatpickr-time input:focus,
 .flatpickr-time .flatpickr-am-pm:focus {
-  background: #f3f3f3;
+  background: #eee;
 }
 .flatpickr-input[readonly] {
   cursor: pointer;

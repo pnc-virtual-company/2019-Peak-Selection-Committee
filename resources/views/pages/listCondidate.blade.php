@@ -42,7 +42,7 @@
 
             @auth
                @if(\Auth::user()->role_id==1)
-                    <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
+                    <a href="{{url('candidate/create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
                @endif
             @endauth
         </div>
