@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('pageTitle')</title>
-    <link rel="icon" href="images/title.png">
+    {{-- <link rel="icon" href="images/title.png"> --}}
+    <link rel="icon" href="{{asset('storage/img/title.png')}}">
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/icon.css')}}">
@@ -31,8 +32,8 @@
 
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light sticky-top">
     <div class="container-fluid">
-    <a class="navbar-brand" href="{{route('candidate.index')}}">
-      <img src="{{url('storage/img/logo.png')}}" style="width: 145px;" alt="">
+    <a class="navbar-brand" href="{{route('candidates.index')}}">
+      <img src="{{asset('storage/img/logo.png')}}" style="width: 145px;" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -40,27 +41,27 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto" style="font-size: 20px;">
-      
+
         @auth
-            @if(\Auth::user()->role_id==1)
+            @if(Auth::user()->role_id==1)
 
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Candidate
+                Candidates
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('candidate.index')}}">List Candidates</a>
-                <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>
+                <a class="dropdown-item" href="{{route('candidates.index')}}">List all of Candidates</a>
+                <a class="dropdown-item" href="{{route('candidates.create')}}">Create a Candidate</a>
             </div>
             </li>
 
             <li class="nav-item dropdown mr-4">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                User
+                Users
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('users.index')}}">List Users</a>
-                <a class="dropdown-item" href="{{route('users.create')}}">Create User</a>
+                <a class="dropdown-item" href="{{route('users.index')}}">List all of Users</a>
+                <a class="dropdown-item" href="{{route('users.create')}}">Create a User</a>
             </div>
             </li>
 
