@@ -15,7 +15,7 @@
                         <th>Province</th>
                         <th>Gender</th>
                         <th>Global Grade</th>
-                        <th>Seleted</th>            
+                        <th>Seleted</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,13 +27,17 @@
                         <td>{{$item->gender}}</td>
                         <td>{{$item->grade}}</td>
                         <td>{{$item->select}}</td>
-                         
+
                     </tr>
                 @endforeach
-               </tbody>     
+               </tbody>
             </table>
             <a href="{{ route('candidate.index') }}" title="Go to Login"> <button class="btn btn-primary text-primarys">Back</button></a>
         </div>
     </div>
 </div>
 @endsection
+
+
+
+

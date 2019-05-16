@@ -46,9 +46,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // $request->user()->authorizeRoles(['Admin']);
-        $users = User::with('roles')->get();
-        return view('pages.listUser', ['users' => $users]);
+        if(Auth::user()->role_id == 2){
+            return redirect('candidate');
+        } else {
+            $users = User::with('roles')->get();
+            return view('pages.listUser', ['users' => $users]);
+        }
     }
 
     /**
@@ -102,9 +105,9 @@ class UserController extends Controller
             $user->email = Input::get('email');
             $user->role_id = Input::get('role');
             $user->password = bcrypt(Input::get('password'));
-            
+
             $user->save();
-            
+
             // redirect
             Session::flash('message.level', 'success');
             Session::flash('message.content', __('The user was successfully created'));
@@ -179,7 +182,7 @@ class UserController extends Controller
             $user->role_id = Input::get('roles');
             $user->save();
             // $user->roles()->sync(Input::get('roles'));
-            
+
             // redirect
             Session::flash('message.level', 'success');
             Session::flash('message.content', __('The user was successfully updated'));
@@ -211,7 +214,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function export() 
+    public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }

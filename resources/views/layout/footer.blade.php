@@ -1,8 +1,8 @@
-    
+
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>
-        $('#delete').on('show.bs.modal', function (event) { 
+        $('#delete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var id = button.data('id');  //get Id from button
             var modal = $(this);
@@ -10,7 +10,7 @@
             console.log(url);
             $('#fid').attr('action',url); //get Id form
         });
-        $('#deleteNGO').on('show.bs.modal', function (event) { 
+        $('#deleteNGO').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var id = button.data('id');  //get Id from button
             var modal = $(this);
@@ -26,10 +26,18 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
     <script>
-        
+
     // ========== datatable ===============
         $(document).ready(function() {
             $('#listCandidates').DataTable( {
@@ -56,7 +64,7 @@
                 '<td></td>' +
                 '<td><input type="text" class="form-control" name="name" placeholder="Name NGO"/></td>' +
                 '</tr>';
-            $("table").append(row);		
+            $("table").append(row);
         });
 
     </script>

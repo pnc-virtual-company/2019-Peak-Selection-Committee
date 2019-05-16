@@ -74,8 +74,8 @@ Route::get('/detailInfo', function () {
     return view('pages.detailProfile');
 
 });
-Route::resource('candidate','CandidateController');
+Route::resource('candidates','CandidateController');
 Route::resource('ngo','NgoController');
 Route::get('selected','SelectedCandidate@selected');
-Route::get('all','SelectedCandidate@allCandidates');
+// Route::get('all','SelectedCandidate@allCandidates');
 
