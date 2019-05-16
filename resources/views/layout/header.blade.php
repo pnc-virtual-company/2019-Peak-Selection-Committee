@@ -21,50 +21,51 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
     {{-- font awesome --}}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
         crossorigin="anonymous">
 
 </head>
 <body>
-    
+
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light sticky-top">
     <div class="container-fluid">
-    <a class="navbar-brand" href="{{url('/candidate')}}">
+    <a class="navbar-brand" href="{{route('candidate.index')}}">
       <img src="{{url('storage/img/logo.png')}}" style="width: 145px;" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto" style="font-size: 20px;">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Candidate
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url('candidate')}}">List Candidates</a>
-            @auth
-               @if(\Auth::user()->role_id==1)
-                  <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>            
-               @endif
-            @endauth
-          </div>
-        </li>
-        <li class="nav-item dropdown mr-4">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url('/users')}}">List Users</a>
-            @auth
-                @if(\Auth::user()->role_id==1)
-                 <a class="dropdown-item" href="{{url('/createuser')}}">Create User</a>            
-               @endif
-            @endauth
-          </div>
-        </li>
+      
+        @auth
+            @if(\Auth::user()->role_id==1)
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Candidate
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route('candidate.index')}}">List Candidates</a>
+                <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>
+            </div>
+            </li>
+
+            <li class="nav-item dropdown mr-4">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                User
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route('users.index')}}">List Users</a>
+                <a class="dropdown-item" href="{{route('users.create')}}">Create User</a>
+            </div>
+            </li>
+
+            @endif
+        @endauth
+
         <li class="nav-item">
 
           <a class="nav-link" href="{{ route('logout') }}"
@@ -76,7 +77,7 @@
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf
           </form>
-            {{-- <a class="nav-link" href="{{ route('login') }}"><i class="material-icons">logout</i></a> --}}
+
         </li>
       </ul>
     </div>

@@ -35,14 +35,18 @@
                         <td>{{$item->gender}}</td>
                         <td>{{$item->grade}}</td>
                         <td>{{$item->select}}</td>
+<<<<<<< HEAD
                          
+=======
+>>>>>>> 0b79064311e29117c0de40ea42ace4b7d1530abd
                     </tr>
                 @endforeach
                </tbody>     
             </table>
+
             @auth
                @if(\Auth::user()->role_id==1)
-                    <a href="{{url('/createCandidate')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
+                    <a href="{{url('candidate/create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
                @endif
             @endauth
         </div>
@@ -179,3 +183,5 @@
 </script>
 
 @endsection
+<script>
+</script>
