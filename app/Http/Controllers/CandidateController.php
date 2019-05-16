@@ -19,9 +19,9 @@ class CandidateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('pages.listCondidate');
+    public function index(){
+        $candidate= Candidate::all();
+        return view('pages.listCondidate',compact('candidate'));
     }
 
     /**
@@ -34,7 +34,7 @@ class CandidateController extends Controller
         // $answer=Answer::all();
         // $question=Question::all();
         $ngo =Ngo::all();
-        return view('pages.createCandidate',compact('answer'),compact('ngo'));
+        return view('pages.createCandidate',compact('ngo'));
     }
 
     /**
@@ -71,10 +71,11 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
+    
 
     /**
      * Show the form for editing the specified resource.

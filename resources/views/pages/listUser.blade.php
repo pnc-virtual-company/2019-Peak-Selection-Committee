@@ -47,13 +47,17 @@
             @auth
                 @if(\Auth::user()->role_id==1)
                     <a href="{{url('createuser')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
-                    <button class="btn btn-primary"><i class="material-icons left">import_export</i> Export  List</button>
+                    <!-- <button class="btn btn-primary" id="export"><i class="material-icons left">import_export</i> Export List</button> -->
+                    <!-- <button value="Export list" class="btn btn-primary button-excel datatable-excel" type="button" id="export">
+                    <i class="material-icons left">import_export</i><span>Export list</span>
+                    </button> -->
                 @endif
             @endauth
         </div>
 @endsection
 
 {{-- Modal of delete user --}}
+
 <div class="modal fade" tabindex="-1" role="dialog" id="delete">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
