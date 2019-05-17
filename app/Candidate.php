@@ -10,11 +10,15 @@ class Candidate extends Model
         'Candidate_Name','province', 'grade', 'years','ngo_id','profile'
     ];
 
-    
+
     public function answers()
     {
         return $this->belongsToMany(Answer::class);
     }
+    public function ngos()
+    {
+        return $this->belongsTo(Ngo::class);
+    }
     public $timestamps = false;
-  
+
 }

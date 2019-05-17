@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('pageTitle')</title>
-    <link rel="icon" href="images/title.png">
+    {{-- <link rel="icon" href="images/title.png"> --}}
+    <link rel="icon" href="{{asset('storage/img/title.png')}}">
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/icon.css')}}">
@@ -31,8 +32,10 @@
 
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light sticky-top">
     <div class="container-fluid">
-    <a class="navbar-brand" href="{{route('candidate.index')}}">
+
+    <a class="navbar-brand" href="{{route('candidates.index')}}">
       <img src="{{url('storage/img/logo.png')}}" style="width: 145px;" alt="">
+
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -49,13 +52,15 @@
                 Candidate
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('candidate.index')}}">List Candidates</a>
-                <a class="dropdown-item" href="{{route('candidate.create')}}">Create Candidate</a>
+                <a class="dropdown-item" href="{{route('candidates.index')}}">List Candidates</a>
+                <a class="dropdown-item" href="{{route('candidates.create')}}">Create Candidate</a>
+
             </div>
             </li>
 
             <li class="nav-item dropdown mr-4">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                 User
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

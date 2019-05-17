@@ -2,6 +2,8 @@
 @section('pageTitle', 'List Candidate')
 @section('content')
 
+
+
 <div class="content">
     <div class="row">
 
@@ -9,8 +11,9 @@
             <h1 class="text-center">List of Candidates</h1>
             <br>
             <div class="float-right">
-                <a href="{{url('/infoCan')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
-                <button class="btn btn-success btn-sm">Selected Candidates</button>
+                <a href="{{url('/all')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
+                <a href="{{url('/selected')}}" class="btn btn-success btn-sm ml-2">Selected Candidates</a>
+
             </div>
             <br><br>
 
@@ -27,187 +30,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger</td>
-                        <td>System </td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>A</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>Software</td>
-                        <td>London</td>
-                        <td>38</td>
-                        <td>B</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Sakura</td>
-                        <td>Support</td>
-                        <td>Tokyo</td>
-                        <td>37</td>
-                        <td>A</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Tiger</td>
-                        <td>System </td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>A+</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>Software</td>
-                        <td>London</td>
-                        <td>38</td>
-                        <td>B+</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Sakura</td>
-                        <td>Support</td>
-                        <td>Tokyo</td>
-                        <td>37</td>
-                        <td>B-</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
+                    @foreach ($candidates as $item)
+                       <tr>
+                           <td>{{$item->Candidate_Name}}</td>
+                           <td>{{$item->years}}</td>
+                           <td>{{$item->province}}</td>
+                           <td>{{$item->gender}}</td>
+                           <td>{{$item->grade}}</td>
+                           <td>{{$item->select}}</td>
+                       </tr>
+                   @endforeach
                 </tbody>
             </table>
             @auth
                @if(Auth::user()->role_id==1)
-                    <a href="{{route('candidate.create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
+                    <a href="{{route('candidates.create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
                @endif
             @endauth
         </div>
@@ -246,108 +83,181 @@
 @push('scripts')
 
 <script>
-$(function() {
 
     // ============== pie chart ==============
 
         // === all candidates ===
-        new Chart(document.getElementById("candidates"), {
-            type: 'pie',
-            data: {
-                labels: ["A+", "A", "A-", "B+", "B","B-","Failed"],
-                datasets: [{
-                    backgroundColor: ["#00c853", "#c6ff00", "#eeff41", "#fdd835", "#f9a825","#e65100", "#d50000"],
-                    data: [30, 50, 100, 40, 120,49,230]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Grade distribution'
-                }
-            }
-        });
+        // new Chart(document.getElementById("candidates"), {
+        //     type: 'pie',
+        //     data: {
+        //         labels: ,
+        //         datasets: [{
+        //             backgroundColor: ["#c6ff00", "#00c853", "#eeff41", "#f9a825", "#fdd835", "#e65100", "#d50000"],
+        //             data:
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: 'Grade distribution'
+        //         }
+        //     }
+        // });
+
         // =========== end all candidates =========
 
         // ========== gender ========
-        new Chart(document.getElementById("gender"), {
-            type: 'pie',
-            data: {
-                labels: ["F", "M"],
-                datasets: [{
-                    backgroundColor:  ["#64dd17", "#01579b"],
-                    data: [300, 50]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Gender'
-                }
-            }
-        });
+
+        // var rows = document.getElementById("listCandidates").getElementsByTagName("tbody")[0].getElementsByTagName("tr"),
+        //     len = rows.length,
+        //     i,
+        //     letters = [],
+        //     cellNum = 3;
+        // for(i = 0; i < len; i++) {
+        //     letters.push(rows[i].cells[cellNum].innerHTML);
+        // }
+        // console.log(len);
+        // console.log(letters);
+        // letters.sort();
+        // var label = [];
+        // var data = [];
+        // var current = null;
+        // var cnt = 0;
+        // for (var i = 0; i < letters.length; i++) {
+        //     if (letters[i] != current) {
+        //         if (cnt > 0) {
+        //             label.push(current);
+        //             data.push(cnt);
+        //         }
+        //         current = letters[i];
+        //         cnt = 1;
+        //     } else {
+        //         cnt++;
+        //     }
+
+        // }
+        // if (cnt > 0) {
+        //     label.push(current);
+        //     data.push(cnt);
+        // }
+        // console.log(data);
+        // console.log(label);
+
+        // new Chart(document.getElementById("gender"), {
+        //     type: 'pie',
+        //     data: {
+        //         labels: label,
+        //         datasets: [{
+        //             backgroundColor: ["#64dd17", "#01579b"],
+        //             data: data
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: 'Gender'
+        //         }
+        //     }
+        // });
+
         //  ========= end gender ==========
 
         // ========== ngo ========
-        new Chart(document.getElementById("chart_ngo"), {
-            type: 'pie',
-            data: {
-                labels: ["Yes", "No"],
-                datasets: [{
-                    backgroundColor:  ["#00e676", "#d50000"],
-                    data: [40, 120]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'NGO Provanance'
-                }
-            }
-        });
+        // new Chart(document.getElementById("chart_ngo"), {
+        //     type: 'pie',
+        //     data: {
+        //         labels: ["Yes", "No"],
+        //         datasets: [{
+        //             backgroundColor:  ["#00e676", "#d50000"],
+        //             data: [40, 120]
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: 'NGO Provanance'
+        //         }
+        //     }
+        // });
         //  ========= end ngo ==========
 
         // ========== age ========
-        new Chart(document.getElementById("age"), {
-            type: 'pie',
-            data: {
-                labels: ["18 - 21", "22 - 25"],
-                datasets: [{
-                    backgroundColor:  ["#FDB45C", "#949FB1"],
-                    data: [100, 50]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Age'
-                }
-            }
-        });
+        // new Chart(document.getElementById("age"), {
+        //     type: 'pie',
+        //     data: {
+        //         datasets: [{
+        //             label: ,
+        //             backgroundColor:  ["#FDB45C", "#949FB1"],
+        //             data: ,
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: 'Age'
+        //         }
+        //     }
+        // });
         //  ========= end age ==========
 
         // ========== province ========
-        new Chart(document.getElementById("province"), {
-            type: 'pie',
-            data: {
-                labels: ["Phnom Penh", "Prey Veng", "Ratanakiri", "Battambong"],
-                datasets: [{
-                    backgroundColor:  ["#009688", "#6d4c41", "#b0bec5", "#ffab91"],
-                    data: [200, 90, 100, 90]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Province'
-                }
-            }
-        });
+
+        // var rows = document.getElementById("listCandidates").getElementsByTagName("tbody")[0].getElementsByTagName("tr"),
+        //     len = rows.length,
+        //     i,
+        //     letters = [],
+        //     cellNum = 2;
+        // for(i = 0; i < len; i++) {
+        //     letters.push(rows[i].cells[cellNum].innerHTML);
+        // }
+        // console.log(len);
+        // console.log(letters);
+        // letters.sort();
+        // var label = [];
+        // var data = [];
+        // var current = null;
+        // var cnt = 0;
+        // for (var i = 0; i < letters.length; i++) {
+        //     if (letters[i] != current) {
+        //         if (cnt > 0) {
+        //             label.push(current);
+        //             data.push(cnt);
+        //         }
+        //         current = letters[i];
+        //         cnt = 1;
+        //     } else {
+        //         cnt++;
+        //     }
+
+        // }
+        // if (cnt > 0) {
+        //     label.push(current);
+        //     data.push(cnt);
+        // }
+        // console.log(data);
+        // console.log(label);
+
+        // new Chart(document.getElementById("province"), {
+        //     type: 'pie',
+        //     data: {
+        //         labels: label,
+        //         datasets: [{
+        //             backgroundColor: ["#009688", "#6d4c41", "#b0bec5", "#ffab91"],
+        //             data: data
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: 'Province'
+        //         }
+        //     }
+        // });
+
         //  ========= end province ==========
 
     // =========== end pie chart ============
 
-});
-</script>
 
+</script>
 @endpush
