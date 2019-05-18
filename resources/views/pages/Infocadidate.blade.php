@@ -59,7 +59,7 @@
             <div class="shadow-lg p-3 mb-2 bg-white rounded">Poverty card summary</div>
             <div class="shadow-lg p-3 mb-2 bg-white rounded" style="width:100%;height:200px">Investigator's conclustion</div>
             <div class="mt-4">
-                    <a href="{{url('/listCan')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
+                    <a href="{{url('/candidate')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
             <div class="float-right">
                 <button class="btn btn-danger btn-sm">Delete profile</button>
                 <a href="{{url('/detailInfo')}}"><button class="btn btn-success btn-sm">See profile details</button></a>

@@ -78,3 +78,4 @@ Route::get('/detailInfo', function () {
 Route::resource('candidate','CandidateController');
 
 Route::resource('ngo','NgoController');
+Route::get('/CandidateSummary', 'DetialController@detial');

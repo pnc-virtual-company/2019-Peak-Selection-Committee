@@ -128,6 +128,9 @@ class CandidateController extends Controller
                     'communication'=>$cammunication,
                     'responsibility'=>$responsible
           ]);
+     
+
+        
         return redirect('/candidate');
     }
 
@@ -141,7 +144,8 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        //
+        $candidate=Candidate::find($id);
+        return view('pages.Infocadidate',compact('candidate'));
     }
 
     /**
@@ -154,7 +158,6 @@ class CandidateController extends Controller
     {
         $candidate=Candidate::find($id);
         $ngo =Ngo::all();
-
         return view('pages.editCaniddate',compact('candidate'),compact('ngo'));
 
     }
@@ -168,8 +171,95 @@ class CandidateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fileName="";
+        if( $request->hasFile('inputFile')){
+            $fileName=$request->file('inputFile')->getClientOriginalName();
+            $request->file('inputFile')->storeAs('/public/img',$fileName);
+            \DB::table('candidates')
+            ->where('id',$id)
+            ->update(['profile' =>$fileName]);                    
+        }
+
+       \DB::table('candidates')
+       ->where('id',$id)
+       ->update(['Candidate_Name' =>$request->name,
+                 'province'=>$request->province,
+                 'gender'=>$request->gender,
+                 'years'=>$request->slectionYears,
+                 'ngo_id'=>$request->ngo,
+                 'age'=>$request->age,
+                 'Fill_By'=>$request->slectionYears
+       ]);
+    $candidate=Candidate::find($id);
+    dd($candidate->id);
+    $answer=$request->answer;
+    $candidate->answers()->detach($answer);
+    $i=0;
+    $j=0;
+    foreach($answer as $data){
+        $candidate->answers()->attach($data);
+        $getId=\DB::table('answer_candidate')->get()->last();
+        \DB::table('answer_candidate')
+        ->where('id',$getId->id)
+        ->update(["comment"=>$request->note[$i]]);
+        if($request->summa[$j]!=""){
+                 \DB::table('answer_candidate')
+                 ->where('id',$getId->id)
+                 ->update(["summary"=>$request->summa[$j]]);
+                 $j++;
+        }
+        ++$i;
     }
+    // $score=\DB::table('answer_candidate')->where('candidate_id',$candidate['id'])->get();
+    // $TotalScore=0;
+    // $countCoficient=0;
+    // $ScoreGrade=0;
+    // foreach($score as $value){
+    //     if(Answer::find($value->answer_id)->label=="A"){
+    //         $countCoficient+=Answer::find($value->answer_id)->score;
+    //         $TotalScore+=Answer::find($value->answer_id)->score*1;
+    //     }
+    //      else if(Answer::find($value->answer_id)->label=="B"){
+    //         $countCoficient+=Answer::find($value->answer_id)->score;
+    //         $TotalScore+=Answer::find($value->answer_id)->score*2;
+    //     }
+    //     else  if(Answer::find($value->answer_id)->label=="C"){
+    //         $countCoficient+=Answer::find($value->answer_id)->score;
+    //         $TotalScore+=Answer::find($value->answer_id)->score*3;
+
+    //     }
+    //      else {
+    //         $TotalScore+=Answer::find($value->answer_id)->score*0;
+    //     }
+    // }
+    // $grade=" ";
+    // $select=" ";
+    // $ScoreGrade=$TotalScore/$countCoficient;
+    //   if($ScoreGrade<1.5){
+    //           $grade="A";
+    //           $select="Yes";
+    //   }else if($ScoreGrade<2.5){
+    //           $grade="B";
+    //           $select="Yes";
+    //   }else{
+    //       $grade="Fail";
+    //       $select="No";
+    //   }
+    //   $summary=$request->summary;
+    //   $sign=$request->sign;
+    //   $moivation=$request->moivation;
+    //   $cammunication=$request->cammunication;
+    //   $responsible=$request->responsible;
+    //   \DB::table('candidates')
+    //   ->where('id',$candidate['id'])
+    //   ->update(['grade' =>($sign.$grade),
+    //             'select'=>$select,
+    //             'summary'=>$summary,
+    //             'motivation'=>$moivation,
+    //             'communication'=>$cammunication,
+    //             'responsibility'=>$responsible
+    //   ]);
+    return redirect('/candidate');}
 
     /**
      * Remove the specified resource from storage.
