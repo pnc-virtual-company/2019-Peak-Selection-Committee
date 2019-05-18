@@ -31,7 +31,7 @@
 
       <div class="col-sm-4 mt-4">
           <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-   <form action="{{route('candidate.store')}}" method="POST"  enctype="multipart/form-data">
+   <form action="{{route('candidates.store')}}" method="POST"  enctype="multipart/form-data">
           @csrf
                 <div class="form-group" >
                   <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">

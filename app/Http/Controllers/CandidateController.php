@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Answer;
@@ -19,9 +20,9 @@ class CandidateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('pages.listCondidate');
+    public function index(){
+        $candidates= Candidate::all();
+        return view('pages.listCondidate',compact('candidates'));
     }
 
     /**
@@ -31,10 +32,14 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        // $answer=Answer::all();
-        // $question=Question::all();
-        $ngo =Ngo::all();
-        return view('pages.createCandidate',compact('ngo'));
+        if(Auth::user()->role_id == 2){
+            return redirect('candidates');
+        } else {
+            // $answer=Answer::all();
+            // $question=Question::all();
+            $ngo =Ngo::all();
+            return view('pages.createCandidate',compact('ngo'));
+        }
     }
 
     /**
@@ -121,17 +126,21 @@ class CandidateController extends Controller
           $responsible=$request->responsible;
           \DB::table('candidates')
           ->where('id',$candidate['id'])
-          ->update(['grade' =>($sign.$grade),
+          ->update(['grade' =>($grade.$sign),
                     'select'=>$select,
                     'summary'=>$summary,
                     'motivation'=>$moivation,
                     'communication'=>$cammunication,
                     'responsibility'=>$responsible
           ]);
+<<<<<<< HEAD
      
 
         
         return redirect('/candidate');
+=======
+        return redirect('/candidates');
+>>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
     }
 
 
@@ -142,11 +151,12 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         $candidate=Candidate::find($id);
         return view('pages.Infocadidate',compact('candidate'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -156,10 +166,18 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
         $candidate=Candidate::find($id);
         $ngo =Ngo::all();
         return view('pages.editCaniddate',compact('candidate'),compact('ngo'));
 
+=======
+        if(Auth::user()->role_id == 2){
+            return redirect('candidates');
+        } else {
+            //
+        }
+>>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
     }
 
     /**
@@ -269,6 +287,20 @@ class CandidateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Auth::user()->role_id == 2){
+            return redirect('candidates');
+        } else {
+            //
+        }
     }
+    // return response()->json(['return' => 'some data']);
+
+
+    // public function testing() {
+    //     $ngo = NGO::all();
+    //     return view('pages.test', compact('ngo'));
+    // }
+
+    
+    
 }

@@ -9,8 +9,13 @@
             <h1 class="text-center">List of Candidates</h1>
             <br>
             <div class="float-right">
-                <a href="{{url('/infoCan')}}" class="btn btn-primary btn-sm ml-2">All Candidates</a>
-                <button class="btn btn-success btn-sm">Selected Candidates</button>
+                @auth
+                    @if(Auth::user()->role_id==1)
+                        <a href="{{route('candidates.create')}}" class="btn btn-primary btn-sm ">Add a candidate</a>
+                    @endif
+                @endauth
+                <a href="{{url('selected')}}" class="btn btn-success btn-sm">List all of Selected Candidates</a>
+
             </div>
             <br><br>
 
@@ -23,10 +28,11 @@
                         <th>Province</th>
                         <th>Gender</th>
                         <th>Global Grade</th>
-                        <th>Seleted</th>
+                        <th>Selected</th>
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                     <tr>
                         <td>Tiger</td>
                         <td>System </td>
@@ -98,9 +104,24 @@
                     <a href="{{url('candidate/create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
                @endif
             @endauth
+=======
+                    @foreach ($candidates as $item)
+                       <tr>
+                           <td>{{$item->Candidate_Name}}</td>
+                           <td>{{$item->years}}</td>
+                           <td>{{$item->province}}</td>
+                           <td>{{$item->gender}}</td>
+                           <td>{{$item->grade}}</td>
+                           <td>{{$item->select}}</td>
+                       </tr>
+                   @endforeach
+                </tbody>
+            </table>
+           
+>>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
         </div>
         {{-- end table of candidate --}}
-        
+
         {{-- ====== pie chart ====== --}}
             <div class="col-sm-12 col-md-12 col-lg-5 mt-4">
 
@@ -109,7 +130,7 @@
                     <canvas id="candidates" width="900" height="550"></canvas>
                 </div>
 
-                <h3 class="text-center">Among selected candidates only</h3>
+                <h3 class="text-center">Among all of candidates</h3>
                 <div class="row">
                     <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender"></canvas>
                     <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo"></canvas>

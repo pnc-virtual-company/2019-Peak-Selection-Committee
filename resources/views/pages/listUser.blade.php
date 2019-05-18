@@ -3,7 +3,7 @@
 @section('pageTitle', 'List User')
 @section('content')
 <div class="content">
-    <h2 class="text-center">List Of User</h2>
+    <h2 class="text-center">List all of Users</h2>
     <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -15,7 +15,7 @@
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>Email</th>
-                        <th>Role</th>             
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,16 +37,15 @@
                             <td>Admin</td>
                         @else
                             <td>Normal</td>
-                        @endif         
+                        @endif
                     </tr>
                 @endforeach
-               </tbody>     
+               </tbody>
             </table>
             <br/>
             @auth
                 @if(Auth::user()->role_id==1)
                     <a href="{{route('users.create')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
-                    <a class="btn btn-primary" href="{{url('users/export')}}" download><i class="material-icons left">import_export</i> Export  List</a>
                 @endif
             @endauth
         </div>
@@ -57,13 +56,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Delete User</h5>
+          <h5 class="modal-title">Delete a User</h5>
           <button type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Are you sure want to Delete?.</p>
+          <p>Are you sure want to Delete this user?.</p>
           <small id="users"></small>
         </div>
         <div class="modal-footer">
@@ -99,7 +98,7 @@
                     <span><b>Role User: </b></span><td>Admin</td>
                     @else
                     <span><b>Role User: </b></span><td>Normal</td>
-                    @endif  
+                    @endif
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -109,6 +108,6 @@
       </div>
       {{-- end of modal user --}}
 
-   
+
 
 
