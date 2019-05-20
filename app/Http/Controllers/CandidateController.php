@@ -21,8 +21,8 @@ class CandidateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $candidates= Candidate::all();
-        return view('pages.listCondidate',compact('candidates'));
+        $candidate= Candidate::all();
+        return view('pages.listCondidate',compact('candidate'));
     }
 
     /**
@@ -75,12 +75,15 @@ class CandidateController extends Controller
             \DB::table('answer_candidate')
             ->where('id',$getId->id)
             ->update(["comment"=>$request->note[$i]]);
-            if($request->summa[$j]!=""){
-                     \DB::table('answer_candidate')
-                     ->where('id',$getId->id)
-                     ->update(["summary"=>$request->summa[$j]]);
-                     $j++;
+            if($j<11){
+                if($request->summa[$j]!=""){             
+                    \DB::table('answer_candidate')
+                    ->where('id',$getId->id)
+                    ->update(["summary"=>$request->summa[$j]]);
+                    ++$j;
             }
+            }
+           
             ++$i;
         }
         // $candidate->answers()->sync($answer);
@@ -152,10 +155,9 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $candidate=Candidate::find($id);
-        return view('pages.Infocadidate',compact('candidate'));
+        $candidate = Candidate::find($id);
+        return view('pages.Infocadidate')->with('candidate',$candidate);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -183,6 +185,7 @@ class CandidateController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $fileName="";
         if( $request->hasFile('inputFile')){
             $fileName=$request->file('inputFile')->getClientOriginalName();
@@ -291,8 +294,6 @@ class CandidateController extends Controller
         }
     }
     // return response()->json(['return' => 'some data']);
-
-
     // public function testing() {
     //     $ngo = NGO::all();
     //     return view('pages.test', compact('ngo'));

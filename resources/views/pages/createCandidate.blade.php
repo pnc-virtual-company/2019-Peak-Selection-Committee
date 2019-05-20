@@ -365,7 +365,8 @@
             </div>
          @endforeach
       @endfor
-      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+      <h5>Summary</h5>
+      <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
       <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
 
               </div>

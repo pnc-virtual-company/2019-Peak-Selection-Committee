@@ -1,9 +1,6 @@
 @extends('template')
-
 @section('pageTitle', 'Information Candidate')
-
 @section('content')
-
 <div class="content">
 <h1 class="text-center">Information of candidate</h1>
     <div class="card mt-4">
@@ -11,8 +8,7 @@
 
           <div class="container mt-4">
               <div class="row">
-                <div class="col-md-6 mt-4">
-                
+                <div class="col-md-6 mt-4">               
                 @if ($candidate->profile==Null)
                    <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
                 @else
@@ -26,7 +22,7 @@
                             <span><b>Year : </b>{{$candidate->years}}</span><br>
                         </div>
                 </div>
-                <div class="col-md-3 mt-4">             
+                <div class="col-md-3 mt-4">
                  
                 </div>
                 <div class="col-sm-3 mt-4" >
@@ -133,12 +129,11 @@
                     <a href="{{url('/candidate')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
             <div class="float-right">
                 <button class="btn btn-danger btn-sm">Delete profile</button>
-                <a href="{{url('/CandidateDetial')}}"><button class="btn btn-success btn-sm">See profile details</button></a>
+                <a href="{{url('CandidateDetial/'.$candidate->id)}}"><button class="btn btn-success btn-sm">See profile details</button></a>
                 <a href="{{url('candidate/'.$candidate->id."/edit")}}" class="btn btn-primary btn-sm">Edit</a>
                
             </div>
-        </div>
-          
+        </div>         
         </div>
         </div>
         <br>
