@@ -12,7 +12,12 @@
           <div class="container mt-4">
               <div class="row">
                 <div class="col-md-6 mt-4">
-                 <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+                
+                @if ($candidate->profile==Null)
+                   <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+                @else
+                  <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+                @endif             
                     <span><b>Student Name : </b>{{$candidate->Candidate_Name}}</span><br><br>
                         <div style="margin-left:155px; margin-top:-50px;"> 
                             <span><b>Gender : </b>{{$candidate->gender}}</span><br>
@@ -21,8 +26,7 @@
                             <span><b>Year : </b>{{$candidate->years}}</span><br>
                         </div>
                 </div>
-                <div class="col-md-3 mt-4">
-                     
+                <div class="col-md-3 mt-4">             
                  
                 </div>
                 <div class="col-sm-3 mt-4" >
@@ -36,7 +40,11 @@
                     {{$record}}
                 @endforeach
                 </p>
-                <input type="checkbox" style="margin-left:-5px;"><label for=""><b>Information from PNC employee</b></label>
+@if ($candidate->Fill_By!=Null)
+<input type="checkbox" name='fil' value="Information is filled by PNC employee" checked><label for="">Information is filled by PNC employee</label>
+@else
+<input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
+@endif
             </div>
         </div>
         <hr>

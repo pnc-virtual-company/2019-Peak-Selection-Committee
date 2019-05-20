@@ -108,8 +108,11 @@ class CandidateController extends Controller
         }
         $grade=" ";
         $select=" ";
-        $ScoreGrade=$TotalScore/$countCoficient;
-          if($ScoreGrade<1.5){
+        if($TotalScore!=0){ 
+            $ScoreGrade=$TotalScore/$countCoficient;
+        };       
+        
+        if($ScoreGrade<1.5){
                   $grade="A";
                   $select="Yes";
           }else if($ScoreGrade<2.5){
@@ -244,7 +247,9 @@ class CandidateController extends Controller
     }
     $grade=" ";
     $select=" ";
-    $ScoreGrade=$TotalScore/$countCoficient;
+    if($TotalScore!=0){ 
+        $ScoreGrade=$TotalScore/$countCoficient;
+    }
       if($ScoreGrade<1.5){
               $grade="A";
               $select="Yes";

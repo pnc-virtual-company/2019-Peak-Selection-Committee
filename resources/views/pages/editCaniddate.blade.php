@@ -27,22 +27,24 @@
       {{-- upload profile --}}
 
       <div class="col-sm-4 mt-4">
-   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-   <form action="{{route('candidate.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
+   @if ($candidate->profile==Null)
+                   <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+        @else
+                  <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+      @endif    
+    <form action="{{route('candidate.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
                 <div class="form-group" >
                   <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
                 </div>
       </div>
-
       <div class="col-sm-4 mt-4">
         <br>
           <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" required><br>
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
           <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
-
     </select>
     <select name="sign"  selected="true" >
      <option value="+">...</option>
@@ -206,7 +208,7 @@
     </div>
     </div>
 
-    {{--****************************Part2**************************************************************************8  --}}
+    {{--********************************************Part2**************************************************************************  --}}
 
       <div class="panel panel-primary">
           <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
@@ -242,9 +244,11 @@
                                </select>
                             </div>
                             <div class="col-sm-6">
-                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> @foreach ($test as $note)
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> 
+                              <p>@foreach ($test as $note)
                                       {{$note->comment}}
                                @endforeach 
+                              </p> 
                             </textarea>
                             </div>
                         </div>
@@ -441,7 +445,8 @@
          @endforeach
       @endfor
       <h5>Summary<h5>
-      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
+      <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
+  
                  @foreach ($summary as $record)
                         {{$record->get(3)}}
             @endforeach 
