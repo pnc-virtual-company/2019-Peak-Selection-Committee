@@ -8,6 +8,8 @@ use App\Question;
 use App\Answer;
 use App\Ngo;
 use App\Candidate;
+use DB;
+
 
 class CandidateController extends Controller
 {
@@ -21,8 +23,156 @@ class CandidateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $candidates= Candidate::all();
-        return view('pages.listCondidate',compact('candidates'));
+
+        $candidate= Candidate::all();
+
+        $grade = Candidate::orderBy('grade', 'asc')->pluck('grade');
+        $current = null;
+        $grade_labels = array();
+        $grade_number = array();
+        $num_A = 0;
+        $num_A_plus = 0;
+        $num_A_minus = 0;
+        $num_B = 0;
+        $num_B_plus = 0;
+        $num_B_minus = 0;
+        $num_Fail = 0;
+        if(! empty ($grade)) {
+            foreach ($grade as $item) {
+                // return $item;
+                if ($item == "A+") {
+                    $num_A_plus++;
+                }
+                if ($item == "A") {
+                    $num_A++;
+                }
+                if ($item == "A-") {
+                    $num_A_minus++;
+                }
+                if ($item == "B+") {
+                    $num_B_plus++;
+                }
+                if ($item == "B") {
+                    $num_B++;
+                }
+                if ($item == "B-") {
+                    $num_B_minus++;
+                }
+                if ($item == "Fail") {
+                    $num_Fail++;
+                }
+            }
+            // return $num_A;
+
+            if( $num_A_plus >= 0 ) {
+                array_push( $grade_labels, "A+" );
+                array_push( $grade_number, $num_A_plus );
+            }
+            if( $num_A >= 0 ) {
+                array_push( $grade_labels, "A" );
+                array_push( $grade_number, $num_A );
+            }
+            if( $num_A_minus >= 0 ) {
+                array_push( $grade_labels, "A-" );
+                array_push( $grade_number, $num_A_minus );
+            }
+            if( $num_B_plus >= 0 ) {
+                array_push( $grade_labels, "B+" );
+                array_push( $grade_number, $num_B_plus );
+            }
+            if( $num_B >= 0 ) {
+                array_push( $grade_labels, "B" );
+                array_push( $grade_number, $num_B );
+            }
+            if( $num_B_minus >= 0 ) {
+                array_push( $grade_labels, "B-" );
+                array_push( $grade_number, $num_B_minus );
+            }
+            if( $num_Fail >= 0 ) {
+                array_push( $grade_labels, "Fail" );
+                array_push( $grade_number, $num_Fail );
+            }
+
+            $grade_candidates = array(
+                'labels' => $grade_labels,
+                'datas' => $grade_number,
+            );
+            // return $grade_candidates;
+        }
+
+        $age = Candidate::orderBy('age', 'asc')->pluck('age');
+        // $current = null;
+        $age_labels = array();
+        $age_number = array();
+        $num_18_to_20 = 0;
+        $num_21_to_23 = 0;
+        if(! empty ($age)) {
+            foreach ($age as $item) {
+
+                if( $item <= 20 && $item >= 18 ) {
+                    $num_18_to_20++;
+                }
+
+                if ( $item <= 23 && $item >= 21 ) {
+                    $num_21_to_23++;
+                }
+
+            }
+
+            if ( $num_18_to_20 >= 0) {
+                array_push( $age_labels, "18 - 20" );
+                array_push( $age_number, $num_18_to_20 );
+            }
+
+            if ( $num_21_to_23 >= 0) {
+                array_push( $age_labels, "21 - 23" );
+                array_push( $age_number, $num_21_to_23 );
+            }
+
+            $age_candidates = array(
+                'labels' => $age_labels,
+                'datas' => $age_number,
+            );
+            // return $age_candidates;
+        }
+
+        $ngo_id = Candidate::orderBy('ngo_id', 'asc')->pluck('ngo_id');
+        $current = null;
+        $ngo_labels = array();
+        $ngo_number = array();
+        $number_no = 0;
+        $number_yes = 0;
+        // return $ngo_id;
+        if(! empty ($ngo_id)) {
+            foreach ($ngo_id as $item) {
+                if( $item != "" ) {
+                    $number_yes++;
+                } else {
+                    $number_no++;
+                }
+            }
+            // return $number_yes;
+            if( $number_yes >= 0) {
+                array_push( $ngo_labels, "Yes" );
+                array_push( $ngo_number, $number_yes );
+            }
+            if ( $number_no >= 0 ) {
+                array_push( $ngo_labels, "No" );
+                array_push( $ngo_number, $number_no );
+            }
+
+            $ngo_candidates = array(
+                'labels' => $ngo_labels,
+                'datas' => $ngo_number,
+            );
+            // return $ngo_candidates;
+        }
+
+        return view('pages.listCondidate',
+                compact('candidate',
+                        'grade_candidates',
+                        'age_candidates',
+                        'ngo_candidates'));
     }
 
     /**
@@ -33,7 +183,7 @@ class CandidateController extends Controller
     public function create()
     {
         if(Auth::user()->role_id == 2){
-            return redirect('candidates');
+            return redirect('candidate');
         } else {
             // $answer=Answer::all();
             // $question=Question::all();
@@ -198,7 +348,42 @@ class CandidateController extends Controller
     //     $ngo = NGO::all();
     //     return view('pages.test', compact('ngo'));
     // }
+    public function chart_data() {
+        $grade = Candidate::orderBy('grade', 'asc')->pluck('grade');
+        $current = null;
+        $grade_labels = array();
+        $grade_number = array();
+        $number = 0;
+        if(! empty ($grade)) {
+            foreach ($grade as $item) {
+                if($item != $current) {
+                    if($number > 0) {
+                        array_push( $grade_labels, $current );
+                        array_push( $grade_number, $number );
+                        // push in to array
+                    }
+                    $current = $item;
+                    $number = 1;
+                } else {
+                    $number++;
+                }
+            }
 
-    
-    
+            if( $number > 0 ) {
+                array_push( $grade_labels, $current );
+                array_push( $grade_number, $number );
+            }
+
+            $grade_candidates = array(
+                'labels' => $grade_labels,
+                'datas' => $grade_number,
+            );
+
+        }
+        return $grade_candidates['labels'];
+    }
+
 }
+
+
+

@@ -32,7 +32,7 @@
                 @endforeach
                </tbody>
             </table>
-            <a href="{{ route('candidate.index') }}" title="Go to Login"> <button class="btn btn-primary text-primarys">Back</button></a>
+            <a href="{{ route('candidates.index') }}" title="Go to Login"> <button class="btn btn-primary text-primarys">Back</button></a>
         </div>
     </div>
 </div>

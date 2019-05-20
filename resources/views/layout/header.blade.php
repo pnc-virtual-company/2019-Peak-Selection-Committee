@@ -49,11 +49,11 @@
 
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Candidate
+                Candidates
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('candidates.index')}}">List Candidates</a>
-                <a class="dropdown-item" href="{{route('candidates.create')}}">Create Candidate</a>
+                <a class="dropdown-item" href="{{route('candidates.index')}}">List all of Candidates</a>
+                <a class="dropdown-item" href="{{route('candidates.create')}}">Create a Candidate</a>
 
             </div>
             </li>
@@ -61,11 +61,11 @@
             <li class="nav-item dropdown mr-4">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                User
+                Users
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('users.index')}}">List Users</a>
-                <a class="dropdown-item" href="{{route('users.create')}}">Create User</a>
+                <a class="dropdown-item" href="{{route('users.index')}}">List all of Users</a>
+                <a class="dropdown-item" href="{{route('users.create')}}">Create a User</a>
             </div>
             </li>
 

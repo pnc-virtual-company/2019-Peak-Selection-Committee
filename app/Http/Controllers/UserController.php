@@ -47,7 +47,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if(Auth::user()->role_id == 2){
-            return redirect('candidate');
+            return redirect('candidates');
         } else {
             $users = User::with('roles')->get();
             return view('pages.listUser', ['users' => $users]);
