@@ -14,7 +14,7 @@
         <div class="col-sm-12 col-md-12 col-lg-7">
             <h1 class="text-center">List all of Candidates</h1>
             <br>
-            <div class="text-right">
+            <div class="text-left">
                 @auth
                     @if(Auth::user()->role_id==1)
                         <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4 btn_add_candidate">Add candidate</a>
@@ -32,7 +32,7 @@
                         <th>Province</th>
                         <th>Gender</th>
                         <th>Globa
-                        <th>Seleted<l Grade</th>/th>
+                        <th>Selected<l Grade</th>
                     </tr>
                 </thead>
                 <tbody>
