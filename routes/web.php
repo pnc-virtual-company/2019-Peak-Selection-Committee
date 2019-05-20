@@ -79,3 +79,7 @@ Route::resource('ngo','NgoController');
 Route::get('selected','SelectedCandidate@selected');
 // Route::get('all','SelectedCandidate@allCandidates');
 
+Route::resource('candidate','CandidateController');
+
+Route::resource('ngo','NgoController');
+Route::resource('CandidateDetial', 'DetialController');
