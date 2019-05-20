@@ -24,6 +24,7 @@ class CandidateController extends Controller
      */
     public function index(){
 
+
         $candidate= Candidate::all();
 
         $grade = Candidate::orderBy('grade', 'asc')->pluck('grade');
@@ -173,6 +174,10 @@ class CandidateController extends Controller
                         'grade_candidates',
                         'age_candidates',
                         'ngo_candidates'));
+
+        $candidate= Candidate::all();
+        return view('pages.listCondidate',compact('candidate'));
+
     }
 
     /**
@@ -183,7 +188,7 @@ class CandidateController extends Controller
     public function create()
     {
         if(Auth::user()->role_id == 2){
-            return redirect('candidate');
+            return redirect('candidates');
         } else {
             // $answer=Answer::all();
             // $question=Question::all();
@@ -225,12 +230,13 @@ class CandidateController extends Controller
             \DB::table('answer_candidate')
             ->where('id',$getId->id)
             ->update(["comment"=>$request->note[$i]]);
+            if($j<11){
             if($request->summa[$j]!=""){
                      \DB::table('answer_candidate')
                      ->where('id',$getId->id)
                      ->update(["summary"=>$request->summa[$j]]);
                      $j++;
-            }
+            }}
             ++$i;
         }
         // $candidate->answers()->sync($answer);
@@ -283,10 +289,10 @@ class CandidateController extends Controller
                     'communication'=>$cammunication,
                     'responsibility'=>$responsible
           ]);
-     
 
-        
-        return redirect('/candidate');
+
+
+        return redirect('/candidates');
     }
 
 
@@ -299,10 +305,11 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $candidate=Candidate::find($id);
-        return view('pages.Infocadidate',compact('candidate'));
+        $ngo =Ngo::all();
+        $candidate = Candidate::find($id);
+        // return $candidate->id;
+        return view('pages.detailProfile', compact('candidate', 'ngo'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -312,13 +319,13 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->role_id == 1){
+        // if(Auth::user()->role_id == 1){
             $candidate=Candidate::find($id);
             $ngo =Ngo::all();
             return view('pages.editCaniddate',compact('ngo','candidate'));
-        } else {
-            return "Unauthorise page";
-        }
+        //  } else {
+        //     return "Unauthorise page";
+        // }
     }
 
     /**
@@ -336,7 +343,7 @@ class CandidateController extends Controller
             $request->file('inputFile')->storeAs('/public/img',$fileName);
             \DB::table('candidates')
             ->where('id',$id)
-            ->update(['profile' =>$fileName]);                    
+            ->update(['profile' =>$fileName]);
         }
 
        \DB::table('candidates')
@@ -362,11 +369,14 @@ class CandidateController extends Controller
         \DB::table('answer_candidate')
         ->where('id',$getId->id)
         ->update(["comment"=>$request->note[$i]]);
-        if($request->summa[$j]!=""){
-                 \DB::table('answer_candidate')
-                 ->where('id',$getId->id)
-                 ->update(["summary"=>$request->summa[$j]]);
-                 $j++;
+        if($j<11){
+            if($request->summa[$j]!=""){
+                \DB::table('answer_candidate')
+                ->where('id',$getId->id)
+                ->update(["summary"=>$request->summa[$j]]);
+                $j++;
+       }
+
         }
         ++$i;
     }
@@ -412,14 +422,14 @@ class CandidateController extends Controller
       $responsible=$request->responsible;
       \DB::table('candidates')
       ->where('id',$candidate['id'])
-      ->update(['grade' =>($sign.$grade),
+      ->update(['grade' =>($grade.$sign),
                 'select'=>$select,
                 'summary'=>$summary,
                 'motivation'=>$moivation,
                 'communication'=>$cammunication,
                 'responsibility'=>$responsible
       ]);
-    return redirect('/candidate');}
+    return redirect('/candidates');}
 
     /**
      * Remove the specified resource from storage.
@@ -429,11 +439,9 @@ class CandidateController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->role_id == 2){
-            return redirect('candidates');
-        } else {
-            //
-        }
+        $candidate = Candidate::findOrFail($id);
+        $candidate->delete();
+        return redirect()->route('candidates.index');
     }
     // return response()->json(['return' => 'some data']);
 

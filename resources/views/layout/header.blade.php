@@ -52,8 +52,8 @@
                 Candidates
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('candidates.index')}}">List all of Candidates</a>
-                <a class="dropdown-item" href="{{route('candidates.create')}}">Create a Candidate</a>
+                <a class="dropdown-item" href="{{route('candidates.index')}}"><i class="fas fa-users"></i> List of all Candidates</a>
+                <a class="dropdown-item" href="{{route('candidates.create')}}"><i class="fas fa-briefcase-medical"></i> Create a Candidate</a>
 
             </div>
             </li>
@@ -64,8 +64,8 @@
                 Users
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('users.index')}}">List all of Users</a>
-                <a class="dropdown-item" href="{{route('users.create')}}">Create a User</a>
+                <a class="dropdown-item" href="{{route('users.index')}}"><i class="fas fa-users"></i> List of all Users</a>
+                <a class="dropdown-item" href="{{route('users.create')}}"><i class="fas fa-user-plus"></i> Create a User</a>
             </div>
             </li>
 

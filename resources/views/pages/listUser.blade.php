@@ -3,7 +3,7 @@
 @section('pageTitle', 'List User')
 @section('content')
 <div class="content">
-    <h2 class="text-center">List all of Users</h2>
+    <h2 class="text-center">List of all Users</h2>
     <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -45,7 +45,7 @@
             <br/>
             @auth
                 @if(Auth::user()->role_id==1)
-                    <a href="{{route('users.create')}}"><button class="btn btn-primary"><i class="material-icons left">people</i> Create User</button></a>
+                    <a href="{{route('users.create')}}"><button class="btn btn-primary"><i class="fas fa-user-plus"></i> Create a User</button></a>
                 @endif
             @endauth
         </div>

@@ -9,7 +9,7 @@
         position: absolute;
     }
     .btn_all_candidates {
-        margin-left: 121px;
+        margin-left: 138px;
         position: absolute;
         margin-top: 1px;
     }
@@ -22,7 +22,7 @@
     <div class="content">
         <h2 class="text-center">List all of Selected Candidates</h2>
         <br>
-        <a href="{{route('candidates.index')}}" class="btn btn-primary btn_all_candidates">All of Candidates</a>
+        <a href="{{route('candidates.index')}}" class="btn btn-primary btn_all_candidates"><i class="fas fa-users"></i> All of Candidates</a>
         <table id="tableSelected" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
             <thead>
                 <tr>
@@ -104,7 +104,7 @@
             buttons: [
                 {
                     extend: 'excel',
-                    text: '<button class="btn btn-primary tbn-export">Export List</button>',
+                    text: '<button class="btn btn-primary tbn-export"><i class="fas fa-file-export"></i> Export List</button>',
                 },
             ]
         });

@@ -12,40 +12,42 @@
     <div class="row">
 
         <div class="col-sm-12 col-md-12 col-lg-7">
-            <h1 class="text-center">List all of Candidates</h1>
+            <h1 class="text-center">List of all Candidates</h1>
             <br>
             <div class="text-left">
                 @auth
                     @if(Auth::user()->role_id==1)
-                        <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4 btn_add_candidate">Add candidate</a>
+                        <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4 btn_add_candidate"><i class="fas fa-briefcase-medical"></i>  Add a candidate</a>
                     @endif
                 @endauth
-                <a href="{{url('/selected')}}" class="btn btn-success ml-2">Selected Candidates</a>
+                <a href="{{url('/selected')}}" class="btn btn-success ml-2">
+                    <i class="fas fa-filter"></i> Selected Candidates
+                </a>
             </div>
 
             {{-- table of candidate --}}
-            <table id="listCandidates" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <table id="listCandidates" class="table table-striped table-hover table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Year</th>
                         <th>Province</th>
                         <th>Gender</th>
-                        <th>Globa
-                        <th>Selected<l Grade</th>
+                        <th>Global Grade</th>
+                        <th>Selected</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($candidate as $item)
-                       <tr>
-                           <td>{{$item->Candidate_Name}}</td>
-                           <td>{{$item->years}}</td>
-                           <td>{{$item->province}}</td>
-                           <td>{{$item->gender}}</td>
-                           <td>{{$item->grade}}</td>
-                           <td>{{$item->select}}</td>
-                       </tr>
-                   @endforeach
+                        <tr data-href='{{url("candidates")}}/{{$item->id}}'>
+                            <td>{{$item->Candidate_Name}}</td>
+                            <td>{{$item->years}}</td>
+                            <td>{{$item->province}}</td>
+                            <td>{{$item->gender}}</td>
+                            <td>{{$item->grade}}</td>
+                            <td>{{$item->select}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -263,6 +265,19 @@
         //  ========= end province ==========
 
     // =========== end pie chart ============
+
+
+</script>
+
+<!-- ==============click row show detail============== -->
+
+<script>
+
+$("tbody tr").click(function() {
+    var $row = $(this).closest("tr");
+    var $text = $row.find(".nr").text();
+    window.location = $(this).data("href");
+});
 
 
 </script>
