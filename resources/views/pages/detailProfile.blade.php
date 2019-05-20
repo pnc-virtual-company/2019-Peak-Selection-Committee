@@ -31,24 +31,17 @@
    <form action="{{route('candidate.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
-                <div class="form-group" >
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
-                </div>
+        
       </div>
 
       <div class="col-sm-4 mt-4">
         <br>
-          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" required><br>
+          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" disabled="disabled"><br>
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
           <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
 
-    </select>
-    <select name="sign"  selected="true" >
-     <option value="+">...</option>
-     <option value="+">+</option>
-     <option value="-">-</option>
-</select><br>
+    </select> </br>
 @if ($candidate->Fill_By!=Null)
 <input type="checkbox" name='fil' value="Information is filled by PNC employee" checked><label for="">Information is filled by PNC employee</label>
 @else
@@ -83,24 +76,18 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                   <label for="">Province:</label>
-                <input type="text" name="province" class="form-control" value="{{$candidate->province}}" required>
+                <input type="text" name="province" class="form-control" value="{{$candidate->province}}" disabled="disabled">
                 </div>
-            <div class="col-md-3" >
-
+            <div class="col-md-3">
               <label for="" name="NGO">NGO:</label>
-              <select name="ngo" class="form-control">
+              <select name="ngo" class="form-control" disabled="disabled">
                   @foreach ($ngo as $item)
                    @if ($item->id==$candidate->ngo_id)
-                   <option value="{{$item->id}}" name="ngo" selected>{{$item->name}}</option>
-                   @else
-                   <option value="{{$item->id}}" name="ngo">{{$item->name}}</option>
+                   <option value="{{$item->id}}" name="ngo" selected >{{$item->name}}</option>
                    @endif
                   @endforeach
             </select>
           </div>
-          <div class="col-md-1">
-              <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
-             </div>
     </div>
 
     <br>

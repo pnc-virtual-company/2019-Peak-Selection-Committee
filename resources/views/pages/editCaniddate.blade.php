@@ -440,8 +440,15 @@
             </div>
          @endforeach
       @endfor
-      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
-      <button type="button"  class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
+      <h5>Summary<h5>
+      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
+                 @foreach ($summary as $record)
+                        {{$record->get(3)}}
+            @endforeach 
+
+      
+      </textarea> <br>
+      <button type="button"  class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
 
               </div>
               </div>
@@ -510,7 +517,7 @@
           <br><h5>Summary</h5>
           <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
               @foreach ($summary as $record)
-                        {{$record->get(3)}}
+                        {{$record->get(4)}}
                @endforeach 
           </textarea> <br>
           <button  type="button"  class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix" >Save Information</button><br><br>
@@ -571,7 +578,7 @@
                 <br><h5>Summary</h5>
                 <textarea type="button"  name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
                    @foreach ($summary as $record)
-                        {{$record->get(4)}}
+                        {{$record->get(5)}}
                    @endforeach 
                 </textarea> <br>
                 <button  type="button" class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse1" >Save Information</button><br><br>
@@ -643,7 +650,7 @@
          <br><h5>Summary</h5>
          <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
             @foreach ($summary as $record)
-                        {{$record->get(5)}}
+                        {{$record->get(6)}}
                    @endforeach 
          </textarea> <br>
          <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseK" >Save Information</button><br><br>
@@ -715,7 +722,7 @@
 <br><h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
-                        {{$record->get(6)}}
+                        {{$record->get(7)}}
                    @endforeach 
 </textarea> <br>
 <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseS" >Save Information</button><br><br>
@@ -764,7 +771,7 @@
 <h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
-                        {{$record->get(7)}}
+                        {{$record->get(8)}}
                    @endforeach 
 </textarea> <br>
 <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseC" >Save Information</button><br><br>
@@ -843,7 +850,7 @@
 <h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
-                        {{$record->get(8)}}
+                        {{$record->get(9)}}
                    @endforeach 
 </textarea> <br>
 
@@ -888,7 +895,7 @@
       <h5>Summary</h5>
       <textarea name="summa[]"  cols="30" rows="5" class="form-control" placeholder="Please Comment">
          @foreach ($summary as $record)
-                        {{$record->get(9)}}
+                        {{$record->get(10)}}
           @endforeach 
       </textarea> <br>
 

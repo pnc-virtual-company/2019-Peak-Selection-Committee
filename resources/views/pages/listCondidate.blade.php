@@ -32,79 +32,6 @@
                     </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-                    <tr>
-                        <td>Tiger</td>
-                        <td>System </td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>A</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>Software</td>
-                        <td>London</td>
-                        <td>38</td>
-                        <td>B</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Sakura</td>
-                        <td>Support</td>
-                        <td>Tokyo</td>
-                        <td>37</td>
-                        <td>A</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>Male</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Tiger</td>
-                        <td>System </td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>A+</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>Software</td>
-                        <td>London</td>
-                        <td>38</td>
-                        <td>B+</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Sakura</td>
-                        <td>Support</td>
-                        <td>Tokyo</td>
-                        <td>37</td>
-                        <td>B-</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Thor</td>
-                        <td>Developer</td>
-                        <td>New</td>
-                        <td>61</td>
-                        <td>A-</td>
-                        <td>No</td>
-                    </tr>
-            </tbody>
-        </table>
-            @auth
-               @if(\Auth::user()->role_id==1)
-                    <a href="{{url('candidate/create')}}" class="btn btn-primary btn-sm mb-4">Add candidate</a>
-               @endif
-            @endauth
-=======
                     @foreach ($candidates as $item)
                        <tr>
                            <td>{{$item->Candidate_Name}}</td>
@@ -118,7 +45,6 @@
                 </tbody>
             </table>
            
->>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
         </div>
         {{-- end table of candidate --}}
 

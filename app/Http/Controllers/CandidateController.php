@@ -133,14 +133,10 @@ class CandidateController extends Controller
                     'communication'=>$cammunication,
                     'responsibility'=>$responsible
           ]);
-<<<<<<< HEAD
      
 
         
         return redirect('/candidate');
-=======
-        return redirect('/candidates');
->>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
     }
 
 
@@ -151,7 +147,7 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         $candidate=Candidate::find($id);
         return view('pages.Infocadidate',compact('candidate'));
@@ -166,18 +162,13 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-<<<<<<< HEAD
-        $candidate=Candidate::find($id);
-        $ngo =Ngo::all();
-        return view('pages.editCaniddate',compact('candidate'),compact('ngo'));
-
-=======
-        if(Auth::user()->role_id == 2){
-            return redirect('candidates');
+        if(Auth::user()->role_id == 1){
+            $candidate=Candidate::find($id);
+            $ngo =Ngo::all();
+            return view('pages.editCaniddate',compact('ngo','candidate'));
         } else {
-            //
+            return "Unauthorise page";
         }
->>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
     }
 
     /**
@@ -209,9 +200,10 @@ class CandidateController extends Controller
                  'Fill_By'=>$request->slectionYears
        ]);
     $candidate=Candidate::find($id);
-    dd($candidate->id);
+    \DB::table('answer_candidate')
+        ->where('candidate_id',$candidate->id)
+        ->delete();
     $answer=$request->answer;
-    $candidate->answers()->detach($answer);
     $i=0;
     $j=0;
     foreach($answer as $data){
@@ -228,55 +220,55 @@ class CandidateController extends Controller
         }
         ++$i;
     }
-    // $score=\DB::table('answer_candidate')->where('candidate_id',$candidate['id'])->get();
-    // $TotalScore=0;
-    // $countCoficient=0;
-    // $ScoreGrade=0;
-    // foreach($score as $value){
-    //     if(Answer::find($value->answer_id)->label=="A"){
-    //         $countCoficient+=Answer::find($value->answer_id)->score;
-    //         $TotalScore+=Answer::find($value->answer_id)->score*1;
-    //     }
-    //      else if(Answer::find($value->answer_id)->label=="B"){
-    //         $countCoficient+=Answer::find($value->answer_id)->score;
-    //         $TotalScore+=Answer::find($value->answer_id)->score*2;
-    //     }
-    //     else  if(Answer::find($value->answer_id)->label=="C"){
-    //         $countCoficient+=Answer::find($value->answer_id)->score;
-    //         $TotalScore+=Answer::find($value->answer_id)->score*3;
+    $score=\DB::table('answer_candidate')->where('candidate_id',$candidate['id'])->get();
+    $TotalScore=0;
+    $countCoficient=0;
+    $ScoreGrade=0;
+    foreach($score as $value){
+        if(Answer::find($value->answer_id)->label=="A"){
+            $countCoficient+=Answer::find($value->answer_id)->score;
+            $TotalScore+=Answer::find($value->answer_id)->score*1;
+        }
+         else if(Answer::find($value->answer_id)->label=="B"){
+            $countCoficient+=Answer::find($value->answer_id)->score;
+            $TotalScore+=Answer::find($value->answer_id)->score*2;
+        }
+        else  if(Answer::find($value->answer_id)->label=="C"){
+            $countCoficient+=Answer::find($value->answer_id)->score;
+            $TotalScore+=Answer::find($value->answer_id)->score*3;
 
-    //     }
-    //      else {
-    //         $TotalScore+=Answer::find($value->answer_id)->score*0;
-    //     }
-    // }
-    // $grade=" ";
-    // $select=" ";
-    // $ScoreGrade=$TotalScore/$countCoficient;
-    //   if($ScoreGrade<1.5){
-    //           $grade="A";
-    //           $select="Yes";
-    //   }else if($ScoreGrade<2.5){
-    //           $grade="B";
-    //           $select="Yes";
-    //   }else{
-    //       $grade="Fail";
-    //       $select="No";
-    //   }
-    //   $summary=$request->summary;
-    //   $sign=$request->sign;
-    //   $moivation=$request->moivation;
-    //   $cammunication=$request->cammunication;
-    //   $responsible=$request->responsible;
-    //   \DB::table('candidates')
-    //   ->where('id',$candidate['id'])
-    //   ->update(['grade' =>($sign.$grade),
-    //             'select'=>$select,
-    //             'summary'=>$summary,
-    //             'motivation'=>$moivation,
-    //             'communication'=>$cammunication,
-    //             'responsibility'=>$responsible
-    //   ]);
+        }
+         else {
+            $TotalScore+=Answer::find($value->answer_id)->score*0;
+        }
+    }
+    $grade=" ";
+    $select=" ";
+    $ScoreGrade=$TotalScore/$countCoficient;
+      if($ScoreGrade<1.5){
+              $grade="A";
+              $select="Yes";
+      }else if($ScoreGrade<2.5){
+              $grade="B";
+              $select="Yes";
+      }else{
+          $grade="Fail";
+          $select="No";
+      }
+      $summary=$request->summary;
+      $sign=$request->sign;
+      $moivation=$request->moivation;
+      $cammunication=$request->cammunication;
+      $responsible=$request->responsible;
+      \DB::table('candidates')
+      ->where('id',$candidate['id'])
+      ->update(['grade' =>($sign.$grade),
+                'select'=>$select,
+                'summary'=>$summary,
+                'motivation'=>$moivation,
+                'communication'=>$cammunication,
+                'responsibility'=>$responsible
+      ]);
     return redirect('/candidate');}
 
     /**

@@ -79,10 +79,7 @@ Route::resource('ngo','NgoController');
 Route::get('selected','SelectedCandidate@selected');
 // Route::get('all','SelectedCandidate@allCandidates');
 
-<<<<<<< HEAD
 Route::resource('candidate','CandidateController');
 
 Route::resource('ngo','NgoController');
-Route::get('/CandidateSummary', 'DetialController@detial');
-=======
->>>>>>> 62a1bd74be840ac5bf541157bc7e77691aac8ce0
+Route::resource('CandidateDetial', 'DetialController');
