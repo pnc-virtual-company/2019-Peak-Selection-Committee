@@ -21,8 +21,8 @@ class CandidateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $candidates= Candidate::all();
-        return view('pages.listCondidate',compact('candidates'));
+        $candidate= Candidate::all();
+        return view('pages.listCondidate',compact('candidate'));
     }
 
     /**
@@ -149,10 +149,9 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $candidate=Candidate::find($id);
-        return view('pages.Infocadidate',compact('candidate'));
+        $candidate = Candidate::find($id);
+        return view('pages.Infocadidate')->with('candidate',$candidate);
     }
-
 
     /**
      * Show the form for editing the specified resource.

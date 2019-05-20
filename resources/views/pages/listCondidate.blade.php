@@ -20,7 +20,7 @@
             <br><br>
 
             {{-- table of candidate --}}
-            <table id="listCandidates" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <table id="listCandidates" class="table table-striped table-hover table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -32,16 +32,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($candidates as $item)
-                       <tr>
-                           <td>{{$item->Candidate_Name}}</td>
-                           <td>{{$item->years}}</td>
-                           <td>{{$item->province}}</td>
-                           <td>{{$item->gender}}</td>
-                           <td>{{$item->grade}}</td>
-                           <td>{{$item->select}}</td>
-                       </tr>
-                   @endforeach
+                @foreach ($candidate as $item)
+                    <tr class='clickable-row' data-href='{{url("candidate")}}/{{$item->id}}'>
+                            <td class="nr" style="display:none">{{$item->id}}</td>
+                            <td>{{$item->Candidate_Name}}</td>
+                            <td>{{$item->years}}</td>
+                            <td>{{$item->province}}</td>
+                            <td>{{$item->gender}}</td>
+                            <td>{{$item->grade}}</td>
+                            <td>{{$item->select}}</td>                   
+                    </tr>                   
+                @endforeach
                 </tbody>
             </table>
            
@@ -291,6 +292,19 @@
         //  ========= end province ==========
 
     // =========== end pie chart ============
+
+
+</script>
+
+<!-- ==============click row show detail============== -->
+
+<script>
+
+$("tr").click(function() {
+    var $row = $(this).closest("tr");   
+    var $text = $row.find(".nr").text();  
+    window.location = $(this).data("href");
+});
 
 
 </script>
