@@ -32,8 +32,10 @@
 
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light sticky-top">
     <div class="container-fluid">
+
     <a class="navbar-brand" href="{{route('candidates.index')}}">
-      <img src="{{asset('storage/img/logo.png')}}" style="width: 145px;" alt="">
+      <img src="{{url('storage/img/logo.png')}}" style="width: 145px;" alt="">
+
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -50,18 +52,20 @@
                 Candidates
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('candidates.index')}}">List all of Candidates</a>
-                <a class="dropdown-item" href="{{route('candidates.create')}}">Create a Candidate</a>
+                <a class="dropdown-item" href="{{route('candidates.index')}}"><i class="fas fa-users"></i> List of all Candidates</a>
+                <a class="dropdown-item" href="{{route('candidates.create')}}"><i class="fas fa-briefcase-medical"></i> Create a Candidate</a>
+
             </div>
             </li>
 
             <li class="nav-item dropdown mr-4">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                 Users
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('users.index')}}">List all of Users</a>
-                <a class="dropdown-item" href="{{route('users.create')}}">Create a User</a>
+                <a class="dropdown-item" href="{{route('users.index')}}"><i class="fas fa-users"></i> List of all Users</a>
+                <a class="dropdown-item" href="{{route('users.create')}}"><i class="fas fa-user-plus"></i> Create a User</a>
             </div>
             </li>
 
@@ -70,7 +74,7 @@
 
         <li class="nav-item">
 
-          <a class="nav-link" href="{{ route('logout') }}"
+          <a class="nav-link" href="{{ route('logout') }}" title="Logout"
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
               <i class="material-icons">logout</i>

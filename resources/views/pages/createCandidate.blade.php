@@ -94,6 +94,7 @@
 
               <label for="" name="NGO">NGO:</label>
               <select name="ngo" class="form-control">
+                  <option value="">None</option>
                   @foreach ($ngo as $item)
                     <option value="{{$item->id}}" name="ngo">{{$item->name}}</option>
                   @endforeach
@@ -176,7 +177,7 @@
     @endfor
     <br><h5>Summary</h5>
     <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
-    <button class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" >Save Information</button><br><br>
+    <button  type="button" class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" >Save Information</button><br><br>
     </div>
     </div>
     </div>
@@ -365,7 +366,8 @@
             </div>
          @endforeach
       @endfor
-      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
+      <h3>summary</h3>
+      <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
       <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
 
               </div>

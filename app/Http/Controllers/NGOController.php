@@ -45,7 +45,7 @@ class NgoController extends Controller
             'name' => 'required',
         ]);
         Ngo::create($request->all());
-        return redirect()->route('candidate.create');
+        return redirect()->route('candidates.create');
     }
 
     /**
@@ -92,6 +92,6 @@ class NgoController extends Controller
     {
        $ngo = Ngo::findOrFail($id);
        $ngo->delete();
-       return redirect()->route('candidate.create');
+       return redirect()->route('candidates.create');
     }
 }
