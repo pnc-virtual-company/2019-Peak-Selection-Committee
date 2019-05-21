@@ -18,6 +18,14 @@
             console.log(url);
             $('#fid').attr('action',url); //get Id form
         })
+        $('#deleteCandidate').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');  //get Id from button
+            var modal = $(this);
+            var url="{{url('candidates')}}/"+id;
+            console.log(url);
+            $('#fid').attr('action',url); //get Id form
+        })
     </script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

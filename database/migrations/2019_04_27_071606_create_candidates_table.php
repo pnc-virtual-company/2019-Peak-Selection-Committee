@@ -19,7 +19,7 @@ class CreateCandidatesTable extends Migration
             $table->text('province');
             $table->text('grade')->nullable();
             $table->text('years');
-            $table->integer('ngo_id')->unsigned();
+            $table->integer('ngo_id')->unsigned()->nullable();
             $table->foreign('ngo_id')
             ->references('id')
             ->on('ngos')

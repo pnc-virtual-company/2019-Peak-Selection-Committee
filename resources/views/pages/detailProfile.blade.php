@@ -1,5 +1,5 @@
 @extends('template')
-@section('pageTitle', 'Edit Candidate')
+@section('pageTitle', 'Profile Detail')
 @section('content')
 
 <style>
@@ -27,21 +27,30 @@
       {{-- upload profile --}}
 
       <div class="col-sm-4 mt-4">
-   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-   <form action="{{route('candidate.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
+   @if ($candidate->profile==Null)
+                   <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+        @else
+                  <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+      @endif    
+    <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
-        
+                <div class="form-group" >
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
+                </div>
       </div>
-
       <div class="col-sm-4 mt-4">
         <br>
-          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" disabled="disabled"><br>
+          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" required><br>
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
           <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
-
-    </select> </br>
+    </select>
+    <select name="sign"  selected="true" >
+     <option value="+">...</option>
+     <option value="+">+</option>
+     <option value="-">-</option>
+</select><br>
 @if ($candidate->Fill_By!=Null)
 <input type="checkbox" name='fil' value="Information is filled by PNC employee" checked><label for="">Information is filled by PNC employee</label>
 @else
@@ -61,7 +70,7 @@
 
 
     {{-- Part1 --}}
-
+{{--  {{dd($candidate->province)}}  --}}
     <div class="panel-group mt-4 " id="accordion">
         <div class="panel panel-primary ">
             <div class="panel-heading " data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
@@ -75,19 +84,36 @@
              <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                  <label for="">Province:</label>
-                <input type="text" name="province" class="form-control" value="{{$candidate->province}}" disabled="disabled">
+             <select name="province" class="form-control">
+                  <option value="none">Province</option                 
+                   @foreach (DB::table('provinces')->get() as $item)
+                   
+                   @if ($candidate->province==$item->province)
+                    <option value="{{$item->province}}" selected>{{$item->province}}</option>
+                   @else
+                     <option value="{{$item->province}}">{{$item->province}}</option>
+                    @endif                  
+                  @endforeach
+            
+            </select>
                 </div>
-            <div class="col-md-3">
+            <div class="col-md-3" >
+
               <label for="" name="NGO">NGO:</label>
-              <select name="ngo" class="form-control" disabled="disabled">
+              <select name="ngo" class="form-control">
+                <option value="">None</option>
                   @foreach ($ngo as $item)
                    @if ($item->id==$candidate->ngo_id)
-                   <option value="{{$item->id}}" name="ngo" selected >{{$item->name}}</option>
+                   <option value="{{$item->id}}" name="ngo" selected>{{$item->name}}</option>
+                   @else
+                   <option value="{{$item->id}}" name="ngo">{{$item->name}}</option>
                    @endif
                   @endforeach
             </select>
           </div>
+          <div class="col-md-1">
+              <a href="" class="text-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="material-icons">edit</i> </a>
+             </div>
     </div>
 
     <br>
@@ -117,7 +143,7 @@
 {{-- /******************************************************************************************************************/ --}}
 
 <?php  $test=array();
-     
+
 ?>
 @for($id=4;$id<=6;++$id)
     @foreach ($question=DB::table('questions')->where('id',$id)->get() as $value)
@@ -136,10 +162,10 @@
              </select>
           </div>
           <div class="col-sm-6">
-           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">          
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                 @foreach ($test as $note)
                         {{$note->comment}}
-                @endforeach           
+                @endforeach
            </textarea>
           </div>
       </div>
@@ -176,24 +202,24 @@
                <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                 @foreach ($test as $note)
                         {{$note->comment}}
-                @endforeach 
+                @endforeach
                </textarea>
               </div>
           </div>
        @endforeach
     @endfor
     <br><h5>Summary</h5>
-    <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">     
+    <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
        @foreach ($summary as $record)
          {{$record->get(0)}}
-       @endforeach     
+       @endforeach
     </textarea> <br>
     <button  type="button" class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" >Save Information</button><br><br>
     </div>
     </div>
     </div>
 
-    {{--****************************Part2**************************************************************************8  --}}
+    {{--********************************************Part2**************************************************************************  --}}
 
       <div class="panel panel-primary">
           <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
@@ -229,9 +255,11 @@
                                </select>
                             </div>
                             <div class="col-sm-6">
-                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> @foreach ($test as $note)
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> 
+                              <p>@foreach ($test as $note)
                                       {{$note->comment}}
                                @endforeach 
+                              </p> 
                             </textarea>
                             </div>
                         </div>
@@ -256,7 +284,7 @@
                 <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                             @foreach ($test as $note)
                               {{$note->comment}}
-                           @endforeach 
+                           @endforeach
                 </textarea>
                </div>
            </div>
@@ -281,7 +309,7 @@
             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                      @foreach ($test as $note)
                         {{$note->comment}}
-                    @endforeach 
+                    @endforeach
             </textarea>
            </div>
        </div>
@@ -291,7 +319,7 @@
                   <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
                   @foreach ($summary as $record)
                         {{$record->get(1)}}
-                   @endforeach    
+                   @endforeach
                   </textarea> <br>
                   <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" >Save Information</button><br><br>
                   </div>
@@ -326,7 +354,7 @@
                         <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                          @foreach ($test as $note)
                             {{$note->comment}}
-                         @endforeach 
+                         @endforeach
                         </textarea>
                        </div>
                    </div>
@@ -351,7 +379,7 @@
                    <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                         {{$note->comment}}
-                     @endforeach 
+                     @endforeach
                    </textarea>
                   </div>
               </div>
@@ -361,7 +389,7 @@
         <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
            @foreach ($summary as $record)
                         {{$record->get(2)}}
-            @endforeach 
+            @endforeach
         </textarea> <br>
         <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse4" >Save Information</button><br><br>
 
@@ -396,7 +424,7 @@
                        <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                          @foreach ($test as $note)
                            {{$note->comment}}
-                        @endforeach 
+                        @endforeach
                        </textarea>
                       </div>
                   </div>
@@ -421,14 +449,22 @@
                  <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                              {{$note->comment}}
-                      @endforeach 
+                      @endforeach
                  </textarea>
                 </div>
             </div>
          @endforeach
       @endfor
-      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
-      <button type="button"  class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
+      <h5>Summary<h5>
+      <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
+  
+                 @foreach ($summary as $record)
+                        {{$record->get(3)}}
+            @endforeach
+
+
+      </textarea> <br>
+      <button type="button"  class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
 
               </div>
               </div>
@@ -462,7 +498,7 @@
                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                         {{$note->comment}}
-                      @endforeach 
+                      @endforeach
                      </textarea>
                     </div>
                 </div>
@@ -488,7 +524,7 @@
                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                         {{$note->comment}}
-                      @endforeach 
+                      @endforeach
                      </textarea>
                     </div>
                 </div>
@@ -497,16 +533,14 @@
           <br><h5>Summary</h5>
           <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
               @foreach ($summary as $record)
-                        {{$record->get(3)}}
-               @endforeach 
+                        {{$record->get(4)}}
+               @endforeach
           </textarea> <br>
           <button  type="button"  class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix" >Save Information</button><br><br>
 
               </div>
               </div>
               {{-- </div> --}}
-
-
 
           </div>
       </div>
@@ -549,7 +583,7 @@
                            <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                             @foreach ($test as $note)
                                   {{$note->comment}}
-                            @endforeach 
+                            @endforeach
                            </textarea>
                           </div>
                       </div>
@@ -558,8 +592,8 @@
                 <br><h5>Summary</h5>
                 <textarea type="button"  name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
                    @foreach ($summary as $record)
-                        {{$record->get(4)}}
-                   @endforeach 
+                        {{$record->get(5)}}
+                   @endforeach
                 </textarea> <br>
                 <button  type="button" class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse1" >Save Information</button><br><br>
                 </div>
@@ -594,7 +628,7 @@
                       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                        @foreach ($test as $note)
                            {{$note->comment}}
-                        @endforeach 
+                        @endforeach
                       </textarea>
                      </div>
                  </div>
@@ -620,7 +654,7 @@
                   <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                    @foreach ($test as $note)
                         {{$note->comment}}
-                   @endforeach 
+                   @endforeach
                   </textarea>
                  </div>
              </div>
@@ -630,8 +664,8 @@
          <br><h5>Summary</h5>
          <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
             @foreach ($summary as $record)
-                        {{$record->get(5)}}
-                   @endforeach 
+                        {{$record->get(6)}}
+                   @endforeach
          </textarea> <br>
          <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseK" >Save Information</button><br><br>
 
@@ -666,7 +700,7 @@
                       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                        @foreach ($test as $note)
                         {{$note->comment}}
-                       @endforeach 
+                       @endforeach
                       </textarea>
                      </div>
                  </div>
@@ -692,7 +726,7 @@
          <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
           @foreach ($test as $note)
                         {{$note->comment}}
-            @endforeach 
+            @endforeach
          </textarea>
         </div>
     </div>
@@ -702,8 +736,8 @@
 <br><h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
-                        {{$record->get(6)}}
-                   @endforeach 
+                        {{$record->get(7)}}
+                   @endforeach
 </textarea> <br>
 <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseS" >Save Information</button><br><br>
 
@@ -740,7 +774,7 @@
            <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                   @foreach ($test as $note)
                         {{$note->comment}}
-                @endforeach 
+                @endforeach
            </textarea>
           </div>
       </div>
@@ -751,8 +785,8 @@
 <h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
-                        {{$record->get(7)}}
-                   @endforeach 
+                        {{$record->get(8)}}
+                   @endforeach
 </textarea> <br>
 <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseC" >Save Information</button><br><br>
 
@@ -792,7 +826,7 @@
            <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                 @foreach ($test as $note)
                         {{$note->comment}}
-                @endforeach 
+                @endforeach
            </textarea>
           </div>
       </div>
@@ -819,7 +853,7 @@
        <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
               @foreach ($test as $note)
                         {{$note->comment}}
-                @endforeach 
+                @endforeach
        </textarea>
       </div>
   </div>
@@ -830,8 +864,8 @@
 <h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
-                        {{$record->get(8)}}
-                   @endforeach 
+                        {{$record->get(9)}}
+                   @endforeach
 </textarea> <br>
 
 <button type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseD" >Save Information</button><br><br>
@@ -856,7 +890,7 @@
                   @foreach ( DB::table('answers')->where('Question_id',72)->get() as $value)
                   <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                         selected
-                       <?php  $test=DB::table('answer_candidate')->where('answer_id',$value->id)->Where('candidate_id',$candidate->id)->get();?>           
+                       <?php  $test=DB::table('answer_candidate')->where('answer_id',$value->id)->Where('candidate_id',$candidate->id)->get();?>
                    @endif>{{$value->label.". ".$value->answer}}</option>
                   @endforeach
                </select>
@@ -865,7 +899,7 @@
              <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                    @foreach ($test as $note)
                         {{$note->comment}}
-                  @endforeach 
+                  @endforeach
              </textarea>
             </div>
         </div>
@@ -875,8 +909,8 @@
       <h5>Summary</h5>
       <textarea name="summa[]"  cols="30" rows="5" class="form-control" placeholder="Please Comment">
          @foreach ($summary as $record)
-                        {{$record->get(9)}}
-          @endforeach 
+                        {{$record->get(10)}}
+          @endforeach
       </textarea> <br>
 
       <button type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseT" >Save Information</button><br><br>
@@ -892,7 +926,6 @@
     <textarea name="summary" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment" required>
     {{$candidate->summary}}
     </textarea> <br>
-    <button type="submit" class="btn btn-info float-right ">Save Information</button>
 
   </form>
 

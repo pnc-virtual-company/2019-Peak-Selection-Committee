@@ -14,7 +14,7 @@ class AddGenderToCandidatesTable extends Migration
     public function up()
     {
         Schema::table('candidates', function (Blueprint $table) {
-            $table->text('gender');
+            $table->text('gender')->nullable();
         });
     }
 

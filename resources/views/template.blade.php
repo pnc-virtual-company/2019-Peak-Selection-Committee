@@ -6,7 +6,7 @@
     </div>
 
     @stack('scripts')
-
+    
 @include('layout.footer')
 
 
