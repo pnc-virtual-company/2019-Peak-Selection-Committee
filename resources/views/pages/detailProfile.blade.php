@@ -25,8 +25,9 @@
   {{-- /*********************************Student Information***********************************************************************/ --}}
     <div class="row">
       {{-- upload profile --}}
+
       <div class="col-sm-4 mt-4">
-   <img src="{{ asset('storage/img/'.$candidate->profile) }}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
    <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')

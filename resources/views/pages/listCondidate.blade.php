@@ -6,6 +6,10 @@
     .btn_add_candidate{
         margin-top: 24px;
     }
+
+    #listCandidates tbody tr {
+        cursor: pointer;
+    }
 </style>
 
 <div class="content">

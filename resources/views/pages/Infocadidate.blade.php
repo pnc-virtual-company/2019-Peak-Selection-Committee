@@ -124,7 +124,7 @@
                     <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
             <div class="float-right">
                 <a href="#!"  data-toggle="modal" data-target="#deleteCandidate" data-id="{{$candidate['id']}}" class="text-danger"><button class="btn btn-danger btn-sm">Delete profile</button></a>
-                <a href="{{url('candidates/'.$candidate['id']."/show")}}"><button class="btn btn-success btn-sm">See profile details</button></a>
+                <a href="{{url('/CandidateDetial')}}"><button class="btn btn-success btn-sm">See profile details</button></a>
                 <a href="{{url('candidates/'.$candidate['id']."/edit")}}" class="btn btn-primary btn-sm">Edit</a>
 
             </div>

@@ -19,6 +19,10 @@
        /* symbol for "collapsed" panels */
        content:"\f078";
     }
+
+    textarea {
+        resize: none;
+    }
     </style>
 
     <div class="container mt-4 ">
@@ -884,9 +888,10 @@
             </div>
             <div class="col-sm-6">
              <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
-                   @foreach ($test as $note)
+
+                    @foreach ($test as $note)
                         {{$note->comment}}
-                  @endforeach
+                    @endforeach
              </textarea>
             </div>
         </div>
@@ -895,9 +900,9 @@
       <br>
       <h5>Summary</h5>
       <textarea name="summa[]"  cols="30" rows="5" class="form-control" placeholder="Please Comment">
-         @foreach ($summary as $record)
-                        {{$record->get(10)}}
-          @endforeach
+            @foreach ($summary as $record)
+                {{$record->get(10)}}
+            @endforeach
       </textarea> <br>
 
       <button type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseT" >Save Information</button><br><br>
@@ -911,7 +916,7 @@
     </div>
     <br><br>
     <textarea name="summary" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment" required>
-    {{$candidate->summary}}
+        {{$candidate->summary}}
     </textarea> <br>
     <button type="submit" class="btn btn-info float-right ">Save Information</button>
 

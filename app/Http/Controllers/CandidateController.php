@@ -305,10 +305,8 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $ngo =Ngo::all();
         $candidate = Candidate::find($id);
-        // return $candidate->id;
-        return view('pages.detailProfile', compact('candidate', 'ngo'));
+        return view('pages.Infocadidate')->with('candidate',$candidate);
     }
 
     /**
