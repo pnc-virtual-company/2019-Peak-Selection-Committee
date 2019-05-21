@@ -1,9 +1,6 @@
 @extends('template')
-
 @section('pageTitle', 'Information Candidate')
-
 @section('content')
-
 <div class="content">
 <h1 class="text-center">Information of candidate</h1>
     <div class="card mt-4">
@@ -11,12 +8,16 @@
 
           <div class="container mt-4">
               <div class="row">
-                <div class="col-md-6 mt-4">
-                 <img src="{{url('storage/img/'.$candidate['profile'])}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-                    <span class="ml-4"><b>Student Name : </b>{{$candidate['Candidate_Name']}}</span><br><br><br>
-                        <div style="margin-left:180px; margin-top:-105px;">
-                            <span><b>Gender : </b>{{$candidate['gender']}}</span><br>
-                            <span><b>Age:</b>{{$candidate['age']}}</span><br>
+                <div class="col-md-6 mt-4">               
+                @if ($candidate->profile==Null)
+                   <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+                @else
+                  <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+                @endif             
+                    <span><b>Student Name : </b>{{$candidate->Candidate_Name}}</span><br><br>
+                        <div style="margin-left:155px; margin-top:-50px;"> 
+                            <span><b>Gender : </b>{{$candidate->gender}}</span><br>
+                            <span><b>Age:</b>{{$candidate->age}}</span><br>
                             <span><b>Province : </b>{{$candidate['province']}}</span><br>
                             <span><b>Year : </b>{{$candidate['years']}}</span><br>
                         </div>
@@ -35,7 +36,11 @@
                     {{$record}}
                 @endforeach
                 </p>
-                <input type="checkbox" style="margin-left:-5px;"><label for=""><b>Information from PNC employee</b></label>
+@if ($candidate->Fill_By!=Null)
+<input type="checkbox" name='fil' value="Information is filled by PNC employee" checked><label for="">Information is filled by PNC employee</label>
+@else
+<input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
+@endif
             </div>
         </div>
         <hr>
@@ -124,7 +129,7 @@
                     <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
             <div class="float-right">
                 <a href="#!"  data-toggle="modal" data-target="#deleteCandidate" data-id="{{$candidate['id']}}" class="text-danger"><button class="btn btn-danger btn-sm">Delete profile</button></a>
-                <a href="{{url('candidates/'.$candidate['id']."/show")}}"><button class="btn btn-success btn-sm">See profile details</button></a>
+                <a href="{{url('CandidateDetial/'.$candidate['id']."")}}"><button class="btn btn-success btn-sm">See profile details</button></a>
                 <a href="{{url('candidates/'.$candidate['id']."/edit")}}" class="btn btn-primary btn-sm">Edit</a>
 
             </div>

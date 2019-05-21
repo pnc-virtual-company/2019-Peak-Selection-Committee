@@ -87,8 +87,16 @@
              <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                  <label for="">Province:</label>
-                <input type="text" name="province" class="form-control" required>
+                   selection                
+                  
+             <select name="province" class="form-control">
+                  <option value="none">Province</option                 
+                   @foreach (DB::table('provinces')->get() as $item)
+                    <option value="{{$item->province}}" name="ngo">{{$item->province}}</option>
+                  @endforeach
+            
+            </select>
+
                 </div>
             <div class="col-md-3" >
 
@@ -366,7 +374,7 @@
             </div>
          @endforeach
       @endfor
-      <h3>summary</h3>
+      <h5>Summary</h5>
       <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"></textarea> <br>
       <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
 

@@ -231,12 +231,14 @@ class CandidateController extends Controller
             ->where('id',$getId->id)
             ->update(["comment"=>$request->note[$i]]);
             if($j<11){
-            if($request->summa[$j]!=""){
-                     \DB::table('answer_candidate')
-                     ->where('id',$getId->id)
-                     ->update(["summary"=>$request->summa[$j]]);
-                     $j++;
-            }}
+                if($request->summa[$j]!=""){             
+                    \DB::table('answer_candidate')
+                    ->where('id',$getId->id)
+                    ->update(["summary"=>$request->summa[$j]]);
+                    ++$j;
+            }
+            }
+           
             ++$i;
         }
         // $candidate->answers()->sync($answer);
@@ -264,8 +266,11 @@ class CandidateController extends Controller
         }
         $grade=" ";
         $select=" ";
-        $ScoreGrade=$TotalScore/$countCoficient;
-          if($ScoreGrade<1.5){
+        if($TotalScore!=0){ 
+            $ScoreGrade=$TotalScore/$countCoficient;
+        };       
+        
+        if($ScoreGrade<1.5){
                   $grade="A";
                   $select="Yes";
           }else if($ScoreGrade<2.5){
@@ -308,7 +313,7 @@ class CandidateController extends Controller
         $ngo =Ngo::all();
         $candidate = Candidate::find($id);
         // return $candidate->id;
-        return view('pages.detailProfile', compact('candidate', 'ngo'));
+        return view('pages.Infocadidate', compact('candidate', 'ngo'));
     }
 
     /**
@@ -337,6 +342,7 @@ class CandidateController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $fileName="";
         if( $request->hasFile('inputFile')){
             $fileName=$request->file('inputFile')->getClientOriginalName();
@@ -404,7 +410,9 @@ class CandidateController extends Controller
     }
     $grade=" ";
     $select=" ";
-    $ScoreGrade=$TotalScore/$countCoficient;
+    if($TotalScore!=0){ 
+        $ScoreGrade=$TotalScore/$countCoficient;
+    }
       if($ScoreGrade<1.5){
               $grade="A";
               $select="Yes";
@@ -444,8 +452,6 @@ class CandidateController extends Controller
         return redirect()->route('candidates.index');
     }
     // return response()->json(['return' => 'some data']);
-
-
     // public function testing() {
     //     $ngo = NGO::all();
     //     return view('pages.test', compact('ngo'));

@@ -27,22 +27,24 @@
       {{-- upload profile --}}
 
       <div class="col-sm-4 mt-4">
-   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-   <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
+   @if ($candidate->profile==Null)
+                   <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+        @else
+                  <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+      @endif    
+    <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
                 <div class="form-group" >
                   <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
                 </div>
       </div>
-
       <div class="col-sm-4 mt-4">
         <br>
           <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" required><br>
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
           <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
-
     </select>
     <select name="sign"  selected="true" >
      <option value="+">...</option>
@@ -68,7 +70,7 @@
 
 
     {{-- Part1 --}}
-
+{{--  {{dd($candidate->province)}}  --}}
     <div class="panel-group mt-4 " id="accordion">
         <div class="panel panel-primary ">
             <div class="panel-heading " data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
@@ -82,8 +84,18 @@
              <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                  <label for="">Province:</label>
-                <input type="text" name="province" class="form-control" value="{{$candidate->province}}" required>
+             <select name="province" class="form-control">
+                  <option value="none">Province</option                 
+                   @foreach (DB::table('provinces')->get() as $item)
+                   
+                   @if ($candidate->province==$item->province)
+                    <option value="{{$item->province}}" selected>{{$item->province}}</option>
+                   @else
+                     <option value="{{$item->province}}">{{$item->province}}</option>
+                    @endif                  
+                  @endforeach
+            
+            </select>
                 </div>
             <div class="col-md-3" >
 
@@ -207,7 +219,7 @@
     </div>
     </div>
 
-    {{--****************************Part2**************************************************************************8  --}}
+    {{--********************************************Part2**************************************************************************  --}}
 
       <div class="panel panel-primary">
           <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
@@ -243,9 +255,11 @@
                                </select>
                             </div>
                             <div class="col-sm-6">
-                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> @foreach ($test as $note)
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> 
+                              <p>@foreach ($test as $note)
                                       {{$note->comment}}
-                               @endforeach
+                               @endforeach 
+                              </p> 
                             </textarea>
                             </div>
                         </div>
@@ -443,6 +457,7 @@
       @endfor
       <h5>Summary<h5>
       <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
+  
                  @foreach ($summary as $record)
                         {{$record->get(3)}}
             @endforeach
@@ -526,8 +541,6 @@
               </div>
               </div>
               {{-- </div> --}}
-
-
 
           </div>
       </div>
