@@ -119,7 +119,7 @@
         <input type="number" class="input-group-sm form-control " name="age" required style="width:65px">
     </div>
     <div class="col-sm-4">
-        <label for="">Years of selection</label>
+        <label for="">Year of selection</label>
          <input type="number" name="slectionYears"   class="input-group-sm  form-control" required  style="width:100px">
     </div>
     </div>

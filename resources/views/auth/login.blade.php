@@ -58,9 +58,7 @@
                            </button>
                            
                            <hr>
-                           <a class="nav-link text-center" href="{{ route('register') }}">
-                               {{ __('Register New User') }}
-                           </a>
+                           
                        </div>
                    </form>
                </div>

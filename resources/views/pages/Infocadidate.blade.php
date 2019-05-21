@@ -5,6 +5,7 @@
 @section('content')
 <div class="content">
 <h1 class="text-center">Information of candidate</h1>
+
     <div class="card mt-4">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 

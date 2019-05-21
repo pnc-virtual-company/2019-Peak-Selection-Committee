@@ -185,11 +185,10 @@ class CandidateController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->role_id == 2){
-            return redirect('candidates');
-        } else {
-            //
-        }
+            $candidate = Candidate::findOrFail($id);
+            $candidate->delete();
+            return redirect()->route('candidates.index');
+       
     }
     // return response()->json(['return' => 'some data']);
 

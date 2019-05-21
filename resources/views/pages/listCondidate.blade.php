@@ -23,6 +23,7 @@
             <table id="listCandidates" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
+                        <th>Action</th>
                         <th>Name</th>
                         <th>Year</th>
                         <th>Province</th>
@@ -34,6 +35,10 @@
                 <tbody>
                     @foreach ($candidates as $item)
                        <tr>
+                           <td>
+                                <a href="{{url('candidates')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
+                                <a href="{{route('candidates.destroy', $item->id)}}"  data-toggle="modal" data-target="#deleteCandidate" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
+                           </td>
                            <td>{{$item->Candidate_Name}}</td>
                            <td>{{$item->years}}</td>
                            <td>{{$item->province}}</td>
@@ -72,6 +77,36 @@
 </div>
 
 @endsection
+
+
+{{-- Modal of delete user --}}
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteCandidate">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete a Candidate</h5>
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p>
+          <small id="users"></small>
+        </div>
+        <div class="modal-footer">
+            <form action="" id="fid" method="post">
+                @csrf
+                @method('delete')
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="submit"  class="btn btn-primary">Yes</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{-- end of modal delete user --}}
 
 {{-- pie chart --}}
 <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
