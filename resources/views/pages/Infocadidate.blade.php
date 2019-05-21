@@ -8,14 +8,14 @@
 
           <div class="container mt-4">
               <div class="row">
-                <div class="col-md-6 mt-4">               
+                <div class="col-md-6 mt-4">
                 @if ($candidate->profile==Null)
                    <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
                 @else
                   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-                @endif             
+                @endif
                     <span><b>Student Name : </b>{{$candidate->Candidate_Name}}</span><br><br>
-                        <div style="margin-left:155px; margin-top:-50px;"> 
+                        <div style="margin-left:155px; margin-top:-50px;">
                             <span><b>Gender : </b>{{$candidate->gender}}</span><br>
                             <span><b>Age:</b>{{$candidate->age}}</span><br>
                             <span><b>Province : </b>{{$candidate['province']}}</span><br>
@@ -129,6 +129,7 @@
                     <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
             <div class="float-right">
                 <a href="#!"  data-toggle="modal" data-target="#deleteCandidate" data-id="{{$candidate['id']}}" class="text-danger"><button class="btn btn-danger btn-sm">Delete profile</button></a>
+                {{-- <a href="{{url('/CandidateDetial')}}"><button class="btn btn-success btn-sm">See profile details</button></a> --}}
                 <a href="{{url('CandidateDetial/'.$candidate['id']."")}}"><button class="btn btn-success btn-sm">See profile details</button></a>
                 <a href="{{url('candidates/'.$candidate['id']."/edit")}}" class="btn btn-primary btn-sm">Edit</a>
 

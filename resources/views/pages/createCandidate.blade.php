@@ -19,6 +19,10 @@
        /* symbol for "collapsed" panels */
        content:"\f078";
     }
+
+    textarea {
+        resize: none;
+    }
     </style>
 
 

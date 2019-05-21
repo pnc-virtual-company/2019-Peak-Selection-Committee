@@ -27,11 +27,13 @@
       {{-- upload profile --}}
 
       <div class="col-sm-4 mt-4">
+   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+   <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
    @if ($candidate->profile==Null)
                    <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
         @else
                   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-      @endif    
+      @endif
     <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
@@ -85,16 +87,16 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
              <select name="province" class="form-control">
-                  <option value="none">Province</option                 
+                  <option value="none">Province</option
                    @foreach (DB::table('provinces')->get() as $item)
-                   
+
                    @if ($candidate->province==$item->province)
                     <option value="{{$item->province}}" selected>{{$item->province}}</option>
                    @else
                      <option value="{{$item->province}}">{{$item->province}}</option>
-                    @endif                  
+                    @endif
                   @endforeach
-            
+
             </select>
                 </div>
             <div class="col-md-3" >
@@ -255,11 +257,11 @@
                                </select>
                             </div>
                             <div class="col-sm-6">
-                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> 
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                               <p>@foreach ($test as $note)
                                       {{$note->comment}}
-                               @endforeach 
-                              </p> 
+                               @endforeach
+                              </p>
                             </textarea>
                             </div>
                         </div>
@@ -457,7 +459,7 @@
       @endfor
       <h5>Summary<h5>
       <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
-  
+
                  @foreach ($summary as $record)
                         {{$record->get(3)}}
             @endforeach

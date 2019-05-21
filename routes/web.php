@@ -77,4 +77,3 @@ Route::get('/detailInfo', function () {
 Route::resource('candidates','CandidateController');
 Route::resource('ngo','NgoController');
 Route::resource('CandidateDetial', 'DetialController');
-Route::get('/selected','SelectedCandidate@selected');
