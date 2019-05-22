@@ -105,29 +105,29 @@ class CandidateController extends Controller
         // $current = null;
         $age_labels = array();
         $age_number = array();
-        $num_18_to_20 = 0;
-        $num_21_to_23 = 0;
+        $num_17_to_20 = 0;
+        $num_21_to_24 = 0;
         if(! empty ($age)) {
             foreach ($age as $item) {
 
-                if( $item <= 20 && $item >= 18 ) {
-                    $num_18_to_20++;
+                if( $item <= 20 && $item >= 17 ) {
+                    $num_17_to_20++;
                 }
 
-                if ( $item <= 23 && $item >= 21 ) {
-                    $num_21_to_23++;
+                if ( $item <= 24 && $item >= 21 ) {
+                    $num_21_to_24++;
                 }
 
             }
 
-            if ( $num_18_to_20 >= 0) {
-                array_push( $age_labels, "18 - 20" );
-                array_push( $age_number, $num_18_to_20 );
+            if ( $num_17_to_20 >= 0) {
+                array_push( $age_labels, "17 - 20" );
+                array_push( $age_number, $num_17_to_20 );
             }
 
-            if ( $num_21_to_23 >= 0) {
-                array_push( $age_labels, "21 - 23" );
-                array_push( $age_number, $num_21_to_23 );
+            if ( $num_21_to_24 >= 0) {
+                array_push( $age_labels, "21 - 24" );
+                array_push( $age_number, $num_21_to_24 );
             }
 
             $age_candidates = array(
@@ -169,14 +169,152 @@ class CandidateController extends Controller
             // return $ngo_candidates;
         }
 
+        // ========= selected candidates ===========
+
+        $grade_candidates_selected = Candidate::orderBy('grade', 'asc')->where('select',"Yes")->pluck('grade');
+        $current = null;
+        $grade_labels = array();
+        $grade_number = array();
+        $num_A = 0;
+        $num_A_plus = 0;
+        $num_A_minus = 0;
+        $num_B = 0;
+        $num_B_plus = 0;
+        $num_B_minus = 0;
+        if(! empty ($grade_candidates_selected)) {
+            foreach ($grade_candidates_selected as $item) {
+                // return $item;
+                if ($item == "A+") {
+                    $num_A_plus++;
+                }
+                if ($item == "A") {
+                    $num_A++;
+                }
+                if ($item == "A-") {
+                    $num_A_minus++;
+                }
+                if ($item == "B+") {
+                    $num_B_plus++;
+                }
+                if ($item == "B") {
+                    $num_B++;
+                }
+                if ($item == "B-") {
+                    $num_B_minus++;
+                }
+            }
+            // return $num_A;
+
+            if( $num_A_plus >= 0 ) {
+                array_push( $grade_labels, "A+" );
+                array_push( $grade_number, $num_A_plus );
+            }
+            if( $num_A >= 0 ) {
+                array_push( $grade_labels, "A" );
+                array_push( $grade_number, $num_A );
+            }
+            if( $num_A_minus >= 0 ) {
+                array_push( $grade_labels, "A-" );
+                array_push( $grade_number, $num_A_minus );
+            }
+            if( $num_B_plus >= 0 ) {
+                array_push( $grade_labels, "B+" );
+                array_push( $grade_number, $num_B_plus );
+            }
+            if( $num_B >= 0 ) {
+                array_push( $grade_labels, "B" );
+                array_push( $grade_number, $num_B );
+            }
+            if( $num_B_minus >= 0 ) {
+                array_push( $grade_labels, "B-" );
+                array_push( $grade_number, $num_B_minus );
+            }
+
+            $grade_candidates_selected = array(
+                'labels' => $grade_labels,
+                'datas' => $grade_number,
+            );
+            // return $grade_candidates;
+        }
+
+        $age_candidates_selected = Candidate::orderBy('age', 'asc')->where('select',"Yes")->pluck('age');
+        // $current = null;
+        $age_labels = array();
+        $age_number = array();
+        $num_17_to_20 = 0;
+        $num_21_to_24 = 0;
+        if(! empty ($age_candidates_selected)) {
+            foreach ($age_candidates_selected as $item) {
+
+                if( $item <= 20 && $item >= 17 ) {
+                    $num_17_to_20++;
+                }
+
+                if ( $item <= 24 && $item >= 21 ) {
+                    $num_21_to_24++;
+                }
+
+            }
+
+            if ( $num_17_to_20 >= 0) {
+                array_push( $age_labels, "17 - 20" );
+                array_push( $age_number, $num_17_to_20 );
+            }
+
+            if ( $num_21_to_24 >= 0) {
+                array_push( $age_labels, "21 - 24" );
+                array_push( $age_number, $num_21_to_24 );
+            }
+
+            $age_candidates_selected = array(
+                'labels' => $age_labels,
+                'datas' => $age_number,
+            );
+            // return $age_candidates;
+        }
+
+        $ngo_id_candidates_selected = Candidate::orderBy('ngo_id', 'asc')->where('select',"Yes")->pluck('ngo_id');
+        $current = null;
+        $ngo_labels = array();
+        $ngo_number = array();
+        $number_no = 0;
+        $number_yes = 0;
+        // return $ngo_id;
+        if(! empty ($ngo_id_candidates_selected)) {
+            foreach ($ngo_id_candidates_selected as $item) {
+                if( $item != "" ) {
+                    $number_yes++;
+                } else {
+                    $number_no++;
+                }
+            }
+            // return $number_yes;
+            if( $number_yes >= 0) {
+                array_push( $ngo_labels, "Yes" );
+                array_push( $ngo_number, $number_yes );
+            }
+            if ( $number_no >= 0 ) {
+                array_push( $ngo_labels, "No" );
+                array_push( $ngo_number, $number_no );
+            }
+
+            $ngo_candidates_selected = array(
+                'labels' => $ngo_labels,
+                'datas' => $ngo_number,
+            );
+            // return $ngo_candidates;
+        }
+
+        // ======= end selected candidates =========
+
         return view('pages.listCondidate',
                 compact('candidate',
                         'grade_candidates',
                         'age_candidates',
-                        'ngo_candidates'));
-
-        $candidate= Candidate::all();
-        return view('pages.listCondidate',compact('candidate'));
+                        'ngo_candidates',
+                        'grade_candidates_selected',
+                        'age_candidates_selected',
+                        'ngo_candidates_selected'));
 
     }
 
@@ -231,14 +369,14 @@ class CandidateController extends Controller
             ->where('id',$getId->id)
             ->update(["comment"=>$request->note[$i]]);
             if($j<11){
-                if($request->summa[$j]!=""){             
+                if($request->summa[$j]!=""){
                     \DB::table('answer_candidate')
                     ->where('id',$getId->id)
                     ->update(["summary"=>$request->summa[$j]]);
                     ++$j;
             }
             }
-           
+
             ++$i;
         }
         // $candidate->answers()->sync($answer);
@@ -266,10 +404,10 @@ class CandidateController extends Controller
         }
         $grade=" ";
         $select=" ";
-        if($TotalScore!=0){ 
+        if($TotalScore!=0){
             $ScoreGrade=$TotalScore/$countCoficient;
-        };       
-        
+        };
+
         if($ScoreGrade<1.5){
                   $grade="A";
                   $select="Yes";
@@ -310,8 +448,8 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $ngo =Ngo::all();
         $candidate = Candidate::find($id);
+        return view('pages.Infocadidate')->with('candidate',$candidate);
         // return $candidate->id;
         return view('pages.Infocadidate', compact('candidate', 'ngo'));
     }
@@ -410,7 +548,7 @@ class CandidateController extends Controller
     }
     $grade=" ";
     $select=" ";
-    if($TotalScore!=0){ 
+    if($TotalScore!=0){
         $ScoreGrade=$TotalScore/$countCoficient;
     }
       if($ScoreGrade<1.5){
