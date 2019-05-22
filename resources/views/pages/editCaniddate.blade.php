@@ -51,7 +51,7 @@
           <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
     </select>
     <select name="sign"  selected="true" >
-     <option value="+">...</option>
+     <option value=" ">...</option>
      <option value="+">+</option>
      <option value="-">-</option>
 </select><br>

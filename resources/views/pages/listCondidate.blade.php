@@ -30,7 +30,6 @@
             </a>
         </li>
     </ul>
-
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="list_all_candidates">
 
@@ -85,12 +84,11 @@
                     {{-- ====== pie chart ====== --}}
                     <div class="col-sm-12 col-md-12 col-lg-5 mt-4">
 
-                        <h3 class="text-center">Among all candidates</h3>
+                        <h3 class="text-center">Among all of candidates</h3>
                         <div class="row">
                             <canvas id="candidates" width="900" height="550"></canvas>
                         </div>
 
-                        <h3 class="text-center">Among all of candidates</h3>
                         <div class="row">
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender"></canvas>
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo"></canvas>
@@ -98,7 +96,6 @@
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="age"></canvas>
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="province"></canvas>
                         </div>
-
                     </div>
                 </div>
             {{-- end list of all candidates --}}
@@ -149,7 +146,7 @@
                         <canvas id="candidates_selected" width="900" height="550"></canvas>
                     </div>
 
-                    <h3 class="text-center">Among selected candidates only</h3>
+
                     <div class="row">
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender_candidates_selected"></canvas>
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo_candidates_selected"></canvas>
@@ -158,6 +155,8 @@
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="province_candidates_selected"></canvas>
                     </div>
 
+
+                </div>
                 </div>
 
             </div>
@@ -165,8 +164,8 @@
             {{-- end list of all selected candidates --}}
         </div>
     </div>
-</div>
 
+</div>
 @endsection
 
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
@@ -176,6 +175,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
 
 {{-- pie chart --}}
 <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
