@@ -22,7 +22,7 @@ Route::get('users/export','UserController@export');
 Route::resource('users','UserController');
 
 /*=============================================================================
-   The routes below are written for the examples only. 
+   The routes below are written for the examples only.
    You can delete them because you do not need them for a real application.
 */
 Route::get('examples/emails', 'ExamplesController@emails');
@@ -76,6 +76,5 @@ Route::get('/detailInfo', function () {
 });
 Route::resource('candidates','CandidateController');
 Route::resource('ngo','NgoController');
-Route::get('selected','SelectedCandidate@selected');
-// Route::get('all','SelectedCandidate@allCandidates');
-
+Route::resource('CandidateDetial', 'DetialController');
+Route::get('/selected','SelectedCandidate@selected');

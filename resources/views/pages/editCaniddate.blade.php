@@ -1,5 +1,5 @@
 @extends('template')
-@section('pageTitle', 'Profile Detail')
+@section('pageTitle', 'Edit Candidate')
 @section('content')
 
 <style>
@@ -35,23 +35,26 @@
     <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
+                <div class="form-group" >
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="inputFile">
+                </div>
       </div>
       <div class="col-sm-4 mt-4">
         <br>
-          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" disabled="disabled" required><br>
+          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" required><br>
           <label for="">Global Grade</label>
           <select name="" id="" selected="true" disabled="disabled">
           <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
     </select>
-    <select name="sign"  selected="true" disabled="disabled">
-     <option value="+">...</option>
+    <select name="sign"  selected="true" >
+     <option value=" ">...</option>
      <option value="+">+</option>
      <option value="-">-</option>
 </select><br>
 @if ($candidate->Fill_By!=Null)
-<input type="checkbox" name='fil' value="Information is filled by PNC employee" disabled="disabled" checked><label for="">Information is filled by PNC employee</label>
+<input type="checkbox" name='fil' value="Information is filled by PNC employee" checked><label for="">Information is filled by PNC employee</label>
 @else
-<input type="checkbox" name='fil' value="Information is filled by PNC employee" disabled="disabled"><label for="">Information is filled by PNC employee</label>
+<input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
 @endif
 
       </div>
@@ -81,8 +84,8 @@
              <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-             <select name="province" class="form-control" disabled="disabled">
-                  <option value="none">Province</option>                
+             <select name="province" class="form-control">
+                  <option value="none">Province</option                 
                    @foreach (DB::table('provinces')->get() as $item)
                    
                    @if ($candidate->province==$item->province)
@@ -97,7 +100,7 @@
             <div class="col-md-3" >
 
               <label for="" name="NGO">NGO:</label>
-              <select name="ngo" class="form-control" disabled="disabled">
+              <select name="ngo" class="form-control">
                 <option value="">None</option>
                   @foreach ($ngo as $item)
                    @if ($item->id==$candidate->ngo_id)
@@ -118,7 +121,7 @@
         <div class="col-sm-3"></div>
       <div class="col-sm-2">
         <label for="" name="gender">Gender</label>
-        <select name="gender" id="" class="input-group-sm form-control" disabled="disabled" required style="width:70px">
+        <select name="gender" id="" class="input-group-sm form-control" required style="width:70px">
         @if($candidate->gender=="Male")
         <option value="Male" selected>M</option>
         <option value="Female" >F</option>
@@ -130,24 +133,24 @@
     </div>
     <div class="col-sm-2">
         <label for="">Age</label>
-    <input type="number" age="" class="input-group-sm form-control" value="{{$candidate->age}}" name="age" required style="width:65px"  disabled="disabled">
+    <input type="number" age="" class="input-group-sm form-control" value="{{$candidate->age}}" name="age" required style="width:65px">
     </div>
-    <div class="col-sm-4" disabled="disabled">
+    <div class="col-sm-4">
         <label for="">Years of selection</label>
-    <input type="number" name="slectionYears"   class="input-group-sm  form-control" value="{{$candidate->years}}" required  style="width:100px"  disabled="disabled">
+    <input type="number" name="slectionYears"   class="input-group-sm  form-control" value="{{$candidate->years}}" required  style="width:100px">
     </div>
     </div>
 {{-- /******************************************************************************************************************/ --}}
 
-<?php 
-    $test=array();
+<?php  $test=array();
+
 ?>
 @for($id=4;$id<=6;++$id)
     @foreach ($question=DB::table('questions')->where('id',$id)->get() as $value)
       <h6>{{$value->question}}</h6>
       <div class="row">
           <div class="col-sm-6">
-            <select name="answer[]"  class="form-control" disabled="disabled">
+            <select name="answer[]"  class="form-control">
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                    <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                         selected
@@ -159,7 +162,7 @@
              </select>
           </div>
           <div class="col-sm-6">
-           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"  disabled="disabled">
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                 @foreach ($test as $note)
                         {{$note->comment}}
                 @endforeach
@@ -172,13 +175,13 @@
 <h5>Motivation</h5> <br>
     <div class="row">
         <div class="col-sm-3">
-        <label for="">Motivation for PNC:</label><input type="text" name="moivation"  value="{{$candidate->motivation}}" class="form-control"   style="width:100px;"  disabled="disabled" ><br>
+        <label for="">Motivation for PNC:</label><input type="text" name="moivation"  value="{{$candidate->motivation}}" class="form-control"   style="width:100px;" ><br>
         </div>
         <div class="col-sm-3">
-            <label for="">Communication :</label><input type="text" name="cammunication" class="form-control"  value="{{$candidate->communication}}"  style="width:100px;" disabled="disabled" >
+            <label for="">Communication :</label><input type="text" name="cammunication" class="form-control"  value="{{$candidate->communication}}"  style="width:100px;" >
         </div>
         <div class="col-sm-3">
-            <label for="">Responsibility and maturty :</label><input type="text"   name="responsible" value="{{$candidate->responsibility}}" class="form-control"   style="width:100px;" disabled="disabled" >
+            <label for="">Responsibility and maturty :</label><input type="text"   name="responsible" value="{{$candidate->responsibility}}" class="form-control"   style="width:100px;" >
         </div>
         </div>
         @for($id=3;$id>=1;--$id)
@@ -186,7 +189,7 @@
           <h6>{{$value->question}}</h6>
           <div class="row">
               <div class="col-sm-6">
-                <select name="answer[]" id="" class="form-control" disabled="disabled">
+                <select name="answer[]" id="" class="form-control">
                     @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                     <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                             selected
@@ -196,7 +199,7 @@
                  </select>
               </div>
               <div class="col-sm-6">
-               <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+               <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                 @foreach ($test as $note)
                         {{$note->comment}}
                 @endforeach
@@ -206,12 +209,12 @@
        @endforeach
     @endfor
     <br><h5>Summary</h5>
-    <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+    <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
        @foreach ($summary as $record)
          {{$record->get(0)}}
        @endforeach
     </textarea> <br>
-   
+    <button  type="button" class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" >Save Information</button><br><br>
     </div>
     </div>
     </div>
@@ -241,7 +244,7 @@
                         <h6>{{$value->question}}</h6>
                         <div class="row">
                             <div class="col-sm-6">
-                              <select name="answer[]" id="" class="form-control" disabled="disabled">
+                              <select name="answer[]" id="" class="form-control">
                                   @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                                   <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                         selected
@@ -252,7 +255,7 @@
                                </select>
                             </div>
                             <div class="col-sm-6">
-                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"  disabled="disabled"> 
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"> 
                               <p>@foreach ($test as $note)
                                       {{$note->comment}}
                                @endforeach 
@@ -268,7 +271,7 @@
            <h6>{{$value->question}}</h6>
            <div class="row">
                <div class="col-sm-6">
-                 <select name="answer[]" id="" class="form-control" disabled="disabled">
+                 <select name="answer[]" id="" class="form-control">
                      @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                      <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                             selected
@@ -278,7 +281,7 @@
                   </select>
                </div>
                <div class="col-sm-6">
-                <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                             @foreach ($test as $note)
                               {{$note->comment}}
                            @endforeach
@@ -293,7 +296,7 @@
        <h6>{{$value->question}}</h6>
        <div class="row">
            <div class="col-sm-6">
-             <select name="answer[]" id="" class="form-control" disabled="disabled">
+             <select name="answer[]" id="" class="form-control">
                  @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                  <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                         selected
@@ -303,7 +306,7 @@
               </select>
            </div>
            <div class="col-sm-6">
-            <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+            <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                      @foreach ($test as $note)
                         {{$note->comment}}
                     @endforeach
@@ -313,12 +316,12 @@
     @endforeach
  @endfor
                   <br><h5>Summary</h5>
-                  <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment"  disabled="disabled">
+                  <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
                   @foreach ($summary as $record)
                         {{$record->get(1)}}
                    @endforeach
                   </textarea> <br>
-               
+                  <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" >Save Information</button><br><br>
                   </div>
               </div>
               </div>
@@ -338,7 +341,7 @@
                    <h6>{{$value->question}}</h6>
                    <div class="row">
                        <div class="col-sm-6">
-                         <select name="answer[]" id="" class="form-control" disabled="disabled">
+                         <select name="answer[]" id="" class="form-control">
                              @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                              <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                     selected
@@ -348,7 +351,7 @@
                           </select>
                        </div>
                        <div class="col-sm-6">
-                        <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                        <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                          @foreach ($test as $note)
                             {{$note->comment}}
                          @endforeach
@@ -363,7 +366,7 @@
               <h6>{{$value->question}}</h6>
               <div class="row">
                   <div class="col-sm-6">
-                    <select name="answer[]" id="" class="form-control" disabled="disabled">
+                    <select name="answer[]" id="" class="form-control">
                         @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                         <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                 selected
@@ -373,7 +376,7 @@
                      </select>
                   </div>
                   <div class="col-sm-6">
-                   <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                   <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                         {{$note->comment}}
                      @endforeach
@@ -383,12 +386,12 @@
            @endforeach
         @endfor
         <br><h5>Summary</h5>
-        <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+        <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
            @foreach ($summary as $record)
                         {{$record->get(2)}}
             @endforeach
         </textarea> <br>
-
+        <button class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse4" >Save Information</button><br><br>
 
                   </div>
               </div>
@@ -408,7 +411,7 @@
                   <h6>{{$value->question}}</h6>
                   <div class="row">
                       <div class="col-sm-6">
-                        <select name="answer[]" id="" class="form-control" disabled="disabled">
+                        <select name="answer[]" id="" class="form-control">
                             @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                             <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                     selected
@@ -418,7 +421,7 @@
                          </select>
                       </div>
                       <div class="col-sm-6">
-                       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                          @foreach ($test as $note)
                            {{$note->comment}}
                         @endforeach
@@ -433,7 +436,7 @@
             <h6>{{$value->question}}</h6>
             <div class="row">
                 <div class="col-sm-6">
-                  <select name="answer[]" id="" class="form-control" disabled="disabled">
+                  <select name="answer[]" id="" class="form-control">
                       @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                       <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                             selected
@@ -443,7 +446,7 @@
                    </select>
                 </div>
                 <div class="col-sm-6">
-                 <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                 <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                              {{$note->comment}}
                       @endforeach
@@ -453,7 +456,7 @@
          @endforeach
       @endfor
       <h5>Summary<h5>
-      <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+      <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
   
                  @foreach ($summary as $record)
                         {{$record->get(3)}}
@@ -461,7 +464,7 @@
 
 
       </textarea> <br>
-    
+      <button type="button"  class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" >Save Information</button><br><br>
 
               </div>
               </div>
@@ -481,7 +484,7 @@
                 <h6>{{$value->question}}</h6>
                 <div class="row">
                     <div class="col-sm-6">
-                      <select name="answer[]" id="" class="form-control" disabled="disabled">
+                      <select name="answer[]" id="" class="form-control">
                           @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                           <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                 selected
@@ -492,7 +495,7 @@
                        </select>
                     </div>
                     <div class="col-sm-6">
-                     <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                     <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                         {{$note->comment}}
                       @endforeach
@@ -507,7 +510,7 @@
                 <h6>{{$value->question}}</h6>
                 <div class="row">
                     <div class="col-sm-6">
-                      <select name="answer[]" id="" class="form-control" disabled="disabled">
+                      <select name="answer[]" id="" class="form-control">
                           @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                           <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                 selected
@@ -518,7 +521,7 @@
                        </select>
                     </div>
                     <div class="col-sm-6">
-                     <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                     <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                       @foreach ($test as $note)
                         {{$note->comment}}
                       @endforeach
@@ -528,12 +531,12 @@
              @endforeach
           @endfor
           <br><h5>Summary</h5>
-          <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+          <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
               @foreach ($summary as $record)
                         {{$record->get(4)}}
                @endforeach
           </textarea> <br>
-          
+          <button  type="button"  class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix" >Save Information</button><br><br>
 
               </div>
               </div>
@@ -567,7 +570,7 @@
                       <h6>{{$value->question}}</h6>
                       <div class="row">
                           <div class="col-sm-6">
-                            <select name="answer[]" id="" class="form-control" disabled="disabled">
+                            <select name="answer[]" id="" class="form-control">
                                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                                 <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                         selected
@@ -577,7 +580,7 @@
                              </select>
                           </div>
                           <div class="col-sm-6">
-                           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                             @foreach ($test as $note)
                                   {{$note->comment}}
                             @endforeach
@@ -587,12 +590,12 @@
                    @endforeach
                 @endfor
                 <br><h5>Summary</h5>
-                <textarea type="button"  name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+                <textarea type="button"  name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
                    @foreach ($summary as $record)
                         {{$record->get(5)}}
                    @endforeach
                 </textarea> <br>
-       
+                <button  type="button" class="btn btn-info float-right"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse1" >Save Information</button><br><br>
                 </div>
             </div>
 
@@ -611,7 +614,7 @@
                  <h6>{{$value->question}}</h6>
                  <div class="row">
                      <div class="col-sm-6">
-                       <select name="answer[]" id="" class="form-control" disabled="disabled">
+                       <select name="answer[]" id="" class="form-control">
                            @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                            <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                 selected
@@ -622,7 +625,7 @@
                         </select>
                      </div>
                      <div class="col-sm-6">
-                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                        @foreach ($test as $note)
                            {{$note->comment}}
                         @endforeach
@@ -638,7 +641,7 @@
              <h6>{{$value->question}}</h6>
              <div class="row">
                  <div class="col-sm-6">
-                   <select name="answer[]" id="" class="form-control" disabled="disabled">
+                   <select name="answer[]" id="" class="form-control">
                        @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                        <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                             selected
@@ -648,7 +651,7 @@
                     </select>
                  </div>
                  <div class="col-sm-6">
-                  <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                  <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                    @foreach ($test as $note)
                         {{$note->comment}}
                    @endforeach
@@ -659,12 +662,12 @@
          @endfor
 
          <br><h5>Summary</h5>
-         <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+         <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
             @foreach ($summary as $record)
                         {{$record->get(6)}}
                    @endforeach
          </textarea> <br>
-         
+         <button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseK" >Save Information</button><br><br>
 
 
             </div>
@@ -684,7 +687,7 @@
                  <h6>{{$value->question}}</h6>
                  <div class="row">
                      <div class="col-sm-6">
-                       <select name="answer[]" id="" class="form-control" disabled="disabled">
+                       <select name="answer[]" id="" class="form-control">
                            @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                            <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                                 selected
@@ -694,7 +697,7 @@
                         </select>
                      </div>
                      <div class="col-sm-6">
-                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+                      <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                        @foreach ($test as $note)
                         {{$note->comment}}
                        @endforeach
@@ -710,7 +713,7 @@
     <h6>{{$value->question}}</h6>
     <div class="row">
         <div class="col-sm-6">
-          <select name="answer[]" id="" class="form-control" disabled="disabled">
+          <select name="answer[]" id="" class="form-control">
               @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
               <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                     selected
@@ -720,7 +723,7 @@
            </select>
         </div>
         <div class="col-sm-6">
-         <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+         <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
           @foreach ($test as $note)
                         {{$note->comment}}
             @endforeach
@@ -731,12 +734,12 @@
 @endfor
 
 <br><h5>Summary</h5>
-<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
                         {{$record->get(7)}}
                    @endforeach
 </textarea> <br>
-
+<button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseS" >Save Information</button><br><br>
 
 
 
@@ -758,7 +761,7 @@
       <h6>{{$value->question}}</h6>
       <div class="row">
           <div class="col-sm-6">
-            <select name="answer[]" id="" class="form-control" disabled="disabled">
+            <select name="answer[]" id="" class="form-control">
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                 <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                         selected
@@ -768,7 +771,7 @@
              </select>
           </div>
           <div class="col-sm-6">
-           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                   @foreach ($test as $note)
                         {{$note->comment}}
                 @endforeach
@@ -780,11 +783,13 @@
 @endfor
 <br>
 <h5>Summary</h5>
-<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
+<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
                         {{$record->get(8)}}
                    @endforeach
 </textarea> <br>
+<button  type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseC" >Save Information</button><br><br>
+
     </div>
     </div>
     </div>
@@ -807,7 +812,7 @@
       <h6>{{$value->question}}</h6>
       <div class="row">
           <div class="col-sm-6">
-            <select name="answer[]" id="" class="form-control" disabled="disabled">
+            <select name="answer[]" id="" class="form-control">
                 @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
                 <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                         selected
@@ -818,7 +823,7 @@
              </select>
           </div>
           <div class="col-sm-6">
-           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note" disabled="disabled">
+           <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                 @foreach ($test as $note)
                         {{$note->comment}}
                 @endforeach
@@ -835,7 +840,7 @@
   <h6>{{$value->question}}</h6>
   <div class="row">
       <div class="col-sm-6">
-        <select name="answer[]" id="" class="form-control" disabled="disabled">
+        <select name="answer[]" id="" class="form-control">
             @foreach ( DB::table('answers')->where('Question_id',$id)->get() as $value)
             <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                     selected
@@ -845,7 +850,7 @@
          </select>
       </div>
       <div class="col-sm-6">
-       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" disabled="disabled" placeholder="Optional Note">
+       <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
               @foreach ($test as $note)
                         {{$note->comment}}
                 @endforeach
@@ -857,13 +862,13 @@
 @endfor
 <br>
 <h5>Summary</h5>
-<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" disabled="disabled" placeholder="Please Comment">
+<textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment">
    @foreach ($summary as $record)
                         {{$record->get(9)}}
                    @endforeach
 </textarea> <br>
 
-
+<button type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseD" >Save Information</button><br><br>
   </div>
 </div>
 </div>
@@ -881,7 +886,7 @@
         <h6>{{$value->question}}</h6>
         <div class="row">
             <div class="col-sm-6">
-              <select name="answer[]" id="" class="form-control" disabled="disabled">
+              <select name="answer[]" id="" class="form-control">
                   @foreach ( DB::table('answers')->where('Question_id',72)->get() as $value)
                   <option value="{{$value->id}}" @if($candidate->answers->pluck('id')->contains($value->id))
                         selected
@@ -891,7 +896,7 @@
                </select>
             </div>
             <div class="col-sm-6">
-             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" disabled="disabled" placeholder="Optional Note">
+             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note">
                    @foreach ($test as $note)
                         {{$note->comment}}
                   @endforeach
@@ -902,12 +907,13 @@
       @endforeach
       <br>
       <h5>Summary</h5>
-      <textarea name="summa[]"  cols="30" rows="5" class="form-control" disabled="disabled" placeholder="Please Comment">
+      <textarea name="summa[]"  cols="30" rows="5" class="form-control" placeholder="Please Comment">
          @foreach ($summary as $record)
                         {{$record->get(10)}}
           @endforeach
       </textarea> <br>
 
+      <button type="button" class="btn btn-info float-right" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseT" >Save Information</button><br><br>
 </div>
 </div>
 </div>
@@ -917,17 +923,16 @@
 
     </div>
     <br><br>
-    <textarea name="summary" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment" required disabled="disabled">
+    <textarea name="summary" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment" required>
     {{$candidate->summary}}
     </textarea> <br>
+    <button type="submit" class="btn btn-info float-right ">Save Information</button>
 
-    <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm mb-5">Go back to candidates list</button></a>
   </form>
 
     </div>
   </div>
-  
-  
+
     @endsection
 
 
