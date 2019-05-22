@@ -22,8 +22,6 @@
             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">List of all selected candidate</a>
         </li>
     </ul>
-
-
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
@@ -32,7 +30,7 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 col-lg-7">
-                        <h1 class="text-center mb-1">List of all Candidates</h1>
+                        <h1 class="text-center mb-1">List of all candidates</h1>
                         <br>
                         <div class="text-left">
                             @auth
@@ -73,12 +71,11 @@
                     {{-- ====== pie chart ====== --}}
                     <div class="col-sm-12 col-md-12 col-lg-5 mt-4">
 
-                        <h3 class="text-center">Among all candidates</h3>
+                        <h3 class="text-center">Among all of candidates</h3>
                         <div class="row">
                             <canvas id="candidates" width="900" height="550"></canvas>
                         </div>
-
-                        <h3 class="text-center">Among all of candidates</h3>
+                       
                         <div class="row">
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender"></canvas>
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo"></canvas>
@@ -86,10 +83,10 @@
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="age"></canvas>
                             <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="province"></canvas>
                         </div>
-
                     </div>
                 </div>
-            </div>
+                </div>
+            
             {{-- end list of all candidates --}}
         </div>
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -108,7 +105,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-7">
 
                 <div class="content">
-                    <h1 class="text-center mb-2">List all of Selected Candidates</h1>
+                    <h1 class="text-center mb-2">List of all selected candidates</h1>
                     <br>
                     <br>
                     <table id="tableSelected" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
@@ -136,8 +133,8 @@
                         </tbody>
                     </table>
                 </div>
-
                 </div>
+
                 {{-- ====== pie chart ====== --}}
                 <div class="col-sm-12 col-md-12 col-lg-5">
 
@@ -146,7 +143,7 @@
                         <canvas id="candidates_selected" width="900" height="550"></canvas>
                     </div>
 
-                    <h3 class="text-center">Among selected candidates only</h3>
+                  
                     <div class="row">
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender_candidates_selected"></canvas>
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo_candidates_selected"></canvas>
@@ -155,6 +152,8 @@
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="province_candidates_selected"></canvas>
                     </div>
 
+
+                </div>
                 </div>
 
             </div>
@@ -162,9 +161,40 @@
             {{-- end list of all selected candidates --}}
         </div>
     </div>
-</div>
 
+</div>
 @endsection
+
+
+
+{{-- Modal of delete user --}}
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteCandidate">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete a Candidate</h5>
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p>
+          <small id="users"></small>
+        </div>
+        <div class="modal-footer">
+            <form action="" id="fid" method="post">
+                @csrf
+                @method('delete')
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="submit"  class="btn btn-primary">Yes</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{-- end of modal delete user --}}
 
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
@@ -180,6 +210,7 @@
 <script src="https://cdn.datatables.net/colreorder/1.5.1/js/dataTables.colReorder.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
 
 {{-- pie chart --}}
 <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>

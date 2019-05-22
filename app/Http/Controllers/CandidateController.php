@@ -588,6 +588,7 @@ class CandidateController extends Controller
         $candidate = Candidate::findOrFail($id);
         $candidate->delete();
         return redirect()->route('candidates.index');
+
     }
     // return response()->json(['return' => 'some data']);
     // public function testing() {

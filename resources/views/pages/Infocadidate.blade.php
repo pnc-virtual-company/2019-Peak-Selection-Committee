@@ -3,6 +3,7 @@
 @section('content')
 <div class="content">
 <h1 class="text-center">Information of candidate</h1>
+
     <div class="card mt-4">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -13,9 +14,11 @@
                    <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
                 @else
                   <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-                @endif
-                    <span><b>Student Name : </b>{{$candidate->Candidate_Name}}</span><br><br>
-                        <div style="margin-left:155px; margin-top:-50px;">
+
+                @endif             
+                    <span style="margin-left:28px;"><b>Student Name : </b>{{$candidate->Candidate_Name}}</span><br><br>
+                        <div style="margin-left:180px; margin-top:-85px;"> 
+
                             <span><b>Gender : </b>{{$candidate->gender}}</span><br>
                             <span><b>Age:</b>{{$candidate->age}}</span><br>
                             <span><b>Province : </b>{{$candidate['province']}}</span><br>
@@ -36,11 +39,6 @@
                     {{$record}}
                 @endforeach
                 </p>
-@if ($candidate->Fill_By!=Null)
-<input type="checkbox" name='fil' value="Information is filled by PNC employee" checked><label for="">Information is filled by PNC employee</label>
-@else
-<input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
-@endif
             </div>
         </div>
         <hr>
@@ -126,7 +124,7 @@
             </div>
 
             <div class="mt-4">
-                    <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm">Go back to students list</button></a>
+                    <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm">Go back to candidates list</button></a>
             <div class="float-right">
                 <a href="#!"  data-toggle="modal" data-target="#deleteCandidate" data-id="{{$candidate['id']}}" class="text-danger"><button class="btn btn-danger btn-sm">Delete profile</button></a>
                 {{-- <a href="{{url('/CandidateDetial')}}"><button class="btn btn-success btn-sm">See profile details</button></a> --}}
