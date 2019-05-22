@@ -2,53 +2,57 @@
 @extends('template')
 @section('pageTitle', 'List User')
 @section('content')
-<div class="content">
+<div class="container">
     <h2 class="text-center">List of all Users</h2>
-    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-                <thead>
-                    <tr>
-                        @auth
-                            @if(\Auth::user()->role_id==1)
-                            <th>Action</th>
-                            @endif
-                        @endauth
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                 @foreach ($users as $item)
-                    <tr>
-                        @auth
-                          @if(Auth::user()->role_id==1)
-                            <td>
-                                <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
-                                <a href="{{route('users.destroy', $item->id)}}"  data-toggle="modal" data-target="#delete" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
-                                <a href="{{route('users.show', $item->id)}}"  data-toggle="modal" data-target="#ViewDetail" data-id="{{$item['id']}}"><i class="large material-icons">visibility</i></a>
-                            </td>
-                            @endif
-                        @endauth
-                        <td>{{$item->firstname}}</td>
-                        <td>{{$item->lastname}}</td>
-                        <td>{{$item->email}}</td>
-                        @if($item->role_id == 1)
-                            <td>Admin</td>
-                        @else
-                            <td>Normal</td>
-                        @endif
-                    </tr>
-                @endforeach
-               </tbody>
-            </table>
-            <br/>
-            @auth
-                @if(Auth::user()->role_id==1)
-                    <a href="{{route('users.create')}}"><button class="btn btn-primary"><i class="fas fa-user-plus"></i> Create a User</button></a>
+    <table id="tbl_users" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+        <thead>
+            <tr>
+                @auth
+                    @if(\Auth::user()->role_id==1)
+                    <th>Action</th>
+                    @endif
+                @endauth
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $item)
+            <tr>
+                @auth
+                    @if(Auth::user()->role_id==1)
+                    <td>
+                        <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
+                        <a href="{{route('users.destroy', $item->id)}}"  data-toggle="modal" data-target="#delete" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
+                        <a href="{{route('users.show', $item->id)}}"  data-toggle="modal" data-target="#ViewDetail" data-id="{{$item['id']}}"><i class="large material-icons">visibility</i></a>
+                    </td>
+                    @endif
+                @endauth
+                <td>{{$item->firstname}}</td>
+                <td>{{$item->lastname}}</td>
+                <td>{{$item->email}}</td>
+                @if($item->role_id == 1)
+                    <td>Admin</td>
+                @else
+                    <td>Normal</td>
                 @endif
-            @endauth
-        </div>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <br/>
+    @auth
+        @if(Auth::user()->role_id==1)
+            <a href="{{route('users.create')}}" class="btn btn-primary"
+                data-toggle="tooltip" data-placement="right"
+                title="Create a User">
+                <i class="fas fa-user-plus"></i> Create a User
+            </a>
+        @endif
+    @endauth
+</div>
 @endsection
 
 {{-- Modal of delete user --}}

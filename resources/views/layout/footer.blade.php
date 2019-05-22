@@ -1,6 +1,7 @@
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script>
         $('#delete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
@@ -30,12 +31,7 @@
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/colreorder/1.5.1/js/dataTables.colReorder.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -48,17 +44,16 @@
 
     // ========== datatable ===============
         $(document).ready(function() {
-            $('#listCandidates').DataTable( {
-                colReorder: true
-            });
 
-            $('#example').DataTable( {
+            $('#tbl_users').DataTable( {
                 colReorder: true
             });
 
             $('#ngo').DataTable( {
                 colReorder: true
             });
+
+            $('[data-toggle="tooltip"]').tooltip(); 
 
         } );
 
