@@ -47,7 +47,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if(Auth::user()->role_id == 2){
-            return redirect('candidates');
+            return "Unauthorise page";
         } else {
             $users = User::with('roles')->get();
             return view('pages.listUser', ['users' => $users]);
@@ -146,7 +146,7 @@ class UserController extends Controller
             return redirect('users');
         } else {
             $roles = Role::all();
-            return view('users.edit', ['user' => $user, 'roles' => $roles]);
+            return view('pages.editUser', ['user' => $user, 'roles' => $roles]);
         }
     }
 

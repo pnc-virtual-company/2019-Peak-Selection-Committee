@@ -1,6 +1,6 @@
 
 @extends('template')
-@section('pageTitle', 'List User')
+@section('pageTitle', 'Selection-Committee - List User')
 @section('content')
 <div class="container">
     <h2 class="text-center">List of all Users</h2>
@@ -24,9 +24,22 @@
                 @auth
                     @if(Auth::user()->role_id==1)
                     <td>
-                        <a href="{{url('users')}}/{{ $item->id }}/edit" title="@lang('edit')"><i class="material-icons">edit</i></a>
-                        <a href="{{route('users.destroy', $item->id)}}"  data-toggle="modal" data-target="#delete" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
-                        <a href="{{route('users.show', $item->id)}}"  data-toggle="modal" data-target="#ViewDetail" data-id="{{$item['id']}}"><i class="large material-icons">visibility</i></a>
+                        <a href="{{url('users')}}/{{ $item->id }}/edit" data-toggle="tooltip" data-placement="left"
+                            title="Edit User" >
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="{{route('users.destroy', $item->id)}}" data-toggle="modal" data-target="#delete"
+                            data-placement="top" title="Delete User"
+                            data-id="{{$item['id']}}" class="text-danger">
+                            <i class=" material-icons">delete</i>
+                        </a>
+                        <a href="{{route('users.show', $item->id)}}"  data-toggle="modal" data-target="#ViewDetail"
+                            data-id="{{$item['id']}}" data-fname="{{$item->firstname}}"
+                            data-lname="{{$item['lastname']}}" data-role="{{$item['role_id']}}"
+                            data-placement="right" title="Show User"
+                            data-email="{{$item['email']}}">
+                            <i class="large material-icons">visibility</i>
+                        </a>
                     </td>
                     @endif
                 @endauth
@@ -85,7 +98,7 @@
   {{-- end of modal delete user --}}
 
   {{-- Modal view user   --}}
-  <div class="modal fade" id="ViewDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal fade" id="ViewDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -95,14 +108,10 @@
               </button>
             </div>
             <div class="modal-body">
-                    <span><b>First Name: </b></span><td>{{$item->firstname}}</td><br><br>
-                    <span><b>Last Name: </b></span><td>{{$item->lastname}}</td><br><br>
-                    <span><b>Email: </b></span><td>{{$item->email}}</td><br><br>
-                    @if($item->role_id == 1)
-                    <span><b>Role User: </b></span><td>Admin</td>
-                    @else
-                    <span><b>Role User: </b></span><td>Normal</td>
-                    @endif
+                <b>First Name: </b> <span id="fname"></span><br><br>
+                <b>Last Name: </b><span id="lname"></span><br><br>
+                <b>Email: </b><span id="email"></span><br><br>
+                <b>Role User: </b><span id="role"></span>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

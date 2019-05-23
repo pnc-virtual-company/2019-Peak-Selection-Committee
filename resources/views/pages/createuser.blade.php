@@ -1,10 +1,8 @@
 @extends('template')
 
-@section('pageTitle', 'Create User')
+@section('pageTitle', 'Selection-Committee - Create User')
 
 @section('content')
-
-@include('validation-errors')
 
 <div class="container">
     <div class="row">
@@ -57,7 +55,7 @@
                             <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-user-plus"></i>
                                 Create New User
                             </button>
-                        </div>   
+                        </div>
                     </form>
                 </div>
             </div>
@@ -67,12 +65,3 @@
 </div>
 
 @endsection
-
-@push('scripts')
-<script type="text/javascript">
-//On document ready, 
-$(function() {
-
-});
-</script>
-@endpush

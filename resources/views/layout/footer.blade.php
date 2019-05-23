@@ -11,6 +11,7 @@
             console.log(url);
             $('#fid').attr('action',url); //get Id form
         });
+
         $('#deleteNGO').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var id = button.data('id');  //get Id from button
@@ -18,7 +19,8 @@
             var url="{{url('ngo')}}/"+id;
             console.log(url);
             $('#fid').attr('action',url); //get Id form
-        })
+        });
+
         $('#deleteCandidate').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var id = button.data('id');  //get Id from button
@@ -26,7 +28,31 @@
             var url="{{url('candidates')}}/"+id;
             console.log(url);
             $('#fid').attr('action',url); //get Id form
-        })
+        });
+
+        // ==========show modal of user=============
+        $('#ViewDetail').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id')
+            var fname = button.data('fname')
+            var lname = button.data('lname')
+            var role_id = button.data('role')
+            var email = button.data('email')
+            var role;
+            // console.log('id ' + id);
+            // console.log('role id ' + role_id);
+            if ( role_id == 1 ) {
+                role = "Admin";
+            }
+            if ( role_id == 2 ) {
+                role = "Nomal"
+            }
+            var modal = $(this)
+            modal.find('#lname').text(lname);
+            modal.find('#fname').text(fname);
+            modal.find('#email').text(email);
+            modal.find('#role').text(role);
+        });
     </script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -53,7 +79,8 @@
                 colReorder: true
             });
 
-            $('[data-toggle="tooltip"]').tooltip(); 
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="modal"]').tooltip();
 
         } );
 

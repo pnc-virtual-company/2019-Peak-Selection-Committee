@@ -1,5 +1,5 @@
 @extends('template')
-@section('pageTitle', 'List Candidate')
+@section('pageTitle', 'Selection-Committee - List Candidate')
 @section('content')
 
 <style>
@@ -14,9 +14,11 @@
     }
 </style>
 
+{{-- {{dd($grade_candidates_selected)}} --}}
+
 <div class="container-fluid mt-5">
 
-    <h1 class="text-center mb-1" id="title_list">List of all Candidates</h1>
+    <h1 class="text-center mb-1" id="title_list">List of all candidates</h1>
     <br>
     <ul class="nav nav-pills mb-5" id="pills-tab" role="tablist">
         <li class="nav-item">
@@ -62,7 +64,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($candidate as $item)
-                                        <tr data-href='{{url("candidates")}}/{{$item->id}}'
+                                        <tr data-href='{{url("candidates/".$item['id'])}}'
                                             data-toggle="tooltip" data-placement="left"
                                             title="Click">
                                             <td>{{$item->Candidate_Name}}</td>
@@ -204,11 +206,11 @@ $(document).ready(function() {
 
     // ======= title of candidate =======
     $("#list_all_candidates").click(function() {
-        $('#title_list').text("List of all Candidates");
+        $('#title_list').text("List of all candidates");
     });
 
     $("#list_selected_candidates").click(function() {
-        $('#title_list').text("List all of Selected Candidates");
+        $('#title_list').text("List of all selected candidates");
     });
 });
     // ============== pie chart ==============
@@ -218,7 +220,7 @@ $(document).ready(function() {
     new Chart(document.getElementById("candidates_selected"), {
             type: 'pie',
             data: {
-                labels: {!!json_encode($grade_candidates_selected['labels'])!!},
+                labels: {!!json_encode($grade_candidates_selected["labels"])!!},
                 datasets: [{
                     backgroundColor: ["#00c853", "#c6ff00", "#eeff41", "#fdd835", "#f9a825", "#e65100"],
                     data: {!!json_encode($grade_candidates_selected['datas'])!!},

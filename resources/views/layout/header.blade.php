@@ -26,7 +26,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light shadow-lg bg-light sticky-top">
     <div class="container-fluid">
 
     <a class="navbar-brand" href="{{route('candidates.index')}}">

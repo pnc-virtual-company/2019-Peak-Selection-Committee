@@ -1,5 +1,5 @@
 @extends('template')
-@section('pageTitle', 'Create Candidate')
+@section('pageTitle', 'Selection-Committee - Create Candidate')
 @section('content')
 
 <style>
@@ -93,11 +93,11 @@
                 <div class="col-md-3">
                   Provinces:
              <select name="province" class="form-control mt-2">
-                  <option value="none">Province</option>                 
+                  <option value="none">Province</option>
                    @foreach (DB::table('provinces')->get() as $item)
                     <option value="{{$item->province}}" name="ngo">{{$item->province}}</option>
                   @endforeach
-            
+
             </select>
 
                 </div>
