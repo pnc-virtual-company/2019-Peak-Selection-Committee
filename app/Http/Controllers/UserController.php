@@ -93,26 +93,22 @@ class UserController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         // process the validation of fields
-        if ($validator->fails()) {
-            return Redirect::to('createuser')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store the new user and attach roles to it
-            $user = new User;
-            $user->firstname = Input::get('firstname');
-            $user->lastname = Input::get('lastname');
-            $user->email = Input::get('email');
-            $user->role_id = Input::get('role');
-            $user->password = bcrypt(Input::get('password'));
 
-            $user->save();
+        // store the new user and attach roles to it
+        $user = new User;
+        $user->firstname = Input::get('firstname');
+        $user->lastname = Input::get('lastname');
+        $user->email = Input::get('email');
+        $user->role_id = Input::get('role');
+        $user->password = bcrypt(Input::get('password'));
 
-            // redirect
-            Session::flash('message.level', 'success');
-            Session::flash('message.content', __('The user was successfully created'));
-            return Redirect::to('users');
-        }
+        $user->save();
+
+        // redirect
+        Session::flash('message.level', 'success');
+        Session::flash('message.content', __('The user was successfully created'));
+        return Redirect::to('users');
+
     }
 
     /**

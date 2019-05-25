@@ -44,6 +44,12 @@
         <br>
         <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" disabled="disabled" required><br>
         <p>Global Grade: {{$candidate->grade}}</p>
+
+        @if ($candidate->Fill_By!=Null)
+        <input type="checkbox" name='fil' value="Information is filled by PNC employee" checked>Information is filled by PNC employee
+        @else
+        <input type="checkbox" name='fil' value="Information is filled by PNC employee "> Information is filled by PNC employee
+        @endif
       </div>
     </div>
     <br>
@@ -248,10 +254,10 @@
                              <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"  disabled="disabled">
 
 
-                              <p>@foreach ($test as $note)
+                              @foreach ($test as $note)
                                       {{$note->comment}}
                                @endforeach
-                              </p>
+
                             </textarea>
                             </div>
                         </div>

@@ -576,7 +576,7 @@ class CandidateController extends Controller
                 'communication'=>$cammunication,
                 'responsibility'=>$responsible
       ]);
-    return redirect('/candidates');}
+    return redirect('candidates/'.$candidate['id']);}
 
     /**
      * Remove the specified resource from storage.
@@ -587,6 +587,7 @@ class CandidateController extends Controller
     public function destroy($id)
     {
         $candidate = Candidate::findOrFail($id);
+        $candidate->answers()->detach();
         $candidate->delete();
         return redirect()->route('candidates.index');
 

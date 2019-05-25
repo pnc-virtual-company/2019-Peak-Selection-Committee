@@ -30,7 +30,7 @@
                 <div class="col-md-3 mt-4">
 
                 </div>
-                <div class="col-sm-3 mt-4" >
+                <div class="col-sm-3 mt-4">
                     <p><b>Global Grade:</b> {{$candidate['grade']}}</p>
 
                     <p><b>NGO: </b>
@@ -42,6 +42,11 @@
                             None
                         @endif
                     </p>
+                    @if ($candidate->Fill_By!=Null)
+                    <input type="checkbox" name='fil' value="Information is filled by PNC employee"  checked>Information is filled by PNC employee
+                    @else
+                    <input type="checkbox" name='fil' value="Information is filled by PNC employee " > Information is filled by PNC employee
+                    @endif
                 </div>
             </div>
             <hr>
@@ -50,68 +55,68 @@
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(0)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Parental information</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(1)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Family members summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(2)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Children imformation summary</h5>
                     @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                         {{$record->get(3)}}
-                    @endforeach........
+                    @endforeach
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Health condition summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(4)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Household monthly income summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(5)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
-                <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Residential and appliant assets summary<h5>
+                <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Residential and appliant assets summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(6)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Family self production summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(7)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Debt summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(8)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded"><h5>Household monthly expense summary</h5>
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(9)}}
-                        @endforeach........
+                        @endforeach
                     </p>
 
                 </div>
@@ -119,7 +124,7 @@
                     <p>
                         @foreach (array(DB::table('answer_candidate')->Where('candidate_id',$candidate['id'])->get()->pluck('summary')) as $record)
                             {{$record->get(10)}}
-                        @endforeach........
+                        @endforeach
                     </p>
                 </div>
                 <div class="shadow-lg p-3 mb-2 bg-white rounded" style="width:100%;height:200px"><h5>Investigator is conclustion</h5>

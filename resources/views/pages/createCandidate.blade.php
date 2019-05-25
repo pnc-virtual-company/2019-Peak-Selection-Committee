@@ -63,7 +63,11 @@
 
 </select><br>
 
-          <input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
+
+<input type="checkbox" name='fil' value="Information is filled by PNC employee"><label for="">Information is filled by PNC employee</label>
+
+
+
       </div>
     </div>
     <br>
@@ -95,7 +99,7 @@
              <select name="province" class="form-control mt-2">
                   <option value="none">Province</option>
                    @foreach (DB::table('provinces')->get() as $item)
-                    <option value="{{$item->province}}" name="ngo">{{$item->province}}</option>
+                    <option value="{{$item->province}}" name="ngo" required>{{$item->province}}</option>
                   @endforeach
 
             </select>

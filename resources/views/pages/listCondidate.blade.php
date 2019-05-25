@@ -5,13 +5,23 @@
 <style>
     #listCandidates tbody tr {
         cursor: pointer;
+        margin-left: 25vh;
+        margin-top: -20vh;
+    }
+
+    #tableSelected tbody tr {
+        cursor: pointer;
+        margin-left: 25vh;
+        margin-top: -20vh;
     }
 
     .buttons-excel {
         border: none;
         background: none;
-        position: absolute;
+        /* position: absolute; */
+
     }
+
 </style>
 
 {{-- {{dd($grade_candidates_selected)}} --}}
@@ -41,7 +51,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-7">
                         @auth
                             @if(Auth::user()->role_id==1)
-                                <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4"
+                                <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4 addCandidate"
                                     data-toggle="tooltip" data-placement="left" title="Create a New Candidate">
                                     <i class="fas fa-briefcase-medical"></i>  Add a candidate
                                 </a>
@@ -112,7 +122,7 @@
 
                     <div class="table-responsive">
 
-                        <table id="tableSelected" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <table id="tableSelected" class="table table-striped table-hover table-bordered dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -120,19 +130,20 @@
                                     <th>Province</th>
                                     <th>Gender</th>
                                     <th>Global Grade</th>
+                                    <th>Selected</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                $selected=\DB::table('candidates')->where('select',"Yes")->get();
-                            ?>
-                                @foreach ( $selected as $item)
-                                    <tr>
+                                @foreach ($candidate as $item)
+                                    <tr data-href='{{url("candidates/".$item['id'])}}'
+                                        data-toggle="tooltip" data-placement="left"
+                                        title="Click">
                                         <td>{{$item->Candidate_Name}}</td>
                                         <td>{{$item->years}}</td>
                                         <td>{{$item->province}}</td>
                                         <td>{{$item->gender}}</td>
                                         <td>{{$item->grade}}</td>
+                                        <td>{{$item->select}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -190,7 +201,8 @@
 
 //======hany script export file======
 $(document).ready(function() {
-    $('#tableSelected').DataTable( {
+    $('#tableSelected, #listCandidates ').DataTable( {
+        responsive: false,
         dom: 'Bfrtip',
         buttons: [
             {
@@ -198,10 +210,6 @@ $(document).ready(function() {
                 text: '<button class="btn btn-primary"><i class="fas fa-file-export"></i> Export List</button>',
             },
         ]
-    });
-
-    $('#listCandidates').DataTable({
-        responsive: false
     });
 
     // ======= title of candidate =======
@@ -524,6 +532,7 @@ $(document).ready(function() {
         var current = null;
         var cnt = 0;
         for (var i = 0; i < letters.length; i++) {
+
             if (letters[i] != current) {
                 if (cnt > 0) {
                     label.push(current);
@@ -577,11 +586,13 @@ $(document).ready(function() {
 <script>
 
 $("#listCandidates tbody tr").click(function() {
-    var $row = $(this).closest("tr");
-    var $text = $row.find(".nr").text();
     window.location = $(this).data("href");
 });
 
-
+$("#tableSelected tbody tr").click(function() {
+        window.location = $(this).data("href");
+    });
 </script>
+
+<
 @endpush
