@@ -23,7 +23,7 @@ class CreateCandidatesTable extends Migration
             $table->foreign('ngo_id')
             ->references('id')
             ->on('ngos')
-            ->onDelete('cascade');
+            ->onDelete('set null');
 
         });
     }

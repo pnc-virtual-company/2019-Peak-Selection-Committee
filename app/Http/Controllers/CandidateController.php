@@ -303,6 +303,7 @@ class CandidateController extends Controller
                 'datas' => $ngo_number,
             );
             // return $ngo_candidates;
+            // return $ngo_labels;
         }
 
         // ======= end selected candidates =========
@@ -462,13 +463,13 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-        // if(Auth::user()->role_id == 1){
+        if(Auth::user()->role_id == 1){
             $candidate=Candidate::find($id);
             $ngo =Ngo::all();
             return view('pages.editCaniddate',compact('ngo','candidate'));
-        //  } else {
-        //     return "Unauthorise page";
-        // }
+         } else {
+            return "Unauthorise page";
+        }
     }
 
     /**
@@ -575,7 +576,7 @@ class CandidateController extends Controller
                 'communication'=>$cammunication,
                 'responsibility'=>$responsible
       ]);
-    return redirect('/candidates');}
+    return redirect('candidates/'.$candidate['id']);}
 
     /**
      * Remove the specified resource from storage.
@@ -586,6 +587,7 @@ class CandidateController extends Controller
     public function destroy($id)
     {
         $candidate = Candidate::findOrFail($id);
+        $candidate->answers()->detach();
         $candidate->delete();
         return redirect()->route('candidates.index');
 

@@ -1,47 +1,128 @@
 @extends('template')
-@section('pageTitle', 'List Candidate')
+@section('pageTitle', 'Selection-Committee - List Candidate')
 @section('content')
 
 <style>
-    .btn_add_candidate{
-        margin-top: 24px;
-    }
-
     #listCandidates tbody tr {
         cursor: pointer;
+        margin-left: 25vh;
+        margin-top: -20vh;
     }
+
+    #tableSelected tbody tr {
+        cursor: pointer;
+        margin-left: 25vh;
+        margin-top: -20vh;
+    }
+
+    .buttons-excel {
+        border: none;
+        background: none;
+        /* position: absolute; */
+
+    }
+
 </style>
+
+{{-- {{dd($grade_candidates_selected)}} --}}
 
 <div class="container-fluid mt-5">
 
+    <h1 class="text-center mb-1" id="title_list">List of all candidates</h1>
+    <br>
     <ul class="nav nav-pills mb-5" id="pills-tab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">List of all candidates</a>
+            <a class="nav-link btn-outline-primary active" id="list_all_candidates" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                <i class="fas fa-users"></i> List of all candidates
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">List of all selected candidate</a>
+            <a class="nav-link btn-outline-primary" id="list_selected_candidates" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+                <i class="fas fa-filter"></i> List of all selected candidate
+            </a>
         </li>
     </ul>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="list_all_candidates">
 
             {{-- list of all candidates --}}
-            <div class="content">
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 col-lg-7">
-                        <h1 class="text-center mb-1">List of all candidates</h1>
-                        <br>
-                        <div class="text-left">
-                            @auth
-                                @if(Auth::user()->role_id==1)
-                                    <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4 btn_add_candidate"><i class="fas fa-briefcase-medical"></i>  Add a candidate</a>
-                                @endif
-                            @endauth
-                        </div>
+                        @auth
+                            @if(Auth::user()->role_id==1)
+                                <a href="{{route('candidates.create')}}" class="btn btn-primary mb-4 addCandidate"
+                                    data-toggle="tooltip" data-placement="left" title="Create a New Candidate">
+                                    <i class="fas fa-briefcase-medical"></i>  Add a candidate
+                                </a>
+                            @endif
+                        @endauth
 
                         {{-- table of candidate --}}
-                        <table id="listCandidates" class="table table-striped table-hover table-bordered dt-responsive nowrap" style="width:100%">
+                        <div class="table-responsive">
+
+                            <table id="listCandidates" class="table table-striped table-hover table-bordered dt-responsive nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Year</th>
+                                        <th>Province</th>
+                                        <th>Gender</th>
+                                        <th>Global Grade</th>
+                                        <th>Selected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($candidate as $item)
+                                        <tr data-href='{{url("candidates/".$item['id'])}}'
+                                            data-toggle="tooltip" data-placement="left"
+                                            title="Click">
+                                            <td>{{$item->Candidate_Name}}</td>
+                                            <td>{{$item->years}}</td>
+                                            <td>{{$item->province}}</td>
+                                            <td>{{$item->gender}}</td>
+                                            <td>{{$item->grade}}</td>
+                                            <td>{{$item->select}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    {{-- end table of candidate --}}
+
+                    {{-- ====== pie chart ====== --}}
+                    <div class="col-sm-12 col-md-12 col-lg-5 mt-4">
+
+                        <h3 class="text-center">Among all of candidates</h3>
+                        <div class="row">
+                            <canvas id="candidates" width="900" height="550"></canvas>
+                        </div>
+
+                        <div class="row">
+                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender"></canvas>
+                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo"></canvas>
+
+                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="age"></canvas>
+                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="province"></canvas>
+                        </div>
+                    </div>
+                </div>
+            {{-- end list of all candidates --}}
+        </div>
+
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="list_selected_candidates">
+
+        {{-- list of all selected candidates --}}
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-7">
+
+                    <div class="table-responsive">
+
+                        <table id="tableSelected" class="table table-striped table-hover table-bordered dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -54,7 +135,9 @@
                             </thead>
                             <tbody>
                                 @foreach ($candidate as $item)
-                                    <tr data-href='{{url("candidates")}}/{{$item->id}}'>
+                                    <tr data-href='{{url("candidates/".$item['id'])}}'
+                                        data-toggle="tooltip" data-placement="left"
+                                        title="Click">
                                         <td>{{$item->Candidate_Name}}</td>
                                         <td>{{$item->years}}</td>
                                         <td>{{$item->province}}</td>
@@ -66,73 +149,6 @@
                             </tbody>
                         </table>
                     </div>
-                    {{-- end table of candidate --}}
-
-                    {{-- ====== pie chart ====== --}}
-                    <div class="col-sm-12 col-md-12 col-lg-5 mt-4">
-
-                        <h3 class="text-center">Among all of candidates</h3>
-                        <div class="row">
-                            <canvas id="candidates" width="900" height="550"></canvas>
-                        </div>
-                       
-                        <div class="row">
-                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender"></canvas>
-                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo"></canvas>
-
-                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="age"></canvas>
-                            <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="province"></canvas>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            
-            {{-- end list of all candidates --}}
-        </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        {{-- list of all selected candidates --}}
-
-            <style>
-                .buttons-excel {
-                    border: none;
-                    background: none;
-                    position: absolute;
-                }
-            </style>
-
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-7">
-
-                <div class="content">
-                    <h1 class="text-center mb-2">List of all selected candidates</h1>
-                    <br>
-                    <br>
-                    <table id="tableSelected" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Year</th>
-                                <th>Province</th>
-                                <th>Gender</th>
-                                <th>Global Grade</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                            $selected=\DB::table('candidates')->where('select',"Yes")->get();
-                        ?>
-                            @foreach ( $selected as $item)
-                            <tr>
-                                <td>{{$item->Candidate_Name}}</td>
-                                <td>{{$item->years}}</td>
-                                <td>{{$item->province}}</td>
-                                <td>{{$item->gender}}</td>
-                                <td>{{$item->grade}}</td>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
                 </div>
 
                 {{-- ====== pie chart ====== --}}
@@ -143,7 +159,7 @@
                         <canvas id="candidates_selected" width="900" height="550"></canvas>
                     </div>
 
-                  
+
                     <div class="row">
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="gender_candidates_selected"></canvas>
                         <canvas class="col-sm-12 col-md-6 col-lg-6" width="900" height="550" id="chart_ngo_candidates_selected"></canvas>
@@ -165,41 +181,6 @@
 </div>
 @endsection
 
-
-
-{{-- Modal of delete user --}}
-<div class="modal fade" tabindex="-1" role="dialog" id="deleteCandidate">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete a Candidate</h5>
-          <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure?</p>
-          <small id="users"></small>
-        </div>
-        <div class="modal-footer">
-            <form action="" id="fid" method="post">
-                @csrf
-                @method('delete')
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-          <button type="submit"  class="btn btn-primary">Yes</button>
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  {{-- end of modal delete user --}}
-
-<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -207,9 +188,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/colreorder/1.5.1/js/dataTables.colReorder.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
 
 {{-- pie chart --}}
@@ -223,14 +201,24 @@
 
 //======hany script export file======
 $(document).ready(function() {
-    $('#tableSelected').DataTable( {
+    $('#tableSelected, #listCandidates ').DataTable( {
+        responsive: false,
         dom: 'Bfrtip',
         buttons: [
             {
                 extend: 'excel',
-                text: '<button class="btn btn-primary tbn-export"><i class="fas fa-file-export"></i> Export List</button>',
+                text: '<button class="btn btn-primary"><i class="fas fa-file-export"></i> Export List</button>',
             },
         ]
+    });
+
+    // ======= title of candidate =======
+    $("#list_all_candidates").click(function() {
+        $('#title_list').text("List of all candidates");
+    });
+
+    $("#list_selected_candidates").click(function() {
+        $('#title_list').text("List of all selected candidates");
     });
 });
     // ============== pie chart ==============
@@ -240,7 +228,7 @@ $(document).ready(function() {
     new Chart(document.getElementById("candidates_selected"), {
             type: 'pie',
             data: {
-                labels: {!!json_encode($grade_candidates_selected['labels'])!!},
+                labels: {!!json_encode($grade_candidates_selected["labels"])!!},
                 datasets: [{
                     backgroundColor: ["#00c853", "#c6ff00", "#eeff41", "#fdd835", "#f9a825", "#e65100"],
                     data: {!!json_encode($grade_candidates_selected['datas'])!!},
@@ -544,6 +532,7 @@ $(document).ready(function() {
         var current = null;
         var cnt = 0;
         for (var i = 0; i < letters.length; i++) {
+
             if (letters[i] != current) {
                 if (cnt > 0) {
                     label.push(current);
@@ -597,11 +586,13 @@ $(document).ready(function() {
 <script>
 
 $("#listCandidates tbody tr").click(function() {
-    var $row = $(this).closest("tr");
-    var $text = $row.find(".nr").text();
     window.location = $(this).data("href");
 });
 
-
+$("#tableSelected tbody tr").click(function() {
+        window.location = $(this).data("href");
+    });
 </script>
+
+<
 @endpush

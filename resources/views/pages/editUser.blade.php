@@ -2,19 +2,18 @@
 
 @section('content')
 
-@include('validation-errors')
+@section('pageTitle', 'Selection-Committee - Edit user')
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">@lang('Edit a user')</div>
+                <div class="card-header"><h2>Edit a user</h2></div>
 
                 <div class="card-body">
 
                     <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-                        <!-- Simulate PUT or PATCH verb, 
-                             See: https://laravel.com/docs/5.7/controllers#resource-controllers  //-->
+                        
                         @method('PUT')
                         {{ csrf_field() }}
 
@@ -35,15 +34,15 @@
 
                         <div class="form-group">
                             <label for="roles[]">User Role: </label>
-                            @foreach ($roles as $role) 
+                            @foreach ($roles as $role)
                                 @if ($role->id == $user->role_id)
                                     <label class="radio-inline">
                                         <input type="radio" value="{{ $role->id }}" name="roles" checked> {{$role->name}}
-                                    </label>                                        
+                                    </label>
                                 @else
                                     <label class="radio-inline">
                                         <input type="radio" value="{{ $role->id }}" name="roles"> {{$role->name}}
-                                    </label>                                        
+                                    </label>
                                 @endif
                             @endforeach
                         </div>
@@ -61,11 +60,3 @@
 
 @endsection
 
-@push('scripts')
-<script type="text/javascript">
-//On document ready, 
-$(function() {
-
-});
-</script>
-@endpush

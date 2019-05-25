@@ -1,5 +1,5 @@
 @extends('template')
-@section('pageTitle', 'Profile Detail')
+@section('pageTitle', 'Selection-Committee - Profile Detail')
 @section('content')
 
 <style>
@@ -19,6 +19,9 @@
        /* symbol for "collapsed" panels */
        content:"\f078";
     }
+    textarea {
+        resize: none;
+    }
     </style>
 
     <div class="container mt-4 ">
@@ -26,30 +29,27 @@
     <div class="row">
       {{-- upload profile --}}
 
-      <div class="col-sm-4 mt-4">
-   {{-- <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100"> --}}
+    <div class="col-sm-4 mt-4">
    <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
-   @if ($candidate->profile==Null)
-                   <img src="{{url('storage/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-        @else
-                  <img src="{{url('storage/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
-      @endif
+    @if ($candidate->profile==Null)
+        <img src="{{url('../storage/app/public/img/male.png')}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+    @else
+        <img src="{{url('../storage/app/public/img/'.$candidate->profile)}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="100">
+    @endif
     <form action="{{route('candidates.update',$candidate->id) }}" method="POST"  enctype="multipart/form-data">
           @csrf
           @method('put')
       </div>
       <div class="col-sm-4 mt-4">
         <br>
-          <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" disabled="disabled" required><br>
-          <label for="">Global Grade</label>
-          <select name="" id="" selected="true" disabled="disabled">
-          <option value="{{$candidate->grade}}">{{$candidate->grade}}</option>
-    </select>
-    <select name="sign"  selected="true" disabled="disabled">
-     <option value="+">...</option>
-     <option value="+">+</option>
-     <option value="-">-</option>
-</select><br>
+        <input type="text" value="{{$candidate->Candidate_Name}}" placeholder="Student Name" class="form-control"  name="name" disabled="disabled" required><br>
+        <p>Global Grade: {{$candidate->grade}}</p>
+
+        @if ($candidate->Fill_By!=Null)
+        <input type="checkbox" name='fil' value="Information is filled by PNC employee" checked>Information is filled by PNC employee
+        @else
+        <input type="checkbox" name='fil' value="Information is filled by PNC employee "> Information is filled by PNC employee
+        @endif
       </div>
     </div>
     <br>
@@ -79,7 +79,7 @@
                 <div class="col-md-3">
 
              <select name="province" class="form-control" disabled="disabled">
-                  <option value="none">Province</option>                
+                  <option value="none">Province</option>
 
                    @foreach (DB::table('provinces')->get() as $item)
 
@@ -137,7 +137,7 @@
     </div>
 {{-- /******************************************************************************************************************/ --}}
 
-<?php 
+<?php
     $test=array();
 ?>
 @for($id=4;$id<=6;++$id)
@@ -209,7 +209,7 @@
          {{$record->get(0)}}
        @endforeach
     </textarea> <br>
-   
+
     </div>
     </div>
     </div>
@@ -251,13 +251,13 @@
                             </div>
                             <div class="col-sm-6">
 
-                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"  disabled="disabled"> 
+                             <textarea name="note[]" id="" cols="30" rows="5" class="form-control" placeholder="Optional Note"  disabled="disabled">
 
-                             
-                              <p>@foreach ($test as $note)
+
+                              @foreach ($test as $note)
                                       {{$note->comment}}
                                @endforeach
-                              </p>
+
                             </textarea>
                             </div>
                         </div>
@@ -319,7 +319,7 @@
                         {{$record->get(1)}}
                    @endforeach
                   </textarea> <br>
-               
+
                   </div>
               </div>
               </div>
@@ -455,7 +455,7 @@
       @endfor
       <h5>Summary<h5>
       <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" placeholder="Please Comment" disabled="disabled">
-  
+
 
                  @foreach ($summary as $record)
                         {{$record->get(3)}}
@@ -463,7 +463,7 @@
 
 
       </textarea> <br>
-    
+
 
               </div>
               </div>
@@ -535,7 +535,7 @@
                         {{$record->get(4)}}
                @endforeach
           </textarea> <br>
-          
+
 
               </div>
               </div>
@@ -594,7 +594,7 @@
                         {{$record->get(5)}}
                    @endforeach
                 </textarea> <br>
-       
+
                 </div>
             </div>
 
@@ -666,7 +666,7 @@
                         {{$record->get(6)}}
                    @endforeach
          </textarea> <br>
-         
+
 
 
             </div>
@@ -860,9 +860,9 @@
 <br>
 <h5>Summary</h5>
 <textarea name="summa[]" id="" cols="30" rows="5" class="form-control" disabled="disabled" placeholder="Please Comment">
-   @foreach ($summary as $record)
-                        {{$record->get(9)}}
-                   @endforeach
+    @foreach ($summary as $record)
+        {{$record->get(9)}}
+    @endforeach
 </textarea> <br>
 
 
@@ -904,9 +904,9 @@
       @endforeach
       <br>
       <h5>Summary</h5>
-      <textarea name="summa[]"  cols="30" rows="5" class="form-control" disabled="disabled" placeholder="Please Comment">
+      <textarea name="summa[]"  cols="30" rows="5" class="form-control" disabled="disabled">
          @foreach ($summary as $record)
-                        {{$record->get(10)}}
+            {{$record->get(10)}}
           @endforeach
       </textarea> <br>
 
@@ -919,92 +919,15 @@
 
     </div>
     <br><br>
-    <textarea name="summary" id="" cols="30" rows="7" class="form-control" placeholder="Please Comment" required disabled="disabled">
-    {{$candidate->summary}}
+    <textarea name="summary" id="" cols="30" rows="7" class="form-control"
+        disabled="disabled">{{$candidate->summary}}
     </textarea> <br>
-
-    <a href="{{url('/candidates')}}"><button class="btn btn-primary btn-sm mb-5">Go back to candidates list</button></a>
+    <a href="{{url('candidates/'.$candidate['id'])}}" class="btn btn-primary btn-sm mb-5">Go back</a>
   </form>
 
     </div>
   </div>
-  
-  
+
+
     @endsection
 
-
-  {{-- /*******************************************************************************************/ --}}
-
-      {{-- modal --}}
-
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Edit othe list of NGO</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-            <form action="{{route('ngo.store')}}" method="post">
-                @csrf
-
-              <table id="ngo" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                  <tr>
-                    <th>Actions</th>
-                    <th>Position</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($ngo as $item)
-                  <tr>
-                    <td>
-                      <a href="{{route('ngo.destroy', $item->id)}}" data-toggle="modal" data-target="#deleteNGO" data-id="{{$item['id']}}" class="text-danger"><i class=" material-icons">delete</i></a>
-                    </td>
-                    <td>{{$item->name}}</td>
-                  </tr>
-                @endforeach
-                </tbody>
-              </table>
-              <button type="button" class="btn btn-primary add-new"><i class="fa fa-plus"></i> Add NGO</button>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" value="Save list" class="btn btn-info">
-            </div>
-          </form>
-
-          </div>
-        </div>
-      </div>
-
-      {{-- end of modal NGO --}}
-
-      {{-- modal of Delete NGO --}}
-
-      <div class="modal fade" tabindex="-1" role="dialog" id="deleteNGO">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Delete NGO</h5>
-              <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Are you sure want to Delete?</p>
-              <small id="users"></small>
-            </div>
-            <div class="modal-footer">
-                <form action="" id="fid" method="post">
-                    @csrf
-                    @method('delete')
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-              <button type="submit"  class="btn btn-primary">Yes</button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>

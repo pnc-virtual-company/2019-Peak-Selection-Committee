@@ -23,24 +23,21 @@
 
     <link rel="stylesheet" href="{{ asset('css/icon.css') }}" />
 
-    <link rel="icon" href="images/title.png">
+    <link rel="icon" href="{{url('storage/img/title.png')}}">
 
     {{-- font awesome --}}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
         crossorigin="anonymous">
 
 </head>
-<body class="bg-secondary">       
+<body class="bg-secondary">
+
     <main>
         @yield('content')
     </main>
-    @stack('scripts')
     
-    <script>
-        $(document).ready(function() {
-            $("#aRegister").fadeTo(3000, 500).slideUp();
-        });
-    </script>
+    @stack('scripts')
+
 </body>
 </html>
